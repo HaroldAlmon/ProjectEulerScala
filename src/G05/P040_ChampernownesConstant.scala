@@ -1,3 +1,5 @@
+package G05
+
 object P040_ChampernownesConstant {
   def main(args: Array[String]) {
       champernownesConstant();
@@ -6,11 +8,10 @@ object P040_ChampernownesConstant {
   private def champernownesConstant() {
     var product = 1
     var number = 1
-    var Dn = 1000000
-    var targetDigits = Array(1, 10, 100, 1000, 10000, 100000, 10000000)
+    val targetDigits = Array(1, 10, 100, 1000, 10000, 100000, 10000000)
     var sequence = ""
 
-    for (Dn <- targetDigits) {
+    for (nthDigit <- targetDigits) {
       number = 1
       var seqLength = 0
       for (noOfSequences <- 1 to 5000) {
@@ -21,17 +22,16 @@ object P040_ChampernownesConstant {
         }
         seqLength += sequence.length
 
-        if (Dn <= seqLength && Dn > (seqLength - sequence.length)) {
-          var offset = seqLength - Dn
-          //println("targetDigit2 = " + Dn)
+        if (nthDigit <= seqLength && nthDigit > (seqLength - sequence.length)) {
+          var offset = seqLength - nthDigit
           var digit = sequence.charAt(sequence.length - offset - 1)
           println("sequence " + sequence)
-          println("targetDigit = " + Dn + ", offset = " + (seqLength - Dn).toString + ", character = " + digit)
-          //println("character = " + digit)
+          println("targetDigit = " + nthDigit + ", offset = " + (seqLength - nthDigit).toString + ", character = " + digit)
           product *= digit.toInt - 48
         }
       }
     }
-    println("product = " + product)
+    println("Product d1 × d10 × ... × d1000000 = " + product)
   }
 }
+
