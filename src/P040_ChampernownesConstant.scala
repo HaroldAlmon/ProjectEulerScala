@@ -6,22 +6,24 @@ object P040_ChampernownesConstant {
   private def champernownesConstant() {
     var product = 1
     var number = 1
-    var targetDigit = 111
+    var targetDigit = 1000000
     println("target characeter = " + targetDigit)
 
-    var powers = Array(1, 10, 100, 1000)
+    var powers = Array(1, 10, 100, 1000, 10000, 100000, 10000000)
     //println("powers size = " + powers.size)
 
     /*for (number <- powers)
       println(number)*/
     var sequence = ""
 
-    //  TODO: Loop through target digits
+    for (i <- powers) {
+      println("targetDigit2 = " + i)
+    }
     number = 1
     var seqLength = 0
-    for( noOfSequences <- 1 to 10) {
+    for( noOfSequences <- 1 to 2500) {
       sequence = ""
-      for (increment <- 1 to 15) {
+      for (increment <- 1 to 80) {
     	  sequence = sequence + number.toString
         number += 1
       }
