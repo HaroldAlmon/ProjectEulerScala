@@ -13,25 +13,33 @@ object P040_ChampernownesConstant {
 
     for (nthDigit <- targetDigits) {
       number = 1
-      var seqLength = 0
+      var totalSeqLength = 0
       for (noOfSequences <- 1 to 5000) {
         sequence = ""
         for (increment <- 1 to 40) {
           sequence = sequence + number.toString
           number += 1
         }
-        seqLength += sequence.length
-
-        if (nthDigit <= seqLength && nthDigit > (seqLength - sequence.length)) {
-          var offset = seqLength - nthDigit
-          var digit = sequence.charAt(sequence.length - offset - 1)
-          println("sequence " + sequence)
-          println("targetDigit = " + nthDigit + ", offset = " + (seqLength - nthDigit).toString + ", character = " + digit)
-          product *= digit.toInt - 48
-        }
+        totalSeqLength += sequence.length
+        product = calcProduct(nthDigit, sequence, totalSeqLength, product)
       }
     }
     println("Product d1 × d10 × ... × d1000000 = " + product)
+  }
+
+  private def isDigitInSequence(nthDigit: Int, sequence: String, totalSeqLength: Int):Boolean = {
+    nthDigit <= totalSeqLength && nthDigit > (totalSeqLength - sequence.length);
+  }
+
+  private def calcProduct(nthDigit: Int, sequence: String, totalSeqLength: Int, product: Int): Int = {
+    if (isDigitInSequence(nthDigit, sequence, totalSeqLength)) {
+      var offset = totalSeqLength - nthDigit
+      var digit = sequence.charAt(sequence.length - offset - 1)
+      println("sequence " + sequence)
+      println("targetDigit = " + nthDigit + ", offset = " + (totalSeqLength - nthDigit).toString + ", character = " + digit)
+      product * (digit.toInt - 48)
+    } else
+      product
   }
 }
 
