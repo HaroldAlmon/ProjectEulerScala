@@ -9,6 +9,7 @@ object PentagonalNumbers {
   private def findNumber() {
     val pentagonal = (1 to MAX).toArray.map { x => Pn(x) }
     val pentaSet = pentagonal.toSet
+
     var Pj = 0
     var Pk = 0
     var diff = 0
