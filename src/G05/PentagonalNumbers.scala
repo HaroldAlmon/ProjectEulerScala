@@ -1,17 +1,17 @@
 package G05
 
 object PentagonalNumbers {
-  val MAX = 10
+  val MAX = 1000
+
   def main(args: Array[String]) {
-      findNumber();
+      findNumber;
   }
 
-  private def findNumber() {
+  private def findNumber {
     var pentagonal = 1 to MAX toArray
 
     pentagonal = pentagonal.map { x => Pn(x) }
     pentagonal.foreach { println }
-
   }
   
   private def Pn(n: Int) = {
