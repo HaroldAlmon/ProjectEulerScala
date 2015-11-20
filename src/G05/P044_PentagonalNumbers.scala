@@ -1,6 +1,6 @@
 package G05
 
-object PentagonalNumbers {
+object P044_PentagonalNumbers {
   val MAX = 3000
 
   def main(args: Array[String]) {
