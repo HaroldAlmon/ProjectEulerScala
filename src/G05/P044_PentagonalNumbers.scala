@@ -9,7 +9,7 @@ object P044_PentagonalNumbers {
 
   private def findNumber() {
     val pentagonal = (1 to MAX).toArray.map { x => Pn(x) }
-    val pentaSet = pentagonal.toSet
+    val pentagonalSet = pentagonal.toSet
 
     (0 to MAX - 2).foreach {
       pos1 => (pos1 + 1 to MAX - 1).foreach {
@@ -22,17 +22,13 @@ object P044_PentagonalNumbers {
         val Pk = pentagonal(pos2)
         
         val sum = Pj + Pk
-        if ( pentaSet.contains( sum ) ) {
+        if ( pentagonalSet.contains( sum ) ) {
           val diff = Pk - Pj
-          if ( pentaSet.contains( diff ) ) {
+          if ( pentagonalSet.contains( diff ) ) {
             println ( "The diff " + diff + " is pentagonal" )
           }
         }
     }
-
-    /* (0 to 3).foreach {
-       i => println("i = " + i)
-    }*/
   }
   private def Pn(n: Int) = {
     n * (3 * n - 1) / 2
