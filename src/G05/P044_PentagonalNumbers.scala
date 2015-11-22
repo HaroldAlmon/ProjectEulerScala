@@ -12,14 +12,11 @@ object P044_PentagonalNumbers {
 
     (0 to pentagonalUpperLimit - 2).
       foreach { leftIndex => ( leftIndex + 1 to pentagonalUpperLimit - 1).
-      foreach { rightIndex => isPentagonal( leftIndex, rightIndex ) } }
+      foreach { rightIndex => isPentagonal( pentagonalNumbers( leftIndex ), pentagonalNumbers( rightIndex ) ) } }
 
-    def isPentagonal( leftIndex: Int, rightIndex: Int ) {
-      val Pj = pentagonalNumbers( leftIndex )
-      val Pk = pentagonalNumbers( rightIndex )
-
+    def isPentagonal( Pj: Int, Pk: Int ) {
       if (pentagonalSet.contains( Pj + Pk ) && pentagonalSet.contains( Pk - Pj ) ) 
-        println("Minimised difference is " + (Pk - Pj) )
+        println("Pj = " + Pj + "\nPk = " + Pk + "\n|Pk - Pj| = " + (Pk - Pj) )
     }
   }
   private def Pn(n: Int) = { n * (3 * n - 1) / 2 }
