@@ -10,7 +10,7 @@ object P040_ChampernownesConstant {
     var number = 1
     val targetDigits = Array(1, 10, 100, 1000, 10000, 100000, 10000000)
     var sequence = ""
-
+    
     for (nthDigit <- targetDigits) {
       number = 1
       var totalSeqLength = 0

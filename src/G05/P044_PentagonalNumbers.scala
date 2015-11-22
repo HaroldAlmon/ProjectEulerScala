@@ -15,8 +15,11 @@ object P044_PentagonalNumbers {
       foreach { rightIndex => isPentagonal( pentagonalNumbers( leftIndex ), pentagonalNumbers( rightIndex ) ) } }
 
     def isPentagonal( Pj: Int, Pk: Int ) {
-      if (pentagonalSet.contains( Pj + Pk ) && pentagonalSet.contains( Pk - Pj ) ) 
-        println("Pj = " + Pj + "\nPk = " + Pk + "\n|Pk - Pj| = " + (Pk - Pj) )
+      if (pentagonalSet.contains( Pj + Pk ) && pentagonalSet.contains( Pk - Pj ) ) {
+        println("Pj = " + Pj )
+        println("Pk = " + Pk )
+        println("|Pk - Pj| = " + (Pk - Pj) )
+      }
     }
   }
   private def Pn(n: Int) = { n * (3 * n - 1) / 2 }
