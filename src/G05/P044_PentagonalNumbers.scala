@@ -4,9 +4,9 @@ package G05
 object P044_PentagonalNumbers {
   val pentagonalUpperLimit = 3000
 
-  def main(args: Array[String]) { findNumber(); }
+  def main(args: Array[String]) { findNumber }
 
-  private def findNumber() {
+  private def findNumber {
     val pentagonalNumbers = ( 1 to pentagonalUpperLimit).toArray.map { x => Pn( x ) }
     val pentagonalSet = pentagonalNumbers.toSet
 
@@ -22,5 +22,6 @@ object P044_PentagonalNumbers {
       }
     }
   }
+  
   private def Pn(n: Int) = { n * (3 * n - 1) / 2 }
 }
