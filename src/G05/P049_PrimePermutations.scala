@@ -1,20 +1,17 @@
 package G05
 import misc.SieveOfEratosthenes;
-object P049_PrimePermutations {
-  /** Strategy: Brute Force, Prime Sieve */
-  
-  def main(args: Array[ String ]) { println ( "String = " + result ) }
 
+/** Strategy: Brute Force, Prime Sieve */
+  object P049_PrimePermutations {
+  val sieve:SieveOfEratosthenes = new SieveOfEratosthenes( 10000 )
+  def main(args: Array[ String ]) { println ( "Prime Permutations = " + result ) }
   def result:String = {
-    val sieve:SieveOfEratosthenes = new SieveOfEratosthenes( 10000 )
 
     (1001 to 10000 - 2 * 3330).foreach  { candidate =>
       val secondCandidate = candidate + 3330
       val thirdCandidate = candidate + 2 * 3330
 
-      if ( sieve.isPrime( candidate ) && 
-          sieve.isPrime( secondCandidate ) && 
-          sieve.isPrime( candidate + 2 * 3330 ) &&
+      if ( areCandidatesPrime(candidate, secondCandidate, thirdCandidate) &&
           isPermutation( candidate, secondCandidate ) && 
           isPermutation( candidate, thirdCandidate) ) {
         if ( candidate != 1487) {
@@ -23,6 +20,17 @@ object P049_PrimePermutations {
       }
     }
     return ""
+  }
+  
+  def areCandidatesPrime(candidate:Int, secondCandidate: Int, thirdCandidate: Int) = {
+    sieve.isPrime( candidate ) && 
+    sieve.isPrime( secondCandidate ) && 
+    sieve.isPrime( thirdCandidate )
+  }
+
+  def areCandidatesPermutations(candidate: Int, secondCandidate: Int, thirdCandidate: Int) = {
+    isPermutation(candidate, secondCandidate) &&
+    isPermutation(candidate, thirdCandidate)
   }
   
   def isPermutation( arg1:Int, arg2:Int ) = {
