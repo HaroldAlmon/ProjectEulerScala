@@ -17,7 +17,6 @@ object TriangularPentagonalAndHexagonal {
   private def isHexagonal( Hn: Int ) = {
     val root1 = (1 + Math.sqrt( 1 + 8 * Hn)) / 4
     val root2 = (1 - Math.sqrt( 1 + 8 * Hn)) / 4
-    //println ("root1 = " + root1 + ", root2 = " + root2) 
     root1 == Math.floor( root1 ) || root2 == Math.floor( root2 ) && root2 > 0
   }
  

@@ -16,9 +16,9 @@ object P044_PentagonalNumbers {
 
     def isPentagonal( Pj: Int, Pk: Int ) {
       if (pentagonalSet.contains( Pj + Pk ) && pentagonalSet.contains( Pk - Pj ) ) {
-        println("Pj = " + Pj )
-        println("Pk = " + Pk )
-        println("|Pk - Pj| = " + (Pk - Pj) )
+        printf("Pj = %d\n", Pj )
+        printf("Pk = %d\n", Pk )
+        printf("|Pk - Pj| = %d\n", (Pk - Pj) )
       }
     }
   }
