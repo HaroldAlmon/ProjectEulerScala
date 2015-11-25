@@ -2,17 +2,20 @@ package G05
 
 object P040_ChampernownesConstant {
   def main(args: Array[String]) {
-      champernownesConstant();
+      champernownesConstant;
   }
 
-  private def champernownesConstant() {
+  private def champernownesConstant {
     var product = 1
     var number = 1
     val targetDigits = Array(1, 10, 100, 1000, 10000, 100000, 10000000)
     var sequence = ""
     
     for (nthDigit <- targetDigits) {
+      //targetDigits 
       number = 1
+      
+      // TODO: Convert var to val...
       var totalSeqLength = 0
       for (noOfSequences <- 1 to 5000) {
         sequence = ""
@@ -33,8 +36,8 @@ object P040_ChampernownesConstant {
 
   private def calcProduct(nthDigit: Int, sequence: String, totalSeqLength: Int, product: Int): Int = {
     if (isDigitInSequence(nthDigit, sequence, totalSeqLength)) {
-      var offset = totalSeqLength - nthDigit
-      var digit = sequence.charAt(sequence.length - offset - 1)
+      val offset = totalSeqLength - nthDigit
+      val digit = sequence.charAt(sequence.length - offset - 1)
       println("sequence " + sequence)
       println("targetDigit = " + nthDigit + ", offset = " + (totalSeqLength - nthDigit).toString + ", character = " + digit)
       product * (digit.toInt - 48)
