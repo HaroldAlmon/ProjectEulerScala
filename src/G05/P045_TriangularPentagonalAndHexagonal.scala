@@ -9,35 +9,32 @@ object TriangularPentagonalAndHexagonal {
     (286 to 60000).foreach { x =>
       val triangle = Tn( x )
  		  if ( isPentagonal( triangle ) && isHexagonal( triangle ) )  {
- 		    println( f"triangle number found = $triangle for Tn($x), Pn(${PnRoot(triangle)}), Hn(${HnRoot(triangle)})" )
+ 		    println( f"Tn($x) = Pn(${PnQuadraticRoot(triangle).toInt}) = Hn(${HnQuadraticRoot(triangle).toInt}) = $triangle" )
  		    return
  		  }
     }
   }
 
-  private def Tn(n: Long):Long = { n * (n + 1) / 2 }
-  private def PnRoot(Tn: Long):Int = { ((1 + Math.sqrt( 1 + 24 * Tn)) / 6).toInt }
-  private def HnRoot(Tn: Long):Int = { ((1 + Math.sqrt( 1 + 8 * Tn)) / 4).toInt }
-  
+  private def Tn(n: Long) = n * (n + 1) / 2
+  private def PnQuadraticRoot(Tn: Long):Double = (1 + Math.sqrt( 1 + 24 * Tn)) / 6
+  private def HnQuadraticRoot(Tn: Long):Double = (1 + Math.sqrt( 1 + 8 * Tn)) / 4
+
+  private def isPentagonal(Tn: Long): Boolean = {
+    val root1 = PnQuadraticRoot( Tn )
+
+    if ( root1 == Math.round(root1) )
+      true
+    else
+      false
+  }
+
   private def isHexagonal( Tn: Long ):Boolean = {
-    val root1 = (1 + Math.sqrt( 1 + 8 * Tn)) / 4
-    val root2 = (1 - Math.sqrt( 1 + 8 * Tn)) / 4
+    val root1 = HnQuadraticRoot( Tn )
     
-    if ( ((root1 == Math.round( root1 )) ) && root1 > 0  || 
-        (root2 == Math.round( root2 )) && (root2 > 0) )
+    if ( root1 == Math.round( root1 ) )
       true
     else
       false
   }
  
-  private def isPentagonal( Tn: Long ):Boolean = {
-    val root1 = (1 + Math.sqrt( 1 + 24 * Tn)) / 6
-    val root2 = (1 - Math.sqrt( 1 + 24 * Tn)) / 6
-    
-    if ( ((root1 == Math.round( root1 )) ) && root1 > 0  || 
-        (root2 == Math.round( root2 )) && (root2 > 0) )
-      true
-    else
-      false
-  }
 }
