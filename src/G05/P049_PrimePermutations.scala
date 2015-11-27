@@ -4,22 +4,27 @@ import misc.SieveOfEratosthenes;
 /** Strategy: Brute Force, Prime Sieve */
   object P049_PrimePermutations {
   val sieve:SieveOfEratosthenes = new SieveOfEratosthenes( 10000 )
-  def main(args: Array[ String ]) { println ( "Prime Permutations = " + result ) }
-  def result:String = {
+  
+  def main(args: Array[ String ]) { 
+    val prime = result
+    printf( "Prime Permutations = %d, %d, %d", prime(0), prime(1), prime(2) ) 
+  }
+  
+  def result:Array[Int] = {
+    (1001 to 10000 - 2 * 3330).foreach  { firstCandidate =>
+      val secondCandidate = firstCandidate + 3330
+      val thirdCandidate = firstCandidate + 2 * 3330
 
-    (1001 to 10000 - 2 * 3330).foreach  { candidate =>
-      val secondCandidate = candidate + 3330
-      val thirdCandidate = candidate + 2 * 3330
-
-      if ( areCandidatesPrime(candidate, secondCandidate, thirdCandidate) &&
-          isPermutation( candidate, secondCandidate ) && 
-          isPermutation( candidate, thirdCandidate) ) {
-        if ( candidate != 1487) {
-          return candidate.toString() + "," + secondCandidate.toString() + "," + thirdCandidate.toString()
+      if ( areCandidatesPrime(firstCandidate, secondCandidate, thirdCandidate) &&
+          isPermutation( firstCandidate, secondCandidate ) && 
+          isPermutation( firstCandidate, thirdCandidate) ) {
+        if ( firstCandidate != 1487) {
+          return Array( firstCandidate, secondCandidate, thirdCandidate )
+          //return firstCandidate.toString() + "," + secondCandidate.toString() + "," + thirdCandidate.toString()
         }
       }
     }
-    return ""
+    return Array( 0, 0, 0 )
   }
   
   def areCandidatesPrime(candidate:Int, secondCandidate: Int, thirdCandidate: Int) = {
@@ -37,22 +42,12 @@ import misc.SieveOfEratosthenes;
     val s1:String = arg1.toString()
     val s2:String = arg2.toString()
 
-    if( s2.contains( s1.charAt( 0 ) ) && 
-        s2.contains( s1.charAt( 1 ) ) && 
-        s2.contains( s1.charAt( 2 ) ) && 
-        s2.contains( s1.charAt( 3 ) ) )
+    if( s2.contains( s1( 0 ) ) && 
+        s2.contains( s1( 1 ) ) && 
+        s2.contains( s1( 2 ) ) && 
+        s2.contains( s1( 3 ) ) )
       true
     else
       false
   }
-  
-  /*
-  seq 1001 to 10_000 - 2*3330 foreach
-    if x is prime &&
-      x + 3330 is prime &&
-      x + 3330 * 2 is prime
-      x + 3330 is permutation
-      x + 2*3330 is permutation
-      return x.tostring + (x +3330).tostring + (x + 2*3330).tostring
-  */
 }
