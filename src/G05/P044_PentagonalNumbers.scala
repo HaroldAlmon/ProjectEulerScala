@@ -7,7 +7,7 @@ object P044_PentagonalNumbers {
   def main(args: Array[String]) { findNumber }
 
   private def findNumber {
-    val pentagonalNumbers = ( 1 to pentagonalUpperLimit).toArray.map { x => Pn( x ) }
+    val pentagonalNumbers = ( 1 to pentagonalUpperLimit ).toArray.map { x => Pn( x ) }
     val pentagonalSet = pentagonalNumbers.toSet
 
     (0 to pentagonalUpperLimit - 2).
