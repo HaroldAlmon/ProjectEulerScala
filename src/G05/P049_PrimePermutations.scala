@@ -7,7 +7,8 @@ import misc.SieveOfEratosthenes;
   
   def main(args: Array[ String ]) { 
     val prime = result
-    printf( "Prime Permutations = %d, %d, %d", prime(0), prime(1), prime(2) ) 
+    printf( "Prime Permutations = %d, %d, %d\n", prime(0), prime(1), prime(2) ) 
+    println( f"The 12 digit string is ${prime(0)}${prime(1)}${prime(2)}" )
   }
   
   def result:Array[Int] = {
@@ -26,20 +27,20 @@ import misc.SieveOfEratosthenes;
     return Array( 0, 0, 0 )
   }
   
-  def areCandidatesPrime(candidate:Int, secondCandidate: Int, thirdCandidate: Int) = {
-    sieve.isPrime( candidate ) && 
+  def areCandidatesPrime( firstCandidate:Int, secondCandidate: Int, thirdCandidate: Int ) = {
+    sieve.isPrime( firstCandidate ) && 
     sieve.isPrime( secondCandidate ) && 
     sieve.isPrime( thirdCandidate )
   }
 
-  def areCandidatesPermutations(candidate: Int, secondCandidate: Int, thirdCandidate: Int) = {
-    isPermutation(candidate, secondCandidate) &&
-    isPermutation(candidate, thirdCandidate)
+  def areCandidatesPermutations( firstCandidate: Int, secondCandidate: Int, thirdCandidate: Int ) = {
+    isPermutation( firstCandidate, secondCandidate ) &&
+    isPermutation( firstCandidate, thirdCandidate )
   }
   
   def isPermutation( arg1:Int, arg2:Int ) = {
-    val s1:String = arg1.toString()
-    val s2:String = arg2.toString()
+    val s1:String = arg1.toString
+    val s2:String = arg2.toString
 
     if( s2.contains( s1( 0 ) ) && 
         s2.contains( s1( 1 ) ) && 
