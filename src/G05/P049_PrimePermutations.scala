@@ -20,7 +20,6 @@ import misc.SieveOfEratosthenes;
           isPermutation( firstCandidate, thirdCandidate) ) {
         if ( firstCandidate != 1487) {
           return Array( firstCandidate, secondCandidate, thirdCandidate )
-          //return firstCandidate.toString() + "," + secondCandidate.toString() + "," + thirdCandidate.toString()
         }
       }
     }
