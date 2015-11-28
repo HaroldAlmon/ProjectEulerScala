@@ -1,4 +1,4 @@
-package G05
+package com.translationdata.g05
 
 object P040_ChampernownesConstant {
   def main(args: Array[String]) {

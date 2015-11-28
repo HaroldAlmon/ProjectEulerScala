@@ -1,4 +1,4 @@
-package G05
+package com.translationdata.g05
 
 /** Strategy: Brute Force, Hash Set Lookup */
 object P044_PentagonalNumbers {

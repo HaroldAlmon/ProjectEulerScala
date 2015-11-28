@@ -1,4 +1,4 @@
-package G05
+package com.translationdata.g05
 
 object P048_SelfPowers {
   val TenDigits = Math.pow(10, 10).toLong

@@ -1,4 +1,4 @@
-package G05
+package com.translationdata.g05
 /** Strategy: Brute Force, Simple Mathematics */
 object TriangularPentagonalAndHexagonal {
     def main( args: Array[ String ] ) {

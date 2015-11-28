@@ -1,4 +1,4 @@
-package G05
+package com.translationdata.g05
 import misc.SieveOfEratosthenes;
 
 /** Strategy: Brute Force, Prime Sieve */
