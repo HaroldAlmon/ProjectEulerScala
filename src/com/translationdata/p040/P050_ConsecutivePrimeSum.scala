@@ -1,4 +1,4 @@
-package com.translationdata.g05
+package com.translationdata.p040
 
 class ConsecutivePrimeSum {
   
