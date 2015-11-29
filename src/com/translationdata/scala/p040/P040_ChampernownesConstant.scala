@@ -38,8 +38,8 @@ object P040_ChampernownesConstant {
     if (isDigitInSequence(nthDigit, sequence, totalSeqLength)) {
       val offset = totalSeqLength - nthDigit
       val digit = sequence.charAt(sequence.length - offset - 1)
-      println("sequence " + sequence)
-      println("targetDigit = " + nthDigit + ", offset = " + (totalSeqLength - nthDigit).toString + ", character = " + digit)
+      //println("sequence " + sequence)
+      //println("targetDigit = " + nthDigit + ", offset = " + (totalSeqLength - nthDigit).toString + ", character = " + digit)
       product * (digit.toInt - 48)
     } else
       product
