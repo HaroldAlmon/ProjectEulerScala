@@ -1,4 +1,4 @@
-package com.translationdata.g001;
+package com.translationdata.scala.g001;
 object P001_MultiplesOf3And5 extends App{
   println(multiplesOf3And5(1000))
 

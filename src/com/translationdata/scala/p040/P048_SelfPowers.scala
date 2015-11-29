@@ -1,4 +1,4 @@
-package com.translationdata.p040
+package com.translationdata.scala.p040
 
 object P048_SelfPowers {
   val TenDigits = Math.pow(10, 10).toLong
