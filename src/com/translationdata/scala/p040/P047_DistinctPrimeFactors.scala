@@ -4,6 +4,7 @@ import org.junit.Test
 import org.junit.Assert._
 
 /** Strategy: Brute Force, Prime Sieve */
+/* TODO: Make this run faster. This takes over 3 minutes to run. */
   
 object P047_DistinctPrimeFactors {
 	val sieve:SieveOfEratosthenes = new SieveOfEratosthenes( 135000 )
@@ -12,7 +13,7 @@ object P047_DistinctPrimeFactors {
   }
 
   def getNumber:Int = {
-    (134000 to 135000 ).foreach { x =>
+    (1 to 135000 ).foreach { x =>
       val factors1 = findFactors(x)
       val factors2 = if(factors1.size == 4) findFactors(x + 1) else (0 to 0)
       val factors3 = if(factors2.size == 4) findFactors(x + 2) else (0 to 0)
