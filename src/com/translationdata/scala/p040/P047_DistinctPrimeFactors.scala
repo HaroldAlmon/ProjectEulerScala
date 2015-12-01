@@ -13,7 +13,7 @@ object P047_DistinctPrimeFactors {
   }
 
   def getNumber:Int = {
-    (1 to 135000 ).foreach { x =>
+    (134000 to 135000 ).foreach { x =>
       val factors1 = findFactors(x)
       val factors2 = if(factors1.size == 4) findFactors(x + 1) else (0 to 0)
       val factors3 = if(factors2.size == 4) findFactors(x + 2) else (0 to 0)
@@ -21,12 +21,12 @@ object P047_DistinctPrimeFactors {
       
       
       if ( factors1.size + factors2.size + factors3.size + factors4.size == 16) {
-        println (f"Four consequetive nums: ${x}, ${x+1}, ${x+2}, ${x+3}")
+        println (f"Four consequetive nums: ${x}, ${x+1}, ${x+2}, ${x+3}\n")
       
         printf( "%d factors are %s\n", x,     factors1.mkString(" ") ) 
         printf( "%d factors are %s\n", x + 1, factors2.mkString(" ") ) 
         printf( "%d factors are %s\n", x + 2, factors3.mkString(" ") )
-        printf( "%d factors are %s\n", x + 3, factors4.mkString(" ") )
+        printf( "%d factors are %s\n\n", x + 3, factors4.mkString(" ") )
         return x
       }
     }
