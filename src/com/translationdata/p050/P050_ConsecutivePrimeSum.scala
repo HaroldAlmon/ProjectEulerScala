@@ -9,42 +9,11 @@ import misc.SieveOfEratosthenes;
 
 object P050_ConsecutivePrimeSum {
 	//val upperLimit = pow(10, 6).toInt
-		val upperLimit = 1000000
+	val upperLimit = 1000000
 	val sieve:SieveOfEratosthenes = new SieveOfEratosthenes( upperLimit )
-  def getNumber:Int = { 
-
-    var maxPrimeSum = 0L
-    var maxPrime = 0
-    var maxPrimeCount = 0
-
-    var primeSum = 0L
-    val primeNumberSums = ( 2 to 10 ).toArray.map { firstPrime =>
-      if (sieve.isPrime(firstPrime)) {
-        var primeCount = 0
-        primeSum = 0;
-        primeCount = 0;
-        primeCount = 0;
-
-        for ( prime <- ( firstPrime to upperLimit / 100) ) {
-          if (sieve.isPrime(prime)) {
-            primeSum += prime
-            primeCount += 1
-
-            if (primeSum <= upperLimit && sieve.isPrime( primeSum.toInt ) && primeCount > maxPrimeCount ) {
-              maxPrime = prime
-              maxPrimeSum = primeSum
-              maxPrimeCount = primeCount
-            }
-          }
-        }
-      }
-      maxPrimeSum
-    }
-    primeNumberSums.max.toInt
-  }
   
-def primeSumHelper( primeCandidate:Int, maxSum:Int, maxPrimeSum:Int, primeCount:Int, maxPrimeCount:Int ):(Int,Int) = {
-	  val primeCandidateSum = primeCandidate + maxSum
+def primeSumHelper( primeCandidate:Int, currentPrimeSum:Int, maxPrimeSum:Int, primeCount:Int, maxPrimeCount:Int ):(Int,Int) = {
+	  val primeCandidateSum = primeCandidate + currentPrimeSum
 	  
     if ( primeCandidateSum >= upperLimit ) {
       //printf("sum = %d, count =%d\n", maxPrimeSum, maxPrimeCount)
@@ -52,7 +21,7 @@ def primeSumHelper( primeCandidate:Int, maxSum:Int, maxPrimeSum:Int, primeCount:
     }
       
     val (parm1, parm2, parm3, parm4) = if ( sieve.isPrime(primeCandidate) == false )
-      ( maxSum, maxPrimeSum, primeCount, maxPrimeCount )
+      ( currentPrimeSum, maxPrimeSum, primeCount, maxPrimeCount )
       
     else {
       
@@ -74,8 +43,10 @@ def primeSumHelper( primeCandidate:Int, maxSum:Int, maxPrimeSum:Int, primeCount:
   def getMaxSum:Int = {
     val primeList = extractPrimes( (2 to 10) )
     val primeNumberSums = primeList.toArray.map { firstPrime => primeSum (firstPrime) }
-    for (tup <- primeNumberSums) { 
-      printf ("Sum = %d, number of terms = %d\n", tup._2, tup._1 )
+    
+    for (primePos <- 0 to primeNumberSums.size - 1) {
+      val tup = primeNumberSums(primePos)
+      printf ("Starting Prime = %d, Sum = %d, number of terms = %d\n", primeList(primePos), tup._2, tup._1 )
     }
     val counts = primeNumberSums.map( tup => tup._1)
     val maxCount = counts.max
@@ -94,12 +65,8 @@ def primeSumHelper( primeCandidate:Int, maxSum:Int, maxPrimeSum:Int, primeCount:
 
 class P050_ConsecutivePrimeSum_Junit {
   @Test def ConsecutivePrimeSum {
-    val maxPrimeSum = P050_ConsecutivePrimeSum.getNumber
-    val testSum = P050_ConsecutivePrimeSum.primeSum(2)
-    println("testSum = " + testSum)
+    val maxPrimeSum = P050_ConsecutivePrimeSum.getMaxSum
     println( "Maximum prime is " + maxPrimeSum )
-    
-    println("getMaxSum = " + P050_ConsecutivePrimeSum.getMaxSum )
-    //assertEquals( 997651, maxPrimeSum )
+    assertEquals( 997651, maxPrimeSum )
   }
 }
