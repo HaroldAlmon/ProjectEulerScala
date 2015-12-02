@@ -9,7 +9,7 @@ import misc.SieveOfEratosthenes;
 
 object P050_ConsecutivePrimeSum {
 	//val upperLimit = pow(10, 6).toInt
-		val upperLimit = 1000
+		val upperLimit = 1000000
 	val sieve:SieveOfEratosthenes = new SieveOfEratosthenes( upperLimit )
   def getNumber:Int = { 
 
@@ -40,10 +40,6 @@ object P050_ConsecutivePrimeSum {
       }
       maxPrimeSum
     }
-		//println("firstPrimeNumbers MAX = " + firstPrimeNumbers.max)
-    //println("maxPrimeCount = " + maxPrimeCount)
-    //println("maxPrime = " + maxPrime)
-    //println("x = " + firstPrimeNumbers.mkString(" "))
     primeNumberSums.max.toInt
   }
   
@@ -79,7 +75,7 @@ def primeSumHelper( primeCandidate:Int, maxSum:Int, maxPrimeSum:Int, primeCount:
     val primeList = extractPrimes( (2 to 10) )
     val primeNumberSums = primeList.toArray.map { firstPrime => primeSum (firstPrime) }
     for (tup <- primeNumberSums) { 
-      println (tup + ", " + tup._1.toString() + ", " + tup._2.toString())
+      printf ("Sum = %d, number of terms = %d\n", tup._2, tup._1 )
     }
     val counts = primeNumberSums.map( tup => tup._1)
     val maxCount = counts.max
@@ -87,12 +83,6 @@ def primeSumHelper( primeCandidate:Int, maxSum:Int, maxPrimeSum:Int, primeCount:
     
     val maxSum = primeNumberSums(maxPos)._2
     
-        val primeList2 = extractPrimes( (2 to 10) )
-    //val primeNumberSums3 = extractPrimes( (2 to 10) )
-    //val primeNumberSums2 = primeList.toArray.map { firstPrime => primeSum (firstPrime) }
-    //val pos = primeNumberSums2.indexWhere(_ == primeNumberSums2.max)
-    //val maxSeq = primeNumberSums2.max
-    //primeSum ( primeList(pos) )
     maxSum
   }
   
