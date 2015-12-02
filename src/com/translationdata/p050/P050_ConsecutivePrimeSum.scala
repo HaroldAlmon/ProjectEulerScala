@@ -13,25 +13,25 @@ object P050_ConsecutivePrimeSum {
 	val sieve:SieveOfEratosthenes = new SieveOfEratosthenes( upperLimit )
 	
   def getMaxSum:Int = {
-    val primeList = extractPrimes( (2 to 10) )
-    val primeNumberSums = primeList.toArray.map { firstPrime => primeSum (firstPrime) }
+    val primeList = extractPrimes( ( 2 to 7 ) )
+    val primeNumberSums = primeList.toArray.map { firstPrime => primeSum ( firstPrime ) }
     
-    for (primePos <- 0 to primeNumberSums.size - 1) {
+    for ( primePos <- 0 to primeNumberSums.size - 1) {
       val tup = primeNumberSums(primePos)
-      printf ("Starting Prime = %d, Sum = %d, number of terms = %d\n", primeList(primePos), tup._2, tup._1 )
+      printf ( "Starting Prime = %d, Sum = %d, number of terms = %d\n", primeList(primePos), tup._2, tup._1 )
     }
 
     val counts = primeNumberSums.map( tup => tup._1)
     val maxCount = counts.max
-    val maxPos = counts.indexWhere(_ == maxCount)
-    val maxSum = primeNumberSums(maxPos)._2
+    val maxPos = counts.indexWhere( _ == maxCount)
+    val maxSum = primeNumberSums( maxPos )._2
     maxSum
   }
 	
-	def primeSum(firstPrime:Int) = {
+	def primeSum( firstPrime:Int ) = {
     val maxSum = 0 
     val maxPrimeSum = 0
-    primeSumTailRecursion(firstPrime, maxSum, maxPrimeSum, 0, 0 )
+    primeSumTailRecursion( firstPrime, maxSum, maxPrimeSum, 0, 0 )
   }
   
   def primeSumTailRecursion( primeCandidate:Int, currentPrimeSum:Int, maxPrimeSum:Int, primeCount:Int, maxPrimeCount:Int ): (Int,Int) = {
