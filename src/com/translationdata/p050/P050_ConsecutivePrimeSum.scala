@@ -17,31 +17,25 @@ object P050_ConsecutivePrimeSum {
     var maxPrimeCount = 0
 
     var primeSum = 0L
-    val primeNumberSums = (2 to 10).toArray.map { firstPrime =>
+    val primeNumberSums = ( 2 to 10 ).toArray.map { firstPrime =>
       if (sieve.isPrime(firstPrime)) {
         var primeCount = 0
         primeSum = 0;
         primeCount = 0;
         primeCount = 0;
 
-        
-        
-        for (prime <- (firstPrime to upperLimit / 100000)) {
+        for ( prime <- ( firstPrime to upperLimit / 100000) ) {
           if (sieve.isPrime(prime)) {
             primeSum += prime
             primeCount += 1
 
-            if (primeSum <= upperLimit && sieve.isPrime(primeSum.toInt) && primeCount > maxPrimeCount) {
+            if (primeSum <= upperLimit && sieve.isPrime( primeSum.toInt ) && primeCount > maxPrimeCount ) {
               maxPrime = prime
               maxPrimeSum = primeSum
               maxPrimeCount = primeCount
             }
           }
         }
-        
-        
-        
-        
       }
       maxPrimeSum
     }
@@ -56,7 +50,7 @@ object P050_ConsecutivePrimeSum {
 class P050_ConsecutivePrimeSum_Junit {
   @Test def ConsecutivePrimeSum {
     val maxPrimeSum = P050_ConsecutivePrimeSum.getNumber
-    println("Maximum prime is " + maxPrimeSum)
-    assertEquals(997651, maxPrimeSum)
+    println( "Maximum prime is " + maxPrimeSum )
+    assertEquals( 997651, maxPrimeSum )
   }
 }
