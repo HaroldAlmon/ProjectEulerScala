@@ -47,79 +47,37 @@ object P050_ConsecutivePrimeSum {
     primeNumberSums.max.toInt
   }
   
-// Probably not tail recursive...
-  def getSeqSumHelper( primeCandidate:Int, totalSum:Int, maxPrimeSum:Int ): Int = {
-	  val sum = primeCandidate + totalSum
-	  
-    if ( sum >= upperLimit )
-      return maxPrimeSum
-      
-    if ( sieve.isPrime(primeCandidate) == false )
-      // keep going to find the next prime number
-      getSeqSumHelper( primeCandidate + 1, totalSum, maxPrimeSum )
-    else {
-      
-      // Add the next prime and if the sum is prime keep going...
-      if( sieve.isPrime( sum ) ) {
-        getSeqSumHelper( primeCandidate + 1, sum, sum )
-      }
-      // Sum is not prime so do not add to max and keep going...  
-      else
-        //totalSum
-        getSeqSumHelper( primeCandidate + 1, sum, maxPrimeSum )
-    }
-  }
-
-// Prototype function  to understand tuples...
-def getSeqSumHelper2( primeCandidate:Int, totalSum:Int, maxPrimeSum:Int ): Int = {
-	  val sum = primeCandidate + totalSum
-	  
-    if ( sum >= upperLimit )
-      return maxPrimeSum
-      
-    val (p1, p2) = (1,1)
-      
-    val (p3, p4) = if ( sieve.isPrime(primeCandidate) == false )
-      ( totalSum, maxPrimeSum )
-	  1
-  }
-
-
-  def getSeqSumHelper3( primeCandidate:Int, maxSum:Int, maxPrimeSum:Int ): Int = {
+def getSeqSumHelper( primeCandidate:Int, maxSum:Int, maxPrimeSum:Int ): Int = {
 	  val primeCandidateSum = primeCandidate + maxSum
 	  
     if ( primeCandidateSum >= upperLimit )
       return maxPrimeSum
       
     val (parm1, parm2) = if ( sieve.isPrime(primeCandidate) == false )
-      // keep going to find the next prime number
-      //getSeqSumHelper( primeCandidate + 1, totalSum, maxPrimeSum )
       ( maxSum, maxPrimeSum )
       
     else {
       
-      // Add the next prime and if the sum is prime keep going...
       if( sieve.isPrime( primeCandidateSum ) ) {
-        //getSeqSumHelper( primeCandidate + 1, sum, sum )
-        (primeCandidateSum, primeCandidateSum )
+        ( primeCandidateSum, primeCandidateSum )
       }
-      // Sum is not prime so do not add to max and keep going...  
       else
-        //getSeqSumHelper( primeCandidate + 1, sum, maxPrimeSum )
         ( primeCandidateSum, maxPrimeSum )
     }
 	  getSeqSumHelper( primeCandidate + 1, parm1, parm2 )
   }
   
-  def getSeqSum(firstPrime:Int) = {
-    getSeqSumHelper3(firstPrime, 0, 0)
+  def primeSum(firstPrime:Int) = {
+    val maxSum = 0 
+    val maxPrimeSum = 0
+    getSeqSumHelper(firstPrime, maxSum, maxPrimeSum)
   }
 }
 
 class P050_ConsecutivePrimeSum_Junit {
   @Test def ConsecutivePrimeSum {
     val maxPrimeSum = P050_ConsecutivePrimeSum.getNumber
-    val testSum = P050_ConsecutivePrimeSum.getSeqSum(2)
+    val testSum = P050_ConsecutivePrimeSum.primeSum(2)
     println("testSum = " + testSum)
     println( "Maximum prime is " + maxPrimeSum )
     //assertEquals( 997651, maxPrimeSum )
