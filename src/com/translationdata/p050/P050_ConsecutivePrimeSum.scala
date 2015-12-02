@@ -47,12 +47,13 @@ object P050_ConsecutivePrimeSum {
     primeNumberSums.max.toInt
   }
   
-def getSeqSumHelper( primeCandidate:Int, maxSum:Int, maxPrimeSum:Int, primeCount:Int ): Int = {
+def primeSumHelper( primeCandidate:Int, maxSum:Int, maxPrimeSum:Int, primeCount:Int ):(Int,Int) = {
 	  val primeCandidateSum = primeCandidate + maxSum
 	  
     if ( primeCandidateSum >= upperLimit ) {
       printf("sum = %d, count =%d\n", maxPrimeSum, primeCount)
-    	return maxPrimeSum
+    	//return maxPrimeSum
+    	return (primeCount, maxPrimeSum)
     }
       
     val (parm1, parm2, parm3) = if ( sieve.isPrime(primeCandidate) == false )
@@ -67,18 +68,36 @@ def getSeqSumHelper( primeCandidate:Int, maxSum:Int, maxPrimeSum:Int, primeCount
       else
         ( primeCandidateSum, maxPrimeSum, primeCount )
     }
-	  getSeqSumHelper( primeCandidate + 1, parm1, parm2, parm3 )
+	  primeSumHelper( primeCandidate + 1, parm1, parm2, parm3 )
   }
   
   def primeSum(firstPrime:Int) = {
     val maxSum = 0 
     val maxPrimeSum = 0
-    getSeqSumHelper(firstPrime, maxSum, maxPrimeSum, 0)
+    primeSumHelper(firstPrime, maxSum, maxPrimeSum, 0)
   }
 
-  def getMaxSum = {
-    val primeNumberSums = (2 to 10).toArray.map { firstPrime => primeSum (firstPrime) }
-    primeNumberSums.max
+  def getMaxSum:Int = {
+    val primeList = extractPrimes( (2 to 10) )
+    val primeNumberSums = primeList.toArray.map { firstPrime => primeSum (firstPrime) }
+    for (tup <- primeNumberSums) { 
+      println (tup + ", " + tup._1.toString() + ", " + tup._2.toString())
+    }
+    val counts = primeNumberSums.map( tup => tup._1)
+    val maxCount = counts.max
+    
+        val primeList2 = extractPrimes( (2 to 10) )
+    //val primeNumberSums3 = extractPrimes( (2 to 10) )
+    //val primeNumberSums2 = primeList.toArray.map { firstPrime => primeSum (firstPrime) }
+    //val pos = primeNumberSums2.indexWhere(_ == primeNumberSums2.max)
+    //val maxSeq = primeNumberSums2.max
+    //primeSum ( primeList(pos) )
+    1
+  }
+  
+  def extractPrimes(candiates:Range.Inclusive) = {
+    for ( num <- candiates if sieve.isPrime(num) )
+        yield num
   }
 }
 
