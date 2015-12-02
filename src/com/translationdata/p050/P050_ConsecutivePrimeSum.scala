@@ -8,23 +8,19 @@ import Math.sqrt
 import misc.SieveOfEratosthenes;
 
 object P050_ConsecutivePrimeSum {
-	//val upperLimit = pow(10, 6).toInt
-	val upperLimit = 1000000
+	val upperLimit = pow(10, 6).toInt
 	val sieve:SieveOfEratosthenes = new SieveOfEratosthenes( upperLimit )
   
 def primeSumHelper( primeCandidate:Int, currentPrimeSum:Int, maxPrimeSum:Int, primeCount:Int, maxPrimeCount:Int ):(Int,Int) = {
 	  val primeCandidateSum = primeCandidate + currentPrimeSum
 	  
     if ( primeCandidateSum >= upperLimit ) {
-      //printf("sum = %d, count =%d\n", maxPrimeSum, maxPrimeCount)
     	return (maxPrimeCount, maxPrimeSum)
     }
       
     val (parm1, parm2, parm3, parm4) = if ( sieve.isPrime(primeCandidate) == false )
       ( currentPrimeSum, maxPrimeSum, primeCount, maxPrimeCount )
-      
     else {
-      
       if( sieve.isPrime( primeCandidateSum ) ) {
         ( primeCandidateSum, primeCandidateSum, primeCount + 1, primeCount + 1)
       }
