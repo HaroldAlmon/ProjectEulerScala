@@ -50,11 +50,10 @@ object P050_ConsecutivePrimeSum {
 def getSeqSumHelper( primeCandidate:Int, maxSum:Int, maxPrimeSum:Int, primeCount:Int ): Int = {
 	  val primeCandidateSum = primeCandidate + maxSum
 	  
-    if ( primeCandidateSum >= upperLimit )
-      if ( primeCount > 1 )
-        return maxPrimeSum
-      else 
-        return 0
+    if ( primeCandidateSum >= upperLimit ) {
+      printf("sum = %d, count =%d\n", maxPrimeSum, primeCount)
+    	return maxPrimeSum
+    }
       
     val (parm1, parm2, parm3) = if ( sieve.isPrime(primeCandidate) == false )
       ( maxSum, maxPrimeSum, primeCount )
