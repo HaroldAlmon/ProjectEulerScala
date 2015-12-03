@@ -1,4 +1,4 @@
-package com.translationdata.scala.g001;
+package com.translationdata.scala.p001;
 object P002_EvenFibonacciNumbers extends App {
   println( "P002: " + EvenFiboNumbersSum( 4000000 ) )
 
