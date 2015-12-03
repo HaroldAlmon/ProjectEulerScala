@@ -31,15 +31,16 @@ object P050_ConsecutivePrimeSum {
 	def primeSum( firstPrime:Int ) = {
     val maxSum = 0 
     val maxPrimeSum = 0
-    primeSumTailRecursion( firstPrime, maxSum, maxPrimeSum, 0, 0 )
+    val primeCount = 0
+    val maxPrimeCount = 0
+    primeSumTailRecursion( firstPrime, maxSum, maxPrimeSum, primeCount, maxPrimeCount )
   }
   
   def primeSumTailRecursion( primeCandidate:Int, currentPrimeSum:Int, maxPrimeSum:Int, primeCount:Int, maxPrimeCount:Int ): (Int,Int) = {
 	  val primeCandidateSum = primeCandidate + currentPrimeSum
 	  
-    if ( primeCandidateSum >= upperLimit ) {
+    if ( primeCandidateSum >= upperLimit )
     	return (maxPrimeCount, maxPrimeSum)
-    }
       
     val (parm1Sum, parm2MaxSum, parm3Count, parm4MaxCount) = if ( sieve.isPrime(primeCandidate) == false )
       ( currentPrimeSum, maxPrimeSum, primeCount, maxPrimeCount )
