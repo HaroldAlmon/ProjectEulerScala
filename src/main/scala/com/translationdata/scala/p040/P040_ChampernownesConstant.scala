@@ -27,7 +27,7 @@ object P040_ChampernownesConstant {
         product = calcProduct(nthDigit, sequence, totalSeqLength, product)
       }
     }
-    println("Product d1 × d10 × ... × d1000000 = " + product)
+    println("P040: Product d1 × d10 × ... × d1000000 = " + product)
   }
 
   private def isDigitInSequence(nthDigit: Int, sequence: String, totalSeqLength: Int):Boolean = {

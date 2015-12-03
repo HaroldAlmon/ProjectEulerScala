@@ -17,11 +17,11 @@ object P050_ConsecutivePrimeSum {
     val primeNumberSums = primeList.toArray.map { firstPrime => primeSum ( firstPrime ) }
     
     for ( primePos <- 0 to primeNumberSums.size - 1) {
-      val tup = primeNumberSums(primePos)
-      printf ( "Starting Prime = %d, Sum = %d, number of terms = %d\n", primeList(primePos), tup._2, tup._1 )
+      val primeTuple = primeNumberSums(primePos)
+      printf ( "Starting Prime = %d, Sum = %d, number of terms = %d\n", primeList(primePos), primeTuple._2, primeTuple._1 )
     }
 
-    val counts = primeNumberSums.map( tup => tup._1)
+    val counts = primeNumberSums.map( primeTuple => primeTuple._1)
     val maxCount = counts.max
     val maxPos = counts.indexWhere( _ == maxCount)
     val maxSum = primeNumberSums( maxPos )._2
