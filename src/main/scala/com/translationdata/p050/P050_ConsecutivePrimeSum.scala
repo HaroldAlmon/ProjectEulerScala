@@ -63,7 +63,7 @@ object P050_ConsecutivePrimeSum {
 class P050_ConsecutivePrimeSum_Junit {
   @Test def ConsecutivePrimeSum {
     val maxPrimeSum = P050_ConsecutivePrimeSum.getMaxSum
-    println( "Maximum prime is " + maxPrimeSum )
+    println( "P050: Maximum prime is " + maxPrimeSum )
     assertEquals( 997651, maxPrimeSum )
   }
 }

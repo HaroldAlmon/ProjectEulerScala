@@ -21,7 +21,7 @@ class P048_SelfPowers_Junit {
   @Test 
   def SumMod10 {
     val SumMod10 = P048_SelfPowers.sumMod10
-    println(f"Result = ${SumMod10}")
+    println(f"P048: Result = ${SumMod10}")
     assertEquals( 9110846700L, SumMod10 )
   }
 }

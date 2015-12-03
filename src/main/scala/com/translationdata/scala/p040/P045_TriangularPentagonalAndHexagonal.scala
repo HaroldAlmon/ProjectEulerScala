@@ -2,7 +2,7 @@ package com.translationdata.scala.p040
 /** Strategy: Brute Force, Simple Mathematics */
 object TriangularPentagonalAndHexagonal {
     def main( args: Array[ String ] ) {
-    println( f"Next triangular number is $findNumber" );
+    println( f"P045: Next triangular number is $findNumber" );
   }
 
   private def findNumber:Long = {
