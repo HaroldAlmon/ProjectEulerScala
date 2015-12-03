@@ -1,4 +1,4 @@
-package com.translationdata.scala.p040
+package com.translationdata.p040
 
 object P040_ChampernownesConstant {
   def main(args: Array[String]) {

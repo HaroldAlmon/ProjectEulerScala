@@ -1,4 +1,4 @@
-package com.translationdata.scala.p040
+package com.translationdata.p040
 
 /** Strategy: Brute Force, Hash Set Lookup */
 object P044_PentagonalNumbers {

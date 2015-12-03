@@ -1,4 +1,4 @@
-package com.translationdata.scala.p040
+package com.translationdata.p040
 /** Strategy: Brute Force, Simple Mathematics */
 object TriangularPentagonalAndHexagonal {
     def main( args: Array[ String ] ) {

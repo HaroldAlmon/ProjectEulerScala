@@ -1,4 +1,4 @@
-package com.translationdata.scala.p040
+package com.translationdata.p040
 import misc.SieveOfEratosthenes;
 
 /** Strategy: Brute Force, Prime Sieve */
