@@ -1,4 +1,4 @@
-package com.translationdata.scala.p040
+package com.translationdata.p040
 
 /** Strategy: Brute Force, Hash Set Lookup */
 object P044_PentagonalNumbers {
@@ -16,6 +16,7 @@ object P044_PentagonalNumbers {
 
     def isPentagonal( Pj: Int, Pk: Int ) {
       if (pentagonalSet.contains( Pj + Pk ) && pentagonalSet.contains( Pk - Pj ) ) {
+        printf("P040:\n" )
         printf("Pj = %d\n", Pj )
         printf("Pk = %d\n", Pk )
         printf("|Pk - Pj| = %d\n", (Pk - Pj) )

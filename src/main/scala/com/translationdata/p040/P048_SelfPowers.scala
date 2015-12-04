@@ -1,4 +1,4 @@
-package com.translationdata.scala.p040
+package com.translationdata.p040
 import org.junit.Test
 import org.junit.Assert._
 object P048_SelfPowers {

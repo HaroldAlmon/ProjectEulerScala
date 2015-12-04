@@ -1,4 +1,4 @@
-package com.translationdata.scala.p040
+package com.translationdata.p040
 import misc.SieveOfEratosthenes;
 
 /** Strategy: Brute Force, Prime Sieve */
@@ -7,7 +7,7 @@ import misc.SieveOfEratosthenes;
   
   def main(args: Array[ String ]) { 
     val prime = result
-    printf( "Prime Permutations = %d, %d, %d\n", prime(0), prime(1), prime(2) ) 
+    printf( "P049: Prime Permutations = %d, %d, %d\n", prime(0), prime(1), prime(2) ) 
     printf( "The 12 digit string is %d%d%d\n", prime(0), prime(1), prime(2) )
   }
   

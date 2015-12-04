@@ -1,4 +1,4 @@
-package com.translationdata.scala.p040
+package com.translationdata.p040
 import misc.SieveOfEratosthenes;
 import org.junit.Test
 import org.junit.Assert._
@@ -48,7 +48,7 @@ object P047_DistinctPrimeFactors {
 class P047_DistinctPrimeFactors {
   @Test def DistinctPrimeFactors {
     val firstNumber = P047_DistinctPrimeFactors.getNumber
-    println( f"First number is ${firstNumber}" )
+    println( f"P047: First number is ${firstNumber}" )
     assertEquals( 134043, firstNumber )
   }
 }

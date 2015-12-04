@@ -1,4 +1,4 @@
-package com.translationdata.scala.p040
+package com.translationdata.p040
 
 object P040_ChampernownesConstant {
   def main(args: Array[String]) {
@@ -27,7 +27,7 @@ object P040_ChampernownesConstant {
         product = calcProduct(nthDigit, sequence, totalSeqLength, product)
       }
     }
-    println("Product d1 × d10 × ... × d1000000 = " + product)
+    println("P040: Product d1 × d10 × ... × d1000000 = " + product)
   }
 
   private def isDigitInSequence(nthDigit: Int, sequence: String, totalSeqLength: Int):Boolean = {
@@ -38,8 +38,6 @@ object P040_ChampernownesConstant {
     if (isDigitInSequence(nthDigit, sequence, totalSeqLength)) {
       val offset = totalSeqLength - nthDigit
       val digit = sequence.charAt(sequence.length - offset - 1)
-      //println("sequence " + sequence)
-      //println("targetDigit = " + nthDigit + ", offset = " + (totalSeqLength - nthDigit).toString + ", character = " + digit)
       product * (digit.toInt - 48)
     } else
       product
