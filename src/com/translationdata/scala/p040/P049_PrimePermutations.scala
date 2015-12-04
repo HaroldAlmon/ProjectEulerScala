@@ -8,7 +8,7 @@ import misc.SieveOfEratosthenes;
   def main(args: Array[ String ]) { 
     val prime = result
     printf( "Prime Permutations = %d, %d, %d\n", prime(0), prime(1), prime(2) ) 
-    println( f"The 12 digit string is ${prime(0)}${prime(1)}${prime(2)}" )
+    printf( "The 12 digit string is %d%d%d\n", prime(0), prime(1), prime(2) )
   }
   
   def result:Array[Int] = {
@@ -18,7 +18,7 @@ import misc.SieveOfEratosthenes;
 
       if ( areCandidatesPrime(firstCandidate, secondCandidate, thirdCandidate) &&
           isPermutation( firstCandidate, secondCandidate ) && 
-          isPermutation( firstCandidate, thirdCandidate) ) {
+           areCandidatesPermutations( firstCandidate, secondCandidate, thirdCandidate )) {
         if ( firstCandidate != 1487) {
           return Array( firstCandidate, secondCandidate, thirdCandidate )
         }
