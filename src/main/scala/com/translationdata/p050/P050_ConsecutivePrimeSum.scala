@@ -49,16 +49,15 @@ object P050_ConsecutivePrimeSum {
     if ( primeCandidateSum >= upperLimit )
     	return ( maxPrimeCount, maxPrimeSum )
       
-    val ( parm1Sum, parm2MaxSum, parm3Count, parm4MaxCount ) = if ( sieve.isPrime(primeCandidate) == false )
-      ( currentPrimeSum, maxPrimeSum, primeCount, maxPrimeCount )
+    if ( sieve.isPrime(primeCandidate) == false )
+      primeSumTailRecursion( primeCandidate + 1, currentPrimeSum, maxPrimeSum, primeCount, maxPrimeCount )
     else {
       if( sieve.isPrime( primeCandidateSum ) ) {
-        ( primeCandidateSum, primeCandidateSum, primeCount + 1, primeCount + 1 )
+        primeSumTailRecursion( primeCandidate + 1, primeCandidateSum, primeCandidateSum, primeCount + 1, primeCount + 1 )
       }
       else
-        ( primeCandidateSum, maxPrimeSum, primeCount + 1, maxPrimeCount )
+        primeSumTailRecursion( primeCandidate + 1, primeCandidateSum, maxPrimeSum, primeCount + 1, maxPrimeCount )
     }
-	  primeSumTailRecursion( primeCandidate + 1, parm1Sum, parm2MaxSum, parm3Count, parm4MaxCount )
   }
   
   def extractPrimes(candidates:Range.Inclusive) = {
