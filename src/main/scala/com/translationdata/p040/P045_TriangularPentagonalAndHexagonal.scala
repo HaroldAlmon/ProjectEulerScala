@@ -1,6 +1,6 @@
 package com.translationdata.p040
 /** Strategy: Brute Force, Simple Mathematics */
-object TriangularPentagonalAndHexagonal {
+object P045_TriangularPentagonalAndHexagonal {
     def main( args: Array[ String ] ) {
     println( f"P045: Next triangular number is $findNumber" );
   }
