@@ -9,13 +9,16 @@ object P052_PermutedMultiples {
   def getNumber:Int = {
     def match2xThru6x(candidate: Int): Boolean = {
 
-      for(multiplier <- 2 to 6) {
+      for( multiplier <- 2 to 6 ) {
         val product = (multiplier * candidate ).toString
-        if ( product.length != candidate.toString.length )
+        def isLengthIncorrect: Boolean = product.length != candidate.toString.length
+
+        if ( isLengthIncorrect )
           return false
 
         val productCounts = product.toCharArray.sorted
         val candidateCounts = candidate.toString.toCharArray.sorted
+
         if ( (productCounts sameElements candidateCounts) == false )
           return false
       }
@@ -23,8 +26,8 @@ object P052_PermutedMultiples {
       true
     }
 
-    val result = for (i <- 1 to 1000000/6 if match2xThru6x(i) )
-       return i
+    val result = for ( candidate <- 1 to 1000000/6 if match2xThru6x(candidate) )
+       return candidate
 
     return 0
   }
@@ -33,8 +36,9 @@ object P052_PermutedMultiples {
 class P052_PermutedMultiples {
   @Test def PermutedMultiples {
     val result = P052_PermutedMultiples.getNumber
-    for (multiplier <- 1 to 6)
+    for ( multiplier <- 1 to 6 )
       printf("%dx = %d\n", multiplier, multiplier * result)
-    assertEquals(142857, result)
+    assertEquals( 142857, result )
+    printf( "P052: %d\n", result )
   }
 }
