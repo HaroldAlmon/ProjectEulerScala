@@ -23,7 +23,6 @@ object P002_EvenFibonacciNumbers extends App {
         fibo2 = nextFibo
         nextFibo = fibo1 + fibo2
       }
-
       EvenFiboNumbersSum
     }
 }

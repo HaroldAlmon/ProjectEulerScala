@@ -2,7 +2,7 @@ package com.translationdata.p001;
 object P001_MultiplesOf3And5 extends App{
   println("P001: " + multiplesOf3And5(1000))
 
-  private def multiplesOf3And5(upperLimit: Int) = {
+  def multiplesOf3And5(upperLimit: Int) = {
     var MultiplesSum = 0
     MultiplesSum += calculateSumBelowLimit(upperLimit, 3 )
     MultiplesSum += calculateSumBelowLimit(upperLimit, 5)
