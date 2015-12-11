@@ -6,21 +6,23 @@ object P048_SelfPowers {
   
   def main( args: Array[ String ] ) {  println ( "Last ten digits = " + sumMod10 ) }
 
-  def sumMod10 = { (1 to 1000).map { x => powerMod10( x, x ) }.sum % tenDigits }
-  
-  // Only keep track of last 10 digits...
-  def powerMod10( base: Int, exponent: Int ): Long = {
-    if ( exponent == 0 )
-      1
-    else
-      ( base * powerMod10( base, exponent - 1) ) % tenDigits
+  def sumMod10 = { (1 to 1000).map {
+    def powerMod10( base: Int, exponent: Int ): Long = {
+      if ( exponent == 0 )
+        1
+      else
+        ( base * powerMod10( base, exponent - 1) ) % tenDigits
+    }
+
+    x => powerMod10( x, x ) }.sum % tenDigits
+    // Only keep track of last 10 digits...
   }
 }
 
-class P048_SelfPowers_Junit {
+class P048_SelfPowers {
   @Test def SumMod10 {
     val SumMod10 = P048_SelfPowers.sumMod10
-    println( f"Last ten digits = ${SumMod10}" )
+    println( f"P048: Last ten digits = ${SumMod10}" )
     assertEquals( 9110846700L, SumMod10 )
   }
 }
