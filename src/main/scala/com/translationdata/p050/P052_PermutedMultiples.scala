@@ -16,17 +16,18 @@ object P052_PermutedMultiples {
         if ( isLengthIncorrect )
           return false
 
-        val productCounts = product.toCharArray.sorted
-        val candidateCounts = candidate.toString.toCharArray.sorted
+        val productChars = product.toCharArray.sorted
+        val candidateChars = candidate.toString.toCharArray.sorted
 
-        if ( (productCounts sameElements candidateCounts) == false )
+        def isProductAMultiple: Boolean = (productChars sameElements candidateChars) == false
+        if ( isProductAMultiple )
           return false
       }
 
       true
     }
 
-    val result = for ( candidate <- 1 to 1000000/6 if match2xThru6x(candidate) )
+    val result = for ( candidate <- 1 to 1000000 / 6 if match2xThru6x(candidate) )
        return candidate
 
     return 0
@@ -39,6 +40,6 @@ class P052_PermutedMultiples {
     for ( multiplier <- 1 to 6 )
       printf("%dx = %d\n", multiplier, multiplier * result)
     assertEquals( 142857, result )
-    printf( "P052: %d\n", result )
+    printf( "\n P052: %d\n", result )
   }
 }
