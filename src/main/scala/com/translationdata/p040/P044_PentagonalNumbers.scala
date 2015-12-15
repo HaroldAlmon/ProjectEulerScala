@@ -4,9 +4,9 @@ package com.translationdata.p040
 object P044_PentagonalNumbers {
   val pentagonalUpperLimit = 3000
 
-  def main(args: Array[String]) { findNumber }
+  def main(args: Array[String]) { findNumber() }
 
-  private def findNumber {
+  private def findNumber() {
     val pentagonalNumbers = ( 1 to pentagonalUpperLimit ).toArray.map { x => Pn( x ) }
     val pentagonalSet = pentagonalNumbers.toSet
 
@@ -19,7 +19,7 @@ object P044_PentagonalNumbers {
         printf("P044:\n" )
         printf("Pj = %d\n", Pj )
         printf("Pk = %d\n", Pk )
-        printf("|Pk - Pj| = %d\n", (Pk - Pj) )
+        printf("|Pk - Pj| = %d\n", Pk - Pj )
       }
     }
   }
