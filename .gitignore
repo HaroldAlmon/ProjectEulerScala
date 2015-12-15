@@ -1,0 +1,12 @@
+/bin/
+
+.cache-main
+.classpath
+.idea/
+.project
+build.sbt
+out/
+project/
+src/main/main.iml
+target/
+.settings
