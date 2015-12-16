@@ -32,8 +32,8 @@ object P050_ConsecutivePrimeSum {
     val maxSum = primeNumberSums( maxPos )._2
     maxSum
   }
-	
-	def primeSum( firstPrime:Int ) = {
+
+  def primeSum( firstPrime:Int ) = {
     @scala.annotation.tailrec
     def primeSumImpl(primeCandidate:Int, currentPrimeSum:Int, maxPrimeSum:Int, primeCount:Int, maxPrimeCount:Int ): ( Int,Int ) = {
       val primeCandidateSum = primeCandidate + currentPrimeSum
@@ -41,14 +41,14 @@ object P050_ConsecutivePrimeSum {
       if ( primeCandidateSum >= upperLimit )
         return ( maxPrimeCount, maxPrimeSum )
 
-      if ( sieve.isPrime(primeCandidate) == false )
+      if ( sieve.isPrime( primeCandidate ) == false )
         primeSumImpl( primeCandidate + 1, currentPrimeSum, maxPrimeSum, primeCount, maxPrimeCount )
       else {
-        if (sieve.isPrime(primeCandidateSum)) {
-          primeSumImpl(primeCandidate + 1, primeCandidateSum, primeCandidateSum, primeCount + 1, primeCount + 1)
+        if (sieve.isPrime( primeCandidateSum ) ) {
+          primeSumImpl (primeCandidate + 1, primeCandidateSum, primeCandidateSum, primeCount + 1, primeCount + 1 )
         }
         else
-          primeSumImpl(primeCandidate + 1, primeCandidateSum, maxPrimeSum, primeCount + 1, maxPrimeCount)
+          primeSumImpl( primeCandidate + 1, primeCandidateSum, maxPrimeSum, primeCount + 1, maxPrimeCount )
       }
     }
 
