@@ -52,11 +52,7 @@ object P050_ConsecutivePrimeSum {
       }
     }
 
-    val maxSum = 0
-    val maxPrimeSum = 0
-    val primeCount = 0
-    val maxPrimeCount = 0
-    primeSumImpl( firstPrime, maxSum, maxPrimeSum, primeCount, maxPrimeCount )
+    primeSumImpl( firstPrime, currentPrimeSum=0, maxPrimeSum=0, primeCount=0, maxPrimeCount=0 )
   }
 
   def extractPrimes(candidates:Range.Inclusive) = {
