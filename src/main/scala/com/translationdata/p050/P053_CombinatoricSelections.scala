@@ -4,38 +4,18 @@ import org.junit.Test
 import org.junit.Assert._
 
 object P053_CombinatoricSelections {
-  def getCount = {
-    for ( n <- 1 to 10 ) {
-      val result = for (r <- 1 to n if combination(n, r) > 10)
-        yield (1, n, r)
-
-        //printf("n = %d, r = %d\n")
-      printf( "count = %d, result = %s\n", result.size, result )
-    }
+  def getCount(n: Int, upperLimit: Int) = {
+    val result = (1 to n).
+      map { n => for (r <- 1 to n if combination(n, r) > upperLimit)
+                    yield 1  }.
+      map( x => x.size ).sum
+    result
   }
-
-/*  def outer(n: Long): Long = {
-    outerImpl(n, 1)
-  }*/
-
-/*  def outerImpl(n:Long, sum:Long): Long = {
-    if (n <= 0) {
-      sum
-    } else
-      outerImpl( n -1, innerImpl(n, sum ) )
-  }*/
-
-/*  def innerImpl(n:Long, sum:Long): Long = {
-    if (n <= 0) {
-      sum
-    } else
-      innerImpl(n - 1, combination + sum)
-  }*/
 
   def combination( n:Int, r:Int ) = {
     factorial( n, n - r ) / factorial( r )
   }
-
+  //================================
   def factorial(n:Int, r:Int): Long = {
     factorialImpl(n, r, 1)
   }
@@ -46,6 +26,7 @@ object P053_CombinatoricSelections {
     } else
       factorialImpl(n - 1, r, n * product)
   }
+  //================================
   def factorial(n: Int): Long = {
     factorialImpl(n, 1)
   }
@@ -60,6 +41,6 @@ object P053_CombinatoricSelections {
 
 class P053_CombinatoricSelections {
   @Test def CombinatoricSelections {
-    println(P053_CombinatoricSelections.getCount)
+    println( P053_CombinatoricSelections.getCount( 50, 1000000 ) )
   }
 }
