@@ -2,19 +2,20 @@ package com.translationdata.p050
 
 import org.junit.Test
 import org.junit.Assert._
+
+import scala.annotation.tailrec
+
 /** Strategy: Brute Force, Simple Math */
 object P053_CombinatoricSelections {
-  def getCount( n: Int, upperLimit: Int ) = {
-    val result = ( 1 to n ).
-      map( n => for ( r <- 1 to n if combination( n, r ) > upperLimit ) yield 1 ).
-      map( vector => vector.size ).sum
-    result
-  }
+  def getCount( n: Int, upperLimit: Int ) = ( 1 to n ).
+    map( n => for ( r <- 1 to n if combination( n, r ) > upperLimit ) yield 1 ).
+    map( vector => vector.size ).
+    sum
 
   def combination( n:Int, r:Int ) = binomialCoefficient( n, n - r ) / factorial( r )
 
-  def binomialCoefficient( n:Int, nMinusR:Int ) = {
-    def binomialCoefficientImpl( n:Int, r: Int, product: BigInt ): BigInt =
+def binomialCoefficient( n:Int, nMinusR:Int ): BigInt = {
+    @tailrec def binomialCoefficientImpl( n:Int, r: Int, product: BigInt ): BigInt =
       if ( n <= r )product
       else
         binomialCoefficientImpl( n - 1, r, BigInt( n ) * product )
@@ -23,7 +24,7 @@ object P053_CombinatoricSelections {
   }
 
   def factorial( n: Int ) = {
-    def factorialImpl( n:Int, product:BigInt ): BigInt =
+    @tailrec def factorialImpl( n:Int, product:BigInt ): BigInt =
       if ( n <= 1 )
         product
       else
@@ -40,3 +41,4 @@ class P053_CombinatoricSelections {
     assertEquals( 4075, count )
   }
 }
+
