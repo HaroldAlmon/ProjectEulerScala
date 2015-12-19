@@ -10,19 +10,25 @@ object P044_PentagonalNumbers {
     val pentagonalNumbers = ( 1 to pentagonalUpperLimit ).toArray.map { x => Pn( x ) }
     val pentagonalSet = pentagonalNumbers.toSet
 
-    (0 to pentagonalUpperLimit - 2).
-      foreach { leftIndex => ( leftIndex + 1 to pentagonalUpperLimit - 1).
-      foreach { rightIndex => isPentagonal( pentagonalNumbers( leftIndex ), pentagonalNumbers( rightIndex ) ) } }
-
-    def isPentagonal( Pj: Int, Pk: Int ) {
-      if (pentagonalSet.contains( Pj + Pk ) && pentagonalSet.contains( Pk - Pj ) ) {
-        printf("P044:\n" )
-        printf("Pj = %d\n", Pj )
-        printf("Pk = %d\n", Pk )
-        printf("|Pk - Pj| = %d\n", Pk - Pj )
-      }
+    def findPair:(Long, Int, Int, Int, Int) = {
+      (0 to pentagonalUpperLimit - 2).
+        foreach { leftIndex => for (rightIndex <- leftIndex + 1 to pentagonalUpperLimit - 1
+          if isPentagonal2(pentagonalNumbers(leftIndex), pentagonalNumbers(rightIndex)))
+            return ( pentagonalNumbers( rightIndex ) - pentagonalNumbers( leftIndex ), leftIndex, rightIndex, pentagonalNumbers( leftIndex ), pentagonalNumbers( rightIndex ))
+        }
+      (0L, 0, 0, 0, 0)
     }
+
+    def isPentagonal2( Pj: Int, Pk: Int ) =
+      if (pentagonalSet.contains(Pj + Pk) && pentagonalSet.contains(Pk - Pj))
+        true
+      else
+        false
+
+    val result = findPair
+    printf("P044:\n")
+    printf("|Pk - Pj| = %d, j = %d, k = %d, Pj = %d, Pk = %d\n", result._1, result._2, result._3, result._4, result._5)
   }
-  
   private def Pn(n: Int) = { n * (3 * n - 1) / 2 }
+
 }
