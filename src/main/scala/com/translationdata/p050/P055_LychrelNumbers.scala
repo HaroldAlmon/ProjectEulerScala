@@ -37,8 +37,3 @@ class P055_LychrelNumbers {
   }
 }
 
-class P055_dummy {
-  @Test def CombinatoricSelections {
-  }
-}
-
