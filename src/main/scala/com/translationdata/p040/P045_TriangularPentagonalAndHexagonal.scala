@@ -2,18 +2,19 @@ package com.translationdata.p040
 /** Strategy: Brute Force, Simple Mathematics */
 object P045_TriangularPentagonalAndHexagonal {
     def main( args: Array[ String ] ) {
-    println( f"P045: Next triangular number is $findNumber" );
-  }
-
-  private def findNumber:Long = {
-    ( 286 to 60000 ).foreach { x =>
-      val triangle = Tn( x )
- 		  if ( isPentagonal( triangle ) && isHexagonal( triangle ) )  {
- 		    println( f"Tn($x) = Pn(${PnQuadraticRoot(triangle).toInt}) = Hn(${HnQuadraticRoot(triangle).toInt}) = $triangle" )
- 		    return triangle
- 		  }
+      val triple = findNumber
+      println( f"Tn(${triple._1}) = Pn(${triple._2}) = Hn(${triple._3}) = ${triple._4}" )
+      println( f"P045: Next triangular number is ${triple._4}" )
     }
-    return 0
+
+  private def findNumber:(Int,Int,Int,Long) = {
+    286 to 60000 foreach { x =>
+      val triangleNumber = Tn( x )
+      if ( isPentagonal( triangleNumber ) && isHexagonal( triangleNumber ) )  {
+        return (x, PnQuadraticRoot(triangleNumber).toInt, HnQuadraticRoot(triangleNumber).toInt, triangleNumber)
+      }
+    }
+    (0,0,0,0)
   }
 
   private def Tn(n: Long) = n * ( n + 1 ) / 2
@@ -37,5 +38,4 @@ object P045_TriangularPentagonalAndHexagonal {
     else
       false
   }
- 
 }
