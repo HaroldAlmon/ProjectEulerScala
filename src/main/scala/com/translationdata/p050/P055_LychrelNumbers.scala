@@ -26,14 +26,23 @@ object P055_LychrelNumbers {
     reverseImpl(n, 0)
   }
 
-  def isPalindrome(n:Int) = {
+  def isPalindrome(n:Int):Boolean = {
+    val number = n.toString
+    for ( leftPos <- 0 to number.length / 2 ) {
+      val rightPos = number.length - leftPos - 1
+      if ( number(leftPos) != number(rightPos) ) {
+        //printf("Chars differ at (%d, %d)\n", leftPos, rightPos)
+        return false
+      }
+    }
     true
   }
 }
 
 class P055_LychrelNumbers {
   @Test def lychrelNumbers() {
-    printf("count = %d\n", P055_LychrelNumbers.reverse(47))
+    printf("count = %b\n", P055_LychrelNumbers.isLychrel(47) )
+    printf("count = %b\n", P055_LychrelNumbers.isLychrel(48) )
   }
 }
 
