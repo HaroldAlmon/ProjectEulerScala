@@ -7,22 +7,20 @@ import scala.annotation.tailrec
 
 /** Strategy: Brute Force */
 object P055_LychrelNumbers {
-  //def main(args: Array[String]) { printf("count = %d\n", P055_LychrelNumbers.reverse(47)) }
+  def lychrelCount = (for(candidate <- 1 to 9999 if isLychrel(candidate)) yield 1).size
 
   def isLychrel(n:Int): Boolean = {
 
-    def isLychrelImpl(n:Int, iteration:Int):Boolean = {
+    @tailrec def isLychrelImpl(n:Int, iteration:Int):Boolean = {
       val candidate = n + reverse(n)
-      //printf("n=%d, iteration=%d\n",candidate, iteration)
       if (isPalindrome(candidate)) {
-        printf("candidate = %d, iteration = %d\n", candidate, iteration)
         true
       }
       else
         if (iteration >= 50)
-          return false
+          false
         else
-          return isLychrelImpl(candidate, iteration + 1)
+          isLychrelImpl(candidate, iteration + 1)
     }
 
     isLychrelImpl(n, 1)
@@ -42,10 +40,8 @@ object P055_LychrelNumbers {
     val number = n.toString
     for ( leftPos <- 0 to number.length / 2 ) {
       val rightPos = number.length - leftPos - 1
-      if ( number(leftPos) != number(rightPos) ) {
-        //printf("Chars differ at (%d, %d)\n", leftPos, rightPos)
+      if ( number(leftPos) != number(rightPos) )
         return false
-      }
     }
     true
   }
@@ -53,9 +49,7 @@ object P055_LychrelNumbers {
 
 class P055_LychrelNumbers {
   @Test def lychrelNumbers() {
-    printf("%d = %b\n", 47, P055_LychrelNumbers.isLychrel(47) )
-    printf("%d = %b\n", 48, P055_LychrelNumbers.isLychrel(48) )
-    printf("%d = %b\n", 349, P055_LychrelNumbers.isLychrel(349) )
+    printf("P055: Lynchrel count = %d\n", P055_LychrelNumbers.lychrelCount )
   }
 }
 
