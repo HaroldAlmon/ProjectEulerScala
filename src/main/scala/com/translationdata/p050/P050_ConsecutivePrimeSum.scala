@@ -4,7 +4,10 @@ import org.junit.Test
 import org.junit.Assert._
 import Math.pow
 
-import misc.SieveOfEratosthenes;
+import misc.SieveOfEratosthenes
+
+import scala.annotation.tailrec
+;
 
 /** Strategy: Brute Force, Prime Sieve */
 object P050_ConsecutivePrimeSum {
@@ -34,7 +37,7 @@ object P050_ConsecutivePrimeSum {
   }
 
   def primeSum( firstPrime:Int ) = {
-    @scala.annotation.tailrec
+    @tailrec
     def primeSumImpl(primeCandidate:Int, currentPrimeSum:Int, maxPrimeSum:Int, primeCount:Int, maxPrimeCount:Int ): ( Int,Int ) = {
       val primeCandidateSum = primeCandidate + currentPrimeSum
 

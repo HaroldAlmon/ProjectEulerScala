@@ -1,11 +1,14 @@
 package com.translationdata.p040
 
-/** Strategy: Brute Force, Simple Mathematics */
+/** Strategy: Brute Force, Simple Mathematics
+  * Where did the root functions, HnQuadraticRoot and PnQuadraticRoot, come from?
+  * 1. T(n) = H(n) = n(2n - 1)   <=> 2n^2 - n - T(n) = 0  and solve quadratic root for n
+  * 2. T(n) = P(n) = n(3n - 1)/2 <=> 3n^2 - n - 2T(n) = 0 and solve quadratic root for n */
 object P045_TriangularPentagonalAndHexagonal {
     def main( args: Array[ String ] ) {
       val n = findSequence
       val triangleNumber = Tn(n)
-      printf( "Tn(%d) = Pn(%d) = Hn(%d) = %d\n",
+      printf( "T(%d) = P(%d) = H(%d) = %d\n",
         n,
         PnQuadraticRoot(triangleNumber).toInt,
         HnQuadraticRoot(triangleNumber).toInt,
@@ -16,9 +19,7 @@ object P045_TriangularPentagonalAndHexagonal {
   private def findSequence:Int = {
     286 to 60000 foreach { x =>
       val triangleNumber = Tn( x )
-      if ( isPentagonal( triangleNumber ) && isHexagonal( triangleNumber ) )  {
-        return x
-      }
+      if ( isPentagonal( triangleNumber ) && isHexagonal( triangleNumber ) ) return x
     }
     0
   }
