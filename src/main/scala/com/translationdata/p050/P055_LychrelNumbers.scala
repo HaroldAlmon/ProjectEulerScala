@@ -5,15 +5,27 @@ import org.junit.Assert._
 
 import scala.annotation.tailrec
 
-/** Strategy:Brute Force */
+/** Strategy: Brute Force */
 object P055_LychrelNumbers {
   //def main(args: Array[String]) { printf("count = %d\n", P055_LychrelNumbers.reverse(47)) }
 
   def isLychrel(n:Int): Boolean = {
-    if ( isPalindrome( n + reverse(n) ) )
-      true
-    else
-      false
+
+    def isLychrelImpl(n:Int, iteration:Int):Boolean = {
+      val candidate = n + reverse(n)
+      //printf("n=%d, iteration=%d\n",candidate, iteration)
+      if (isPalindrome(candidate)) {
+        printf("candidate = %d, iteration = %d\n", candidate, iteration)
+        true
+      }
+      else
+        if (iteration >= 50)
+          return false
+        else
+          return isLychrelImpl(candidate, iteration + 1)
+    }
+
+    isLychrelImpl(n, 1)
   }
 
   def reverse(n:Int) = {
@@ -41,8 +53,9 @@ object P055_LychrelNumbers {
 
 class P055_LychrelNumbers {
   @Test def lychrelNumbers() {
-    printf("count = %b\n", P055_LychrelNumbers.isLychrel(47) )
-    printf("count = %b\n", P055_LychrelNumbers.isLychrel(48) )
+    printf("%d = %b\n", 47, P055_LychrelNumbers.isLychrel(47) )
+    printf("%d = %b\n", 48, P055_LychrelNumbers.isLychrel(48) )
+    printf("%d = %b\n", 349, P055_LychrelNumbers.isLychrel(349) )
   }
 }
 
