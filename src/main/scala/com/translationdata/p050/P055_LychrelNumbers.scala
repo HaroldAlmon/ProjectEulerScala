@@ -23,7 +23,6 @@ object P055_LychrelNumbers extends Palindrome with Reverse {
         else
           isLychrelImpl(candidate, iteration + 1)
     }
-
     isLychrelImpl(n, 1)
   }
 }
