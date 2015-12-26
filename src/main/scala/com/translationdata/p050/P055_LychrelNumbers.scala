@@ -10,16 +10,17 @@ import scala.annotation.tailrec
 object P055_LychrelNumbers extends Palindrome with Reverse {
   def lychrelCount = (for(candidate <- 1 to 9999 if isLychrel(candidate)) yield 1).size
 
-  def isLychrel(n:Int): Boolean = {
+  def isLychrel(n:BigInt): Boolean = {
 
-    @tailrec def isLychrelImpl(n:Int, iteration:Int):Boolean = {
+    @tailrec def isLychrelImpl(n:BigInt, iteration:Int):Boolean = {
       val candidate = n + reverse(n)
       if (isPalindrome(candidate)) {
-        true
+        //printf("%d %d\n", candidate, iteration)
+        false
       }
       else
         if (iteration >= 50)
-          false
+          true
         else
           isLychrelImpl(candidate, iteration + 1)
     }
