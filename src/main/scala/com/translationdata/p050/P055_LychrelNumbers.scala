@@ -15,7 +15,6 @@ object P055_LychrelNumbers extends Palindrome with Reverse {
     @tailrec def isLychrelImpl(n:BigInt, iteration:Int):Boolean = {
       val candidate = n + reverse(n)
       if (isPalindrome(candidate)) {
-        //printf("%d %d\n", candidate, iteration)
         false
       }
       else
