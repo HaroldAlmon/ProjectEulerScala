@@ -1,5 +1,5 @@
 package com.translationdata.p040
-import misc.SieveOfEratosthenes;
+import misc.SieveOfEratosthenes
 import org.junit.Test
 import org.junit.Assert._
 
@@ -12,10 +12,6 @@ object P047_DistinctPrimeFactors {
   }
 
   def getNumber:Int = {
-    def distinctFactorCount( x:Int ) = {
-      findFactors( x ).size
-    }
-
     def findFactors( x: Int ):IndexedSeq[Int] = {
       val factors:IndexedSeq[Int] = for (factor <- 1 to x/2 if sieve.isPrime(factor) && ( x % factor == 0 ) )
         yield factor
@@ -30,7 +26,7 @@ object P047_DistinctPrimeFactors {
       val factors4 = if(factors3.size == 4) findFactors(x + 3) else 0 to 0
 
       if ( factors1.size + factors2.size + factors3.size + factors4.size == 16) {
-        println (f"Four consequetive nums: ${x}, ${x+1}, ${x+2}, ${x+3}\n")
+        println (f"Four consequetive nums: $x, ${x+1}, ${x+2}, ${x+3}\n")
 
         printf( "%d factors are %s\n", x,       factors1.mkString(" ") )
         printf( "%d factors are %s\n", x + 1,   factors2.mkString(" ") )
@@ -39,14 +35,14 @@ object P047_DistinctPrimeFactors {
         return x
       }
     }
-    return 0
+    0
   }
 }
 
 class P047_DistinctPrimeFactors {
-  @Test def DistinctPrimeFactors {
+  @Test def DistinctPrimeFactors():Unit = {
     val firstNumber = P047_DistinctPrimeFactors.getNumber
-    println( f"P047: First number is ${firstNumber}" )
+    println( f"P047: First number is $firstNumber" )
     assertEquals( 134043, firstNumber )
   }
 }
