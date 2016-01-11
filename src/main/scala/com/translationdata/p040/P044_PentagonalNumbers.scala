@@ -14,13 +14,13 @@ object P044_PentagonalNumbers {
     def findPair:(Long, Int, Int, Int, Int) = {
       (0 to pentagonalUpperLimit - 2).
         foreach { leftIndex => for (rightIndex <- leftIndex + 1 to pentagonalUpperLimit - 1
-          if isPentagonal2(pentagonalNumbers(leftIndex), pentagonalNumbers(rightIndex)))
+          if isPentagonal(pentagonalNumbers(leftIndex), pentagonalNumbers(rightIndex)))
             return ( pentagonalNumbers( rightIndex ) - pentagonalNumbers( leftIndex ), leftIndex, rightIndex, pentagonalNumbers( leftIndex ), pentagonalNumbers( rightIndex ))
         }
       (0L, 0, 0, 0, 0)
     }
 
-    def isPentagonal2( Pj: Int, Pk: Int ) =
+    def isPentagonal( Pj: Int, Pk: Int ) =
       if (pentagonalSet.contains(Pj + Pk) && pentagonalSet.contains(Pk - Pj))
         true
       else
