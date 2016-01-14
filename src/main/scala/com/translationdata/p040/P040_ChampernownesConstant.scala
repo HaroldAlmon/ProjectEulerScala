@@ -1,24 +1,24 @@
 package com.translationdata.p040
+import org.junit.Test
+import org.junit.Assert._
 
 object P040_ChampernownesConstant {
   def main(args: Array[String]) {
-      champernownesConstant()
+      champernownesConstant
   }
 
-  private def champernownesConstant() {
+  private def champernownesConstant = {
     var product = 1
     var number = 1
     val targetDigits = Array( 1, 10, 100, 1000, 10000, 100000, 10000000 )
-    var sequence = ""
-    
+
     for ( nthDigit <- targetDigits ) {
-      //targetDigits 
       number = 1
       
       // TODO: Convert var to val...
       var totalSeqLength = 0
       for ( noOfSequences <- 1 to 5000 ) {
-        sequence = ""
+        var sequence = ""
         for ( increment <- 1 to 40 ) {
           sequence = sequence + number.toString
           number += 1
@@ -27,7 +27,7 @@ object P040_ChampernownesConstant {
         product = calcProduct( nthDigit, sequence, totalSeqLength, product )
       }
     }
-    println( "P040: Product d1 x d10 x ... x d1000000 = " + product )
+    product
   }
 
   private def isDigitInSequence( nthDigit: Int, sequence: String, totalSeqLength: Int) = {
@@ -41,6 +41,15 @@ object P040_ChampernownesConstant {
       product * ( digit.toInt - 48 )
     } else
       product
+  }
+}
+
+class P040_ChampernownesConstant {
+  @Test def PentagonalNumbers() = {
+    val product = P040_ChampernownesConstant.champernownesConstant
+
+    println("P040: Product d1 x d10 x ... x d1000000 = " + product)
+    assertEquals(210, product)
   }
 }
 
