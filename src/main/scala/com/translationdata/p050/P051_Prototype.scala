@@ -2,11 +2,7 @@ package com.translationdata.p050
 import org.junit.Test
 import org.junit.Assert._
 
-import scala.collection.immutable.IndexedSeq
-
 object P051_Prototype {
-
-
   def combinations(n:Int, r:Int):Unit = {
 /*    val elements = Array('1', '2')
     val emptyList:IndexedSeq[String]
@@ -23,7 +19,7 @@ object P051_Prototype {
 }
 
 class P051_Prototype {
-  @Test def runTest {
+  @Test def runTest() {
     println("Run Test")
     P051_Prototype.combinations(3, 1)
     assertEquals(1, 1)

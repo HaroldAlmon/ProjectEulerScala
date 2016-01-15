@@ -11,7 +11,7 @@ object P044_PentagonalNumbers {
 
   private def findNumber() = {
     val Pn  = (n: Int) => { n * (3 * n - 1) / 2 }
-    val pentagonalNumbers = ( 1 to pentagonalUpperLimit ).toArray.map { Pn }
+    val pentagonalNumbers = ( 1 to pentagonalUpperLimit ).toArray.map( Pn )
     val pentagonalSet = pentagonalNumbers.toSet
 
     def findPair:Option[(Int, Int, Int, Int, Int)] = {
@@ -30,10 +30,9 @@ object P044_PentagonalNumbers {
         false
 
     val result = findPair.get
-    printf("|Pk - Pj| = %d, j = %d, k = %d, Pj = %d, Pk = %d\n\n", result._1, result._2, result._3, result._4, result._5)
+    printf("|Pk - Pj| = %d, j = %d, k = %d, Pj = %d, Pk = %d%n%n", result._1, result._2, result._3, result._4, result._5)
     result._1
   }
-
 }
 
 class P044_PentagonalNumbers {

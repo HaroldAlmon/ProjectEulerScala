@@ -28,9 +28,9 @@ object P048_SelfPowers {
 }
 
 class P048_SelfPowers {
-  @Test def SumMod10:Unit = {
+  @Test def SumMod10():Unit = {
     val SumMod10 = P048_SelfPowers.sumMod10
-    println( f"P048: Last ten digits = ${SumMod10}" )
+    println( f"P048: Last ten digits = $SumMod10" )
     assertEquals( 9110846700L, SumMod10 )
   }
 }

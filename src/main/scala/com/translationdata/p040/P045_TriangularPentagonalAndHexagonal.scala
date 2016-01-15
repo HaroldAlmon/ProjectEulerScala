@@ -8,7 +8,7 @@ object P045_TriangularPentagonalAndHexagonal {
     def main( args: Array[ String ] ) {
       val n = findSequence
       val triangleNumber = Tn(n)
-      printf( "T(%d) = P(%d) = H(%d) = %d\n",
+      printf( "T(%d) = P(%d) = H(%d) = %d%n",
         n,
         PnQuadraticRoot(triangleNumber).toInt,
         HnQuadraticRoot(triangleNumber).toInt,

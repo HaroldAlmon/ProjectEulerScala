@@ -7,7 +7,6 @@ import Math.pow
 import misc.SieveOfEratosthenes
 
 import scala.annotation.tailrec
-;
 
 /** Strategy: Brute Force, Prime Sieve */
 object P050_ConsecutivePrimeSum {
@@ -24,9 +23,9 @@ object P050_ConsecutivePrimeSum {
     val primeList = extractPrimes( 2 to 7 )
     val primeNumberSums = primeList.toArray.map { mapPrimeNumberSum }
 
-    for ( primePos <- 0 to primeNumberSums.size - 1) {
+    for ( primePos <- primeNumberSums.indices) {
       val primeTuple = primeNumberSums( primePos )
-      printf ( "Starting Prime = %d, Sum = %d, number of terms = %d\n", primeList(primePos), primeTuple._2, primeTuple._1 )
+      printf ( "Starting Prime = %d, Sum = %d, number of terms = %d%n", primeList(primePos), primeTuple._2, primeTuple._1 )
     }
 
     val termCount = primeNumberSums.map( mapTermCount )
@@ -44,7 +43,7 @@ object P050_ConsecutivePrimeSum {
       if ( primeCandidateSum >= upperLimit )
         return ( maxPrimeCount, maxPrimeSum )
 
-      if ( sieve.isPrime( primeCandidate ) == false )
+      if ( !sieve.isPrime(primeCandidate) )
         primeSumImpl( primeCandidate + 1, currentPrimeSum, maxPrimeSum, primeCount, maxPrimeCount )
       else {
         if (sieve.isPrime( primeCandidateSum ) ) {
@@ -65,7 +64,7 @@ object P050_ConsecutivePrimeSum {
 }
 
 class P050_ConsecutivePrimeSum {
-  @Test def ConsecutivePrimeSum {
+  @Test def ConsecutivePrimeSum() = {
     val maxPrimeSum = P050_ConsecutivePrimeSum.getMaxSum
     println( "P050: Maximum prime is " + maxPrimeSum )
     assertEquals( 997651, maxPrimeSum )

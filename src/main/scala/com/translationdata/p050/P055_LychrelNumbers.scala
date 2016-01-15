@@ -30,6 +30,6 @@ class P055_LychrelNumbers {
   @Test def lychrelNumbers() {
     val count = P055_LychrelNumbers.lychrelCount
     assertEquals(249, count)
-    printf("P055: Lynchrel count = %d\n", count )
+    printf("P055: Lynchrel count = %d%n", count )
   }
 }
