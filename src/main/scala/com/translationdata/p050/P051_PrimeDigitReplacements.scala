@@ -12,10 +12,18 @@ object P051_PrimeDigitReplacements {
   def printCombinations (positions: Array[Int], n: Int, r:Int): Unit = {
     printf("n = %d, r = %d%n", n, r)
 
-    printCombinationsImpl(positions, n, r, 1, positions(0).toString)
+    printCombinationsImpl(positions,
+                          n,
+                          r,
+                          1,
+                          positions(0).toString)
   }
 
-  def printCombinationsImpl (positions: Array[Int], n: Int, r:Int, startPos:Int, str: String): Unit = {
+  def printCombinationsImpl (positions: Array[Int],
+                             n: Int,
+                             r:Int,
+                             startPos:Int,
+                             str: String): Unit = {
     for (i <- startPos to n - r + 1) {
       if (r - startPos <= 1) {
         for(j <- startPos to n - 1)

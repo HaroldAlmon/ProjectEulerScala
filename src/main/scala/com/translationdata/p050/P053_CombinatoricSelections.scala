@@ -7,14 +7,17 @@ import scala.annotation.tailrec
 
 /** Strategy: Brute Force, Simple Math */
 object P053_CombinatoricSelections {
+  def countForEnItems(n:Int, upperLimit:Int) = {
+    (for ( r <- 1 to n if combination( n, r ) > upperLimit )
+      yield 1).size
+  }
+
   def getCount( n: Int, upperLimit: Int ) = ( 1 to n ).
-    map( n => for ( r <- 1 to n if combination( n, r ) > upperLimit ) yield 1 ).
-    map( indexedSeqInt => indexedSeqInt.size ).
-    sum
+    map( n => countForEnItems( n, upperLimit ) ).sum
 
   def combination( n:Int, r:Int ) = binomialCoefficient( n, n - r ) / factorial( r )
 
-def binomialCoefficient( n:Int, nMinusR:Int ): BigInt = {
+  def binomialCoefficient( n:Int, nMinusR:Int ): BigInt = {
     @tailrec def binomialCoefficientImpl( n:Int, r: Int, product: BigInt ): BigInt =
       if ( n <= r )
         product

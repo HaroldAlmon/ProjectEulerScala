@@ -8,7 +8,9 @@ import scala.annotation.tailrec
 
 /** Strategy: Brute Force */
 object P055_LychrelNumbers extends Palindrome with Reverse {
-  def lychrelCount = (for(candidate <- 1 to 9999 if isLychrel(candidate)) yield 1).size
+  def lychrelCount =
+    (for(candidate <- 1 to 9999 if isLychrel(candidate))
+      yield 1).size
 
   def isLychrel(n:BigInt): Boolean = {
 

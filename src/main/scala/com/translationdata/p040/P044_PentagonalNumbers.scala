@@ -7,7 +7,7 @@ import org.junit.Assert._
 object P044_PentagonalNumbers {
   val pentagonalUpperLimit = 3000
 
-  def main(args: Array[String]) { findNumber() }
+  def main(args: Array[String]) = findNumber()
 
   private def findNumber() = {
     val Pn  = (n: Int) => { n * (3 * n - 1) / 2 }
@@ -18,7 +18,12 @@ object P044_PentagonalNumbers {
       (0 to pentagonalUpperLimit - 2).
         foreach { leftIndex => for (rightIndex <- leftIndex + 1 to pentagonalUpperLimit - 1
           if isPentagonal(pentagonalNumbers(leftIndex), pentagonalNumbers(rightIndex)))
-            return Some(( pentagonalNumbers( rightIndex ) - pentagonalNumbers( leftIndex ), leftIndex, rightIndex, pentagonalNumbers( leftIndex ), pentagonalNumbers( rightIndex )))
+            return Some(
+              ( pentagonalNumbers( rightIndex ) - pentagonalNumbers( leftIndex ),
+                leftIndex,
+                rightIndex,
+                pentagonalNumbers( leftIndex ),
+                pentagonalNumbers( rightIndex )))
         }
       None
     }
@@ -30,7 +35,12 @@ object P044_PentagonalNumbers {
         false
 
     val result = findPair.get
-    printf("|Pk - Pj| = %d, j = %d, k = %d, Pj = %d, Pk = %d%n%n", result._1, result._2, result._3, result._4, result._5)
+    printf("|Pk - Pj| = %d, j = %d, k = %d, Pj = %d, Pk = %d%n%n",
+      result._1,
+      result._2,
+      result._3,
+      result._4,
+      result._5)
     result._1
   }
 }

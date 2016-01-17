@@ -11,11 +11,16 @@ object P052_PermutedMultiples {
 
       for( multiplier <- 2 to 6 ) {
         val product = (multiplier * candidate ).toString
-        val productChars = product.toCharArray.sorted
-        val candidateChars = candidate.toString.toCharArray.sorted
+        val productChars =
+          product.toCharArray
+                 .sorted
+        val candidateChars =
+          candidate.toString
+                   .toCharArray
+                   .sorted
 
         def isLengthIncorrect: Boolean = product.length != candidate.toString.length
-        def isProductAMultiple: Boolean = !(productChars sameElements candidateChars)
+        def isProductAMultiple: Boolean = !productChars.sameElements(candidateChars)
 
         if ( isLengthIncorrect )
           return false

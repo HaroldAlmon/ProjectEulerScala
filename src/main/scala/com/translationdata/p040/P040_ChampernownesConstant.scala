@@ -3,9 +3,7 @@ import org.junit.Test
 import org.junit.Assert._
 
 object P040_ChampernownesConstant {
-  def main(args: Array[String]) {
-      champernownesConstant
-  }
+  def main(args: Array[String]) = champernownesConstant
 
   private def champernownesConstant = {
     var product = 1
