@@ -16,22 +16,25 @@ import misc.SieveOfEratosthenes
       prime(1),
       prime(2) )
   }
-  
+  // Todo: Refactor to return Option
   def result:Array[Int] = {
-    (1001 to 10000 - 2 * 3330).foreach  { firstCandidate =>
+    val firstKnownMatch = 1487
+    (1001 to 10000 - 2 * 3330).foreach  {
+      firstCandidate =>
       val secondCandidate = firstCandidate + 3330
       val thirdCandidate = firstCandidate + 2 * 3330
 
       if ( areCandidatesPrime(firstCandidate, secondCandidate, thirdCandidate) &&
            isPermutation( firstCandidate, secondCandidate ) &&
            areCandidatesPermutations( firstCandidate, secondCandidate, thirdCandidate )) {
-        if ( firstCandidate != 1487) {
+        if ( firstCandidate != firstKnownMatch) {
           return Array( firstCandidate,
                         secondCandidate,
                         thirdCandidate )
         }
       }
     }
+    // Todo: Refactor to return None
     Array( 0, 0, 0 )
   }
   
