@@ -10,8 +10,8 @@ object P047_DistinctPrimeFactors {
   def main(args: Array[String]) = getNumber
 
   def getNumber:Int = {
-    def findFactors( x: Int ):IndexedSeq[Int] = {
-      val factors:IndexedSeq[Int] = for (factor <- 1 to x/2 if sieve.isPrime(factor) && ( x % factor == 0 ) )
+    def findFactors( x: Int ) = {
+      val factors = for (factor <- 1 to x/2 if sieve.isPrime(factor) && ( x % factor == 0 ) )
         yield factor
 
       factors

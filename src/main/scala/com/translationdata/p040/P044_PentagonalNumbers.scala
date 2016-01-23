@@ -10,7 +10,7 @@ object P044_PentagonalNumbers {
   def main(args: Array[String]) = findNumber()
 
   private def findNumber() = {
-    val Pn  = (n: Int) => { n * (3 * n - 1) / 2 }
+    val Pn  = (n: Int) => n * (3 * n - 1) / 2
     val pentagonalNumbers = ( 1 to pentagonalUpperLimit ).map( Pn )
     val pentagonalSet = pentagonalNumbers.toSet
 

@@ -12,8 +12,9 @@ object P053_CombinatoricSelections {
       yield 1).size
   }
 
-  def getCount( n: Int, upperLimit: Int ) = ( 1 to n ).
-    map( n => countForEnItems( n, upperLimit ) ).sum
+  def getCount( n: Int, upperLimit: Int ) =
+    ( 1 to n ).map( n => countForEnItems( n, upperLimit ) )
+              .sum
 
   def combination( n:Int, r:Int ) = binomialCoefficient( n, n - r ) / factorial( r )
 

@@ -76,9 +76,9 @@ object P050_ConsecutivePrimeSum {
                   maxPrimeCount=0 )
   }
 
-  def extractPrimes(candidates:Range.Inclusive) = {
-    for ( num <- candidates if sieve.isPrime(num) )
-        yield num
+  def extractPrimes(candidates: Range.Inclusive) = {
+    for (num <- candidates if sieve.isPrime(num))
+      yield num
   }
 }
 
