@@ -3,7 +3,6 @@
 .cache-main
 .classpath
 .idea/
-.project
 build.sbt
 out/
 project/
