@@ -11,8 +11,7 @@ object P048_SelfPowers {
 
   def powerMod10( base: Int, exponent: Int ): Long = {
 
-    @tailrec
-    def powerMod10Impl( base: Int, exponent: Int, product: Long ): Long = {
+    @tailrec def powerMod10Impl( base: Int, exponent: Int, product: Long ): Long = {
       if ( exponent == 0 )
         product
       else
