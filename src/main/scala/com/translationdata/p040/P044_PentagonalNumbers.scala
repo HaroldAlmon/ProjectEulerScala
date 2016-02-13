@@ -11,7 +11,7 @@ object P044_PentagonalNumbers {
 
   private def findNumber() = {
     val Pn  = (n: Int) => n * (3 * n - 1) / 2
-    val pentagonalNumbers = ( 1 to pentagonalUpperLimit ).map( Pn )
+    val pentagonalNumbers = ( 1 to pentagonalUpperLimit ) map Pn
     val pentagonalSet = pentagonalNumbers.toSet
 
     def findPair:Option[(Int, Int, Int, Int, Int)] = {
@@ -29,7 +29,7 @@ object P044_PentagonalNumbers {
     }
 
     def isPentagonal( Pj: Int, Pk: Int ) =
-      if (pentagonalSet.contains(Pj + Pk) && pentagonalSet.contains(Pk - Pj))
+      if ((pentagonalSet contains (Pj + Pk)) && (pentagonalSet contains (Pk - Pj)) )
         true
       else
         false

@@ -35,7 +35,7 @@ object P040_ChampernownesConstant {
   private def calcProduct( nthDigit: Int, sequence: String, totalSeqLength: Int, product: Int ) = {
     if ( isDigitInSequence( nthDigit, sequence, totalSeqLength ) ) {
       val offset = totalSeqLength - nthDigit
-      val digit = sequence.charAt( sequence.length - offset - 1 )
+      val digit = sequence charAt ( sequence.length - offset - 1 )
       product * ( digit.toInt - 48 )
     } else
       product
