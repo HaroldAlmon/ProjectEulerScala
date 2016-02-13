@@ -27,7 +27,7 @@ object P040_ChampernownesConstant {
     }
     product
   }
-
+// Todo: convert to lambda expression
   private def isDigitInSequence( nthDigit: Int, sequence: String, totalSeqLength: Int) = {
     nthDigit <= totalSeqLength && nthDigit > ( totalSeqLength - sequence.length )
   }
