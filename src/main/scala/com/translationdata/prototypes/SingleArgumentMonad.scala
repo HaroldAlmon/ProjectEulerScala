@@ -25,7 +25,7 @@ object SingleArgumentMonad {
       y <- monadWith5 // The map function reads the value instance variable fom the monad
     } yield x + y
 
-    println("for() result = " + forResult)
+    println("Result = " + forResult)
 
     // Now convert the for-comprehension into lambda expressions to demonstrate
     // that the for-comprehension is logically equivalent to lambda expressions
@@ -87,7 +87,7 @@ object SingleArgumentMonad {
       monadWith4.flatMapNoReturnMonad { x =>
         monadWith5.flatMapNoReturnMonad { y => x + y }
       }
-    twoFlatMapsResult = null
+    //twoFlatMapsResult = null
   }
 }
 
