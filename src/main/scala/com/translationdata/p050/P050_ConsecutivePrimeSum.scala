@@ -27,9 +27,9 @@ object P050_ConsecutivePrimeSum {
         primeTuple._1 )
     }
 
-    val termCount = primeNumberSums.map( primeTuple => primeTuple._1 )
+    val termCount = primeNumberSums map( primeTuple => primeTuple._1 )
     val maxCount = termCount.max
-    val maxPos = termCount.indexWhere( _ == maxCount)
+    val maxPos = termCount indexWhere (_ == maxCount)
     val maxSum = primeNumberSums( maxPos )._2
     maxSum
   }
@@ -77,7 +77,7 @@ object P050_ConsecutivePrimeSum {
   }
 
   def extractPrimes(candidates: Range.Inclusive) = {
-    for (num <- candidates if sieve.isPrime(num))
+    for (num <- candidates if sieve isPrime num)
       yield num
   }
 }
