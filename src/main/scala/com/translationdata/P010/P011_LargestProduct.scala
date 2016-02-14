@@ -1,8 +1,30 @@
 package com.translationdata.P010
 
+import org.junit.Test
+import org.junit.Assert._
+
 import scala.annotation.tailrec
+import math.max
+
+class P011_LargestProduct {
+  @Test
+  def LargestProduct() {
+    val maximumProduct = P011_LargestProduct.largestProduct
+    printf("largestProduct() = %d%n", maximumProduct)
+    assertEquals("Incorrect product", 70600674, maximumProduct)
+  }
+}
 
 object P011_LargestProduct {
+  def largestProduct = {
+    val maximumProduct =
+      max(columnProduct(matrix, matrix.length - 1, columnProduct),
+        max(columnProduct(matrix, matrix.length - 4, fallingDiagonalProduct),
+          max(columnProduct(matrix, matrix.length - 4, risingDiagonalProduct),
+            columnsMaximum(matrix, rowPoduct) )))
+    maximumProduct
+  }
+
   def columnProduct(matrix: Array[Array[Int]], upperRange: Int, calcProduct: (Int, Int) => Int) = {
     (0 to upperRange)
       .map(row => getColProd(row, matrix, calcProduct))
@@ -17,7 +39,7 @@ object P011_LargestProduct {
     if (col > matrix(0).length - 4)
       return previousProduct
     val product = calcProduct apply(row, col)
-    val maxProduct = math max(previousProduct, product)
+    val maxProduct = max(previousProduct, product)
     getColProdImpl(row, matrix, col + 1, maxProduct, calcProduct)
   }
 
@@ -31,15 +53,14 @@ object P011_LargestProduct {
     getRowMaxImpl(col, matrix, 0, 0, calcProduct)
   }
 
-  def getRowMaxImpl(col: Int, matrix: Array[Array[Int]], row: Int, previousProduct: Int, calcProduct: (Int, Int) => Int): Int = {
+  @tailrec def getRowMaxImpl(col: Int, matrix: Array[Array[Int]], row: Int, previousProduct: Int, calcProduct: (Int, Int) => Int): Int = {
     if (row > matrix.length - 4) {
       return previousProduct
     }
     val product = calcProduct apply(row, col)
-    val maxProduct = math max(previousProduct, product)
+    val maxProduct = max(previousProduct, product)
     getRowMaxImpl(col, matrix, row + 1, maxProduct, calcProduct)
   }
-
 
   val matrix = Array(
     Array(8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8),
