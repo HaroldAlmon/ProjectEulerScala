@@ -1,44 +1,25 @@
 package com.translationdata.P010
 object P011_LargestProduct {
-    def columnProduct(matrix:Array[Int[Int]], upperRange:Int, calcProduct:(Int, Int) => Int) {
+    def columnProduct(matrix:Array[Array[Int]], upperRange:Int, calcProduct:(Int, Int) => Int) = {
       (0 to upperRange)
         .map(row => getColProd(row, matrix, calcProduct))
-        .max()
-        .getAsInt()
+        .max
     }
 
-    def getColProd(row:Int, matrix:Array[Int[Int]], calcProduct:(Int, Int) => Int) {
-      return getColProdImpl(row, matrix, 0, 0, calcProduct);
+    def getColProd(row:Int, matrix:Array[Array[Int]], calcProduct:(Int, Int) => Int) = {
+      getColProdImpl(row, matrix, 0, 0, calcProduct)
     }
 
-   def getColProdImpl(row:Int, matrix:Array[Int[Int]], col:Int, previousProduct:Int, calcProduct:(Int, Int) => Int) {
-     matrix.length
+   def getColProdImpl(row:Int, matrix:Array[Array[Int]], col:Int, previousProduct:Int, calcProduct:(Int, Int) => Int):Int = {
       if (col > matrix(0).length - 4) {
-        return previousProduct;
+        return previousProduct
       }
-      val product =  calcProduct.apply(row, col);
-      val maxProduct = math.max(previousProduct, product);
-      return getColProdImpl(row, matrix, col + 1, maxProduct, calcProduct);
+      val product =  calcProduct.apply(row, col)
+      val maxProduct = math.max(previousProduct, product)
+      getColProdImpl(row, matrix, col + 1, maxProduct, calcProduct)
     }
 
-
-  val matrix2: List[List[Int]] = List(
-    List(8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8),
-    List(49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 4, 56, 62, 0)
-  )
-
-  val a = matrix2.length
-  val b = matrix2(0).length
-
-  val matrix2: Vector[Vector[Int]] = Vector(
-    Vector(8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8),
-    Vector(49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 4, 56, 62, 0)
-  )
-
-  val c = matrix2.length
-  val d = matrix2(0).length
-
-  val matrix: Array[Array[Int]] = Array(
+  val matrix = Array(
     Array(8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8),
     Array(49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 4, 56, 62, 0),
     Array(81, 49, 31, 73, 55, 79, 14, 29, 93, 71, 40, 67, 53, 88, 30, 3, 49, 13, 36, 65),
