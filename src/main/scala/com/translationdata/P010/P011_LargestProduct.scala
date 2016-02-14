@@ -11,11 +11,10 @@ object P011_LargestProduct {
     }
 
    def getColProdImpl(row:Int, matrix:Array[Array[Int]], col:Int, previousProduct:Int, calcProduct:(Int, Int) => Int):Int = {
-      if (col > matrix(0).length - 4) {
+      if (col > matrix(0).length - 4)
         return previousProduct
-      }
-      val product =  calcProduct.apply(row, col)
-      val maxProduct = math.max(previousProduct, product)
+      val product =  calcProduct apply(row, col)
+      val maxProduct = math max(previousProduct, product)
       getColProdImpl(row, matrix, col + 1, maxProduct, calcProduct)
     }
 
