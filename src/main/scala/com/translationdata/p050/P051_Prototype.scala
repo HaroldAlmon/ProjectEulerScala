@@ -4,10 +4,10 @@ import org.junit.Assert._
 
 object P051_Prototype {
   def combinations(n:Int, r:Int):Unit = {
-/*    val elements = Array('1', '2')
-    val emptyList:IndexedSeq[String]
-    val result = combinationsImpl(2, 1, elements, 0, emptyList )
-    printf("result = %s\n", result)*/
+    /*    val elements = Array('1', '2')
+        val emptyList:IndexedSeq[String]
+        val result = combinationsImpl(2, 1, elements, 0, emptyList )
+        printf("result = %s\n", result)*/
   }
 
 /*  def combinationsImpl(n:Int, r:Int, elements:Array[Char], position:Int, comboList:IndexedSeq[String]):IndexedSeq[String] = {
