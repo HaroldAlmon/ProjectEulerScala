@@ -39,22 +39,13 @@ object P011_LargestProduct {
 
   def rowProduct(matrix: Array[Array[Int]], calcProduct: (Int, Int) => Int) = {
 
-      def getRowProd(col: Int, matrix: Array[Array[Int]], calcProduct: (Int, Int) => Int) = {
+    def getRowProd(col: Int, matrix: Array[Array[Int]], calcProduct: (Int, Int) => Int) = {
+      (0 to matrix(0).length - 4)
+        .map(row => calcProduct.apply(row, col))
+        .max
+    }
 
-          @tailrec
-          def getRowMaxProdImpl(col: Int, matrix: Array[Array[Int]], row: Int, previousProduct: Int, calcProduct: (Int, Int) => Int): Int = {
-            if (row > matrix.length - 4) {
-              return previousProduct
-            }
-            val product = calcProduct apply(row, col)
-            val maxProduct = max(previousProduct, product)
-            getRowMaxProdImpl(col, matrix, row + 1, maxProduct, calcProduct)
-          }
-
-        getRowMaxProdImpl(col, matrix, 0, 0, calcProduct)
-      }
-
-    matrix(0).indices
+      matrix(0).indices
       .map(col => getRowProd(col, matrix, calcProduct))
       .max
   }
