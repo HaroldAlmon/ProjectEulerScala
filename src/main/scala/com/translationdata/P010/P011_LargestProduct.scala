@@ -30,16 +30,9 @@ object P011_LargestProduct {
   }
 
   def rowProduct(matrix: Array[Array[Int]], calcProduct: (Int, Int) => Int) = {
-
-    def getRowProd(col: Int, matrix: Array[Array[Int]], calcProduct: (Int, Int) => Int) = {
-      (0 to matrix(0).length - 4)
-        .map(row => calcProduct.apply(row, col))
-        .max
-    }
-
-    matrix(0).indices
-      .map(col => getRowProd(col, matrix, calcProduct))
-      .max
+    (for (col <- matrix(0).indices;
+          row <- 0 to matrix(0).length - 4)
+      yield calcProduct.apply(row, col)).max
   }
 
   val matrix = Array(
