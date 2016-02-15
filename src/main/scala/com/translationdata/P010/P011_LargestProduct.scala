@@ -2,7 +2,6 @@ package com.translationdata.P010
 
 import org.junit.Test
 import org.junit.Assert._
-
 import scala.annotation.tailrec
 import math.max
 
@@ -45,8 +44,6 @@ object P011_LargestProduct {
       .map(row => getColProd(row, matrix, calcProduct))
       .max
   }
-
-
 
   def rowProduct(matrix: Array[Array[Int]], calcProduct: (Int, Int) => Int) = {
 
