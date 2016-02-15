@@ -21,7 +21,7 @@ object P011_LargestProduct {
       max(columnProduct(matrix, matrix.length - 1, columnProduct),
         max(columnProduct(matrix, matrix.length - 4, fallingDiagonalProduct),
           max(columnProduct(matrix, matrix.length - 4, risingDiagonalProduct),
-            columnsMaximum(matrix, rowPoduct) )))
+            rowProduct(matrix, rowPoduct) )))
     maximumProduct
   }
 
@@ -48,25 +48,25 @@ object P011_LargestProduct {
 
 
 
-  def columnsMaximum(matrix: Array[Array[Int]], calcProduct: (Int, Int) => Int) = {
+  def rowProduct(matrix: Array[Array[Int]], calcProduct: (Int, Int) => Int) = {
 
-      def getRowMax(col: Int, matrix: Array[Array[Int]], calcProduct: (Int, Int) => Int) = {
+      def getRowProd(col: Int, matrix: Array[Array[Int]], calcProduct: (Int, Int) => Int) = {
 
           @tailrec
-          def getRowMaxImpl(col: Int, matrix: Array[Array[Int]], row: Int, previousProduct: Int, calcProduct: (Int, Int) => Int): Int = {
+          def getRowMaxProdImpl(col: Int, matrix: Array[Array[Int]], row: Int, previousProduct: Int, calcProduct: (Int, Int) => Int): Int = {
             if (row > matrix.length - 4) {
               return previousProduct
             }
             val product = calcProduct apply(row, col)
             val maxProduct = max(previousProduct, product)
-            getRowMaxImpl(col, matrix, row + 1, maxProduct, calcProduct)
+            getRowMaxProdImpl(col, matrix, row + 1, maxProduct, calcProduct)
           }
 
-        getRowMaxImpl(col, matrix, 0, 0, calcProduct)
+        getRowMaxProdImpl(col, matrix, 0, 0, calcProduct)
       }
 
     matrix(0).indices
-      .map(col => getRowMax(col, matrix, calcProduct))
+      .map(col => getRowProd(col, matrix, calcProduct))
       .max
   }
 
@@ -93,30 +93,31 @@ object P011_LargestProduct {
     Array(1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48)
   )
 
-  val columnProduct = (row:Int, col:Int) => { matrix(row)(col) *
+  val columnProduct = (row:Int, col:Int) => {
+    matrix(row)(col) *
     matrix(row)(col + 1) *
     matrix(row)(col + 2) *
     matrix(row)(col + 3)
   }
 
   val fallingDiagonalProduct = (row:Int , col:Int) => {
-    matrix(row) (col) *
-    matrix(row+1)(col+1) *
-    matrix(row+2)(col+2) *
-    matrix(row+3)(col+3)
+    matrix(row)    (col) *
+    matrix(row + 1)(col + 1) *
+    matrix(row + 2)(col + 2) *
+    matrix(row + 3)(col + 3)
   }
 
   val risingDiagonalProduct = (row:Int, col:Int) => {
-    matrix(row+3)(col) *
-    matrix(row+2)(col+1) *
-    matrix(row+1)(col+2) *
-    matrix(row)  (col+3)
+    matrix(row + 3)(col) *
+    matrix(row + 2)(col + 1) *
+    matrix(row + 1)(col + 2) *
+    matrix(row)    (col + 3)
   }
 
   val rowPoduct = (row:Int, col:Int) => {
-    matrix(row)  (col) *
-    matrix(row+1)(col) *
-    matrix(row+2)(col) *
-    matrix(row+3)(col)
+    matrix(row)    (col) *
+    matrix(row + 1)(col) *
+    matrix(row + 2)(col) *
+    matrix(row + 3)(col)
   }
 }
