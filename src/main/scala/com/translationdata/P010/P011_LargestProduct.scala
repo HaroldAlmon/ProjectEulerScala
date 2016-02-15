@@ -26,19 +26,11 @@ object P011_LargestProduct {
 
   def columnProduct(matrix: Array[Array[Int]], upperRange: Int, calcProduct: (Int, Int) => Int) = {
 
-      def getColProd(row: Int, matrix: Array[Array[Int]], calcProduct: (Int, Int) => Int) = {
-
-          @tailrec
-          def getColProdImpl(row: Int, matrix: Array[Array[Int]], col: Int, previousProduct: Int, calcProduct: (Int, Int) => Int): Int = {
-            if (col > matrix(0).length - 4)
-              return previousProduct
-            val product = calcProduct apply(row, col)
-            val maxProduct = max(previousProduct, product)
-            getColProdImpl(row, matrix, col + 1, maxProduct, calcProduct)
-          }
-
-        getColProdImpl(row, matrix, 0, 0, calcProduct)
-      }
+    def getColProd(row: Int, matrix: Array[Array[Int]], calcProduct: (Int, Int) => Int) = {
+      (0 to matrix(0).length - 4)
+        .map(col => calcProduct.apply(row, col))
+        .max
+    }
 
     (0 to upperRange)
       .map(row => getColProd(row, matrix, calcProduct))
