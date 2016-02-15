@@ -26,40 +26,48 @@ object P011_LargestProduct {
   }
 
   def columnProduct(matrix: Array[Array[Int]], upperRange: Int, calcProduct: (Int, Int) => Int) = {
+
+      def getColProd(row: Int, matrix: Array[Array[Int]], calcProduct: (Int, Int) => Int) = {
+
+          @tailrec
+          def getColProdImpl(row: Int, matrix: Array[Array[Int]], col: Int, previousProduct: Int, calcProduct: (Int, Int) => Int): Int = {
+            if (col > matrix(0).length - 4)
+              return previousProduct
+            val product = calcProduct apply(row, col)
+            val maxProduct = max(previousProduct, product)
+            getColProdImpl(row, matrix, col + 1, maxProduct, calcProduct)
+          }
+
+        getColProdImpl(row, matrix, 0, 0, calcProduct)
+      }
+
     (0 to upperRange)
       .map(row => getColProd(row, matrix, calcProduct))
       .max
   }
 
-  def getColProd(row: Int, matrix: Array[Array[Int]], calcProduct: (Int, Int) => Int) = {
-    getColProdImpl(row, matrix, 0, 0, calcProduct)
-  }
 
-  @tailrec def getColProdImpl(row: Int, matrix: Array[Array[Int]], col: Int, previousProduct: Int, calcProduct: (Int, Int) => Int): Int = {
-    if (col > matrix(0).length - 4)
-      return previousProduct
-    val product = calcProduct apply(row, col)
-    val maxProduct = max(previousProduct, product)
-    getColProdImpl(row, matrix, col + 1, maxProduct, calcProduct)
-  }
 
   def columnsMaximum(matrix: Array[Array[Int]], calcProduct: (Int, Int) => Int) = {
+
+      def getRowMax(col: Int, matrix: Array[Array[Int]], calcProduct: (Int, Int) => Int) = {
+
+          @tailrec
+          def getRowMaxImpl(col: Int, matrix: Array[Array[Int]], row: Int, previousProduct: Int, calcProduct: (Int, Int) => Int): Int = {
+            if (row > matrix.length - 4) {
+              return previousProduct
+            }
+            val product = calcProduct apply(row, col)
+            val maxProduct = max(previousProduct, product)
+            getRowMaxImpl(col, matrix, row + 1, maxProduct, calcProduct)
+          }
+
+        getRowMaxImpl(col, matrix, 0, 0, calcProduct)
+      }
+
     matrix(0).indices
       .map(col => getRowMax(col, matrix, calcProduct))
       .max
-  }
-
-  def getRowMax(col: Int, matrix: Array[Array[Int]], calcProduct: (Int, Int) => Int) = {
-    getRowMaxImpl(col, matrix, 0, 0, calcProduct)
-  }
-
-  @tailrec def getRowMaxImpl(col: Int, matrix: Array[Array[Int]], row: Int, previousProduct: Int, calcProduct: (Int, Int) => Int): Int = {
-    if (row > matrix.length - 4) {
-      return previousProduct
-    }
-    val product = calcProduct apply(row, col)
-    val maxProduct = max(previousProduct, product)
-    getRowMaxImpl(col, matrix, row + 1, maxProduct, calcProduct)
   }
 
   val matrix = Array(
