@@ -2,7 +2,6 @@ package com.translationdata.P010
 
 import org.junit.Test
 import org.junit.Assert._
-import scala.annotation.tailrec
 import math.max
 
 class P011_LargestProduct {
@@ -25,16 +24,9 @@ object P011_LargestProduct {
   }
 
   def columnProduct(matrix: Array[Array[Int]], upperRange: Int, calcProduct: (Int, Int) => Int) = {
-
-    def getColProd(row: Int, matrix: Array[Array[Int]], calcProduct: (Int, Int) => Int) = {
-      (0 to matrix(0).length - 4)
-        .map(col => calcProduct.apply(row, col))
-        .max
-    }
-
-    (0 to upperRange)
-      .map(row => getColProd(row, matrix, calcProduct))
-      .max
+    (for (row <- 0 to upperRange;
+          col <- 0 to matrix(0).length - 4)
+      yield calcProduct.apply(row, col)).max
   }
 
   def rowProduct(matrix: Array[Array[Int]], calcProduct: (Int, Int) => Int) = {
@@ -45,7 +37,7 @@ object P011_LargestProduct {
         .max
     }
 
-      matrix(0).indices
+    matrix(0).indices
       .map(col => getRowProd(col, matrix, calcProduct))
       .max
   }
