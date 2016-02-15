@@ -25,13 +25,13 @@ object P011_LargestProduct {
 
   def columnProduct(matrix: Array[Array[Int]], upperRange: Int, calcProduct: (Int, Int) => Int) = {
     (for (row <- 0 to upperRange;
-          col <- 0 to matrix(0).length - 4)
+            col <- 0 to matrix(0).length - 4)
       yield calcProduct.apply(row, col)).max
   }
 
   def rowProduct(matrix: Array[Array[Int]], calcProduct: (Int, Int) => Int) = {
     (for (col <- matrix(0).indices;
-          row <- 0 to matrix(0).length - 4)
+            row <- 0 to matrix(0).length - 4)
       yield calcProduct.apply(row, col)).max
   }
 
