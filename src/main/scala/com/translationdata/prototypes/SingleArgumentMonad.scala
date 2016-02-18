@@ -6,7 +6,7 @@ class SingleArgumentMonad[A](val value: A) {
   override def toString = value.toString
 
   // Not part of a normal Monad. It's here to show why map() is necessary.
-def flatMapNoLift[B](f: A => B) = f(value)
+  def flatMapNoLift[B](f: A => B) = f(value)
 }
 
 object SingleArgumentMonad {
@@ -81,7 +81,6 @@ object SingleArgumentMonad {
       monadWith4.flatMapNoLift { x =>
         monadWith5.flatMapNoLift { y => x + y }
       }
-    //twoFlatMapsResult = null
   }
 }
 
