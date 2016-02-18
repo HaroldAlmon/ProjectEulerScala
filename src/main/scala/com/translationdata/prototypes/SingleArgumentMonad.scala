@@ -1,19 +1,13 @@
 package com.translationdata.prototypes
 
-// Note that the constructor creates the value-field...
 class SingleArgumentMonad[A](val value: A) {
-  // This function extracts the value-field from the monad and passes
-  // it to f() and wraps the result from f() of type B into a Monad.
-  // The value-field is mapped to the input of the lambda expression.
-  def map[B](f:A => B) = new SingleArgumentMonad(f(value))
+  def map[B](lambdaFunction: A => B) = new SingleArgumentMonad(lambdaFunction(value))
+  def flatMap[B](lambdaFunction: A => SingleArgumentMonad[B]) = lambdaFunction(value)
+  override def toString = value.toString
 
-  // This function extracts the value-field from the monad and passes
-  // back the result of f() which is a Monad that wraps type B...
-  def flatMap[B](f:A => SingleArgumentMonad[B]) = f(value)
-  def flatMapNoReturnMonad[B](f:A => B) = f(value)
-
-  // Need this function to get the string value of the value-field...
-  override def toString = value.toString}
+  // Not part of a normal Monad. It's here to show why map() is necessary.
+def flatMapNoLift[B](f: A => B) = f(value)
+}
 
 object SingleArgumentMonad {
   def main(args: Array[String]) {
@@ -32,33 +26,33 @@ object SingleArgumentMonad {
     // with map() and flatMap() calls.
 
     // Step 1. Convert for to flatMap...
-    val flatMapAndForResult =
+    val flatMapStep1 =
       monadWith4.flatMap { x =>
         for {
           y <- monadWith5
         } yield x + y
       }
-    println("flatMap() + for() result = " + flatMapAndForResult)
+    println("flatMapStep1() = " + flatMapStep1)
 
     // Step 2. Convert for to map...
-    val flatMapAndMapResult =
+    val flatMapStep2 =
       monadWith4.flatMap { x =>
         monadWith5.map { y => x + y }
       }
 
-    val flatMapAndMapresultNoReturnMonad =
-      monadWith4.flatMapNoReturnMonad { x =>
-        monadWith5.flatMapNoReturnMonad { y => x + y }
+    val noLift =
+      monadWith4.flatMapNoLift { x =>
+        monadWith5.flatMapNoLift { y => x + y }
       }
 
     var monadValue = monadWith4.map(x => 2 * x)
     monadValue = monadValue.map(x => x * x)
 
-    var intValue = monadWith4.flatMapNoReturnMonad(x => 2 * x)
+    var intValue = monadWith4.flatMapNoLift(x => 2 * x)
     //  intValue = intValue.flatMapNoReturnMonad(x => x * x)  // COMPILER ERROR, Int() does not have this function
 
-    flatMapAndForResult.map(x => x*x)
-    flatMapAndForResult.flatMap(x => new SingleArgumentMonad(x*x*2) )
+    flatMapStep1.map(x => x*x)
+    flatMapStep1.flatMap(x => new SingleArgumentMonad(x*x*2) )
 
     // Based on what I see in the debugger this is how the code works.
     // 1. Execute the monadWith4.flatMap() function. This steps takes the 4
@@ -66,14 +60,14 @@ object SingleArgumentMonad {
     // which yields monadWith4.map { y => 4 + y }.
     //
     // 2. Execute the monadWith4.map() function.  This step takes the 5
-    // in the monad and substitutes the 5 into y => 2 + y which yields 5 => 2 + 5
+    // in the monad and substitutes the 5 into y => 4 + y which yields 5 => 4 + 5
     //
-    // 3. Evaluate 5 + 5 which yields 9. So 9 is the result BUT the monad member function in the class
-    // wraps the 9 in a SingleArgumentMonad. So the flatMapAndMapResult variable ends up containing a monad
+    // 3. Evaluate 4 + 5 which yields 9. So 9 is the result BUT the monad member function in the class
+    // wraps the 9 in a SingleArgumentMonad. So the flatMapStep2 variable ends up containing a monad
     // that contains a 9.
 
     // The constructor defines value as a val so we can read the data in the monad...
-    val result = flatMapAndForResult.value
+    val result = flatMapStep1.value
     println("flatMap() + map() result = " + result)
 
     // Two map() calls...
@@ -84,8 +78,8 @@ object SingleArgumentMonad {
 
     // Two flatMap() calls...
     var twoFlatMapsResult =
-      monadWith4.flatMapNoReturnMonad { x =>
-        monadWith5.flatMapNoReturnMonad { y => x + y }
+      monadWith4.flatMapNoLift { x =>
+        monadWith5.flatMapNoLift { y => x + y }
       }
     //twoFlatMapsResult = null
   }
