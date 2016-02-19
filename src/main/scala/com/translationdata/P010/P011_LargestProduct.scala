@@ -17,9 +17,9 @@ object P011_LargestProduct {
   def largestProduct = {
     val maximumProduct =
       max(matrixProduct(matrix, columnProduct, 0, 3),
-        max(columnProduct(matrix, matrix.length - 4, fallingDiagonalProduct),
-          max(columnProduct(matrix, matrix.length - 4, risingDiagonalProduct),
-            rowProduct(matrix, rowPoduct) )))
+        max(matrixProduct(matrix, fallingDiagonalProduct, 3, 3),
+          max(matrixProduct(matrix, risingDiagonalProduct, 3, 3),
+            matrixProduct(matrix, rowPoduct, 3, 0) )))
     maximumProduct
   }
 
@@ -29,21 +29,7 @@ object P011_LargestProduct {
       yield calcProduct.apply(row, col))
       .max
   }
-
-  def columnProduct(matrix: Array[Array[Int]], upperRange: Int, calcProduct: (Int, Int) => Int) = {
-    (for (row <- 0 to upperRange;
-          col <- 0 to matrix(0).length - 4)
-      yield calcProduct.apply(row, col))
-      .max
-  }
-
-  def rowProduct(matrix: Array[Array[Int]], calcProduct: (Int, Int) => Int) = {
-    (for (col <- matrix(0).indices;
-          row <- 0 to matrix(0).length - 4)
-      yield calcProduct.apply(row, col))
-      .max
-  }
-
+  
   val matrix = Array(
     Array(8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8),
     Array(49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 4, 56, 62, 0),
