@@ -16,11 +16,18 @@ class P011_LargestProduct {
 object P011_LargestProduct {
   def largestProduct = {
     val maximumProduct =
-      max(columnProduct(matrix, matrix.length - 1, columnProduct),
+      max(matrixProduct(matrix, columnProduct, 0, 3),
         max(columnProduct(matrix, matrix.length - 4, fallingDiagonalProduct),
           max(columnProduct(matrix, matrix.length - 4, risingDiagonalProduct),
             rowProduct(matrix, rowPoduct) )))
     maximumProduct
+  }
+
+  def matrixProduct(matrix: Array[Array[Int]], calcProduct: (Int, Int) => Int, rowBuffer:Int, columnBuffer:Int) = {
+    (for (row <- 0 to matrix.length - rowBuffer - 1;
+          col <- 0 to matrix(0).length - columnBuffer - 1)
+      yield calcProduct.apply(row, col))
+      .max
   }
 
   def columnProduct(matrix: Array[Array[Int]], upperRange: Int, calcProduct: (Int, Int) => Int) = {
