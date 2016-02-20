@@ -15,16 +15,16 @@ class P011_LargestProduct {
 
 object P011_LargestProduct {
   def largestProduct = {
-    val cellBuffer = 4
+    val cellBuffer = 3
     val maximumProduct =
       max(matrixProduct(matrix, columnProduct, 0, cellBuffer),
         max(matrixProduct(matrix, fallingDiagonalProduct, cellBuffer, cellBuffer),
           max(matrixProduct(matrix, risingDiagonalProduct, cellBuffer, cellBuffer),
-            matrixProduct(matrix, rowPoduct, 3, 0))))
+            matrixProduct(matrix, rowPoduct, cellBuffer, 0))))
     maximumProduct
   }
 
-  def matrixProduct(matrix: Array[Array[Int]], calcProduct: (Int, Int, Int) => Int, rowBuffer:Int, columnBuffer:Int) = {
+  def matrixProduct(matrix: Array[Array[Int]], calcProduct: (Int, Int, Int) => Long, rowBuffer:Int, columnBuffer:Int) = {
     (for (row <- 0 to matrix.length - rowBuffer - 1;
           col <- 0 to matrix(0).length - columnBuffer - 1)
       yield calcProduct.apply(row, col, max(rowBuffer, columnBuffer)))
@@ -56,21 +56,21 @@ object P011_LargestProduct {
 
   val columnProduct = (row:Int, col:Int, buffer:Int) => {
     (for(offset <- 0 to buffer)
-      yield matrix(row)(col + offset)).product
+      yield matrix(row)(col + offset).toLong).product
   }
 
   val fallingDiagonalProduct = (row:Int, col:Int, buffer:Int) => {
     (for(offset <- 0 to buffer)
-      yield matrix(row + offset)(col + offset)).product
+      yield matrix(row + offset)(col + offset).toLong).product
   }
 
   val risingDiagonalProduct = (row:Int, col:Int, buffer:Int) => {
     (for(offset <- 0 to buffer)
-      yield matrix(row + buffer - offset)(col + offset)).product
+      yield matrix(row + buffer - offset)(col + offset).toLong).product
   }
 
   val rowPoduct = (row:Int, col:Int, buffer:Int) => {
     (for(offset <- 0 to buffer)
-      yield matrix(row + offset)(col)).product
+      yield matrix(row + offset)(col).toLong).product
   }
 }
