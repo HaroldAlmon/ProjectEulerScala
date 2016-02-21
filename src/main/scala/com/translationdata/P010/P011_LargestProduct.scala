@@ -20,17 +20,17 @@ object P011_LargestProduct {
       max(matrixProduct(matrix, columnProduct, 0, cellBuffer),
         max(matrixProduct(matrix, fallingDiagonalProduct, cellBuffer, cellBuffer),
           max(matrixProduct(matrix, risingDiagonalProduct, cellBuffer, cellBuffer),
-            matrixProduct(matrix, rowPoduct, cellBuffer, 0))))
+            matrixProduct(matrix, rowProduct, cellBuffer, 0))))
     maximumProduct
   }
-
+  // TODO: Try converting this to nested lambda expressions.
   def matrixProduct(matrix: Array[Array[Int]], calcProduct: (Int, Int, Int) => Long, rowBuffer:Int, columnBuffer:Int) = {
     (for (row <- 0 to matrix.length - rowBuffer - 1;
           col <- 0 to matrix(0).length - columnBuffer - 1)
       yield calcProduct.apply(row, col, max(rowBuffer, columnBuffer)))
       .max
   }
-  
+
   val matrix = Array(
     Array(8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8),
     Array(49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48, 4, 56, 62, 0),
@@ -53,24 +53,21 @@ object P011_LargestProduct {
     Array(20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 5, 54),
     Array(1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48)
   )
+  // TODO: Write embedded lambda version by converting the Scala for-comprehension to lambda expressions
 
-  val columnProduct = (row:Int, col:Int, buffer:Int) => {
+  val columnProduct = (row:Int, col:Int, buffer:Int) =>
     (for(offset <- 0 to buffer)
       yield matrix(row)(col + offset).toLong).product
-  }
 
-  val fallingDiagonalProduct = (row:Int, col:Int, buffer:Int) => {
+  val fallingDiagonalProduct = (row:Int, col:Int, buffer:Int) =>
     (for(offset <- 0 to buffer)
       yield matrix(row + offset)(col + offset).toLong).product
-  }
 
-  val risingDiagonalProduct = (row:Int, col:Int, buffer:Int) => {
+  val risingDiagonalProduct = (row:Int, col:Int, buffer:Int) =>
     (for(offset <- 0 to buffer)
       yield matrix(row + buffer - offset)(col + offset).toLong).product
-  }
 
-  val rowPoduct = (row:Int, col:Int, buffer:Int) => {
+  val rowProduct = (row:Int, col:Int, buffer:Int) =>
     (for(offset <- 0 to buffer)
       yield matrix(row + offset)(col).toLong).product
-  }
 }
