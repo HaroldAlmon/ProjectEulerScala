@@ -9,3 +9,4 @@ project/
 src/main/main.iml
 target/
 .settings
+.project
