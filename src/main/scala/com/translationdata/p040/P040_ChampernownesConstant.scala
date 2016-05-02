@@ -43,7 +43,7 @@ object P040_ChampernownesConstant {
 }
 
 class P040_ChampernownesConstant {
-  @Test def PentagonalNumbers() = {
+  @Test def champernownesConstant() = {
     val product = P040_ChampernownesConstant.champernownesConstant
 
     println("P040: Product d1 x d10 x ... x d1000000 = " + product)
