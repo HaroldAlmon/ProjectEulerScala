@@ -3,7 +3,7 @@ import org.junit.Test
 import org.junit.Assert._
 
 object P001_MultiplesOf3And5{
-  def main(args: Array[String]): Int = multiplesOf3And5(1000)
+  //def main(args: Array[String]): Int = multiplesOf3And5(1000)
 
   def multiplesOf3And5(upperLimit: Int) = {
     var MultiplesSum = 0

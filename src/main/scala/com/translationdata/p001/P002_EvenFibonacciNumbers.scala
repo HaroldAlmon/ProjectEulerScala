@@ -31,11 +31,11 @@ object P002_EvenFibonacciNumbers {
     }
 }
 
-class P002_EvenFibonacciNumbers() = {
+class P002_EvenFibonacciNumbers() {
   @Test def PentagonalNumbers() = {
     val sum = P002_EvenFibonacciNumbers.evenFiboNumbersSum(4000000)
 
     println("P002: Sum is " + sum)
-    assertEquals(1, sum)
+    assertEquals(4613732, sum)
   }
 }
