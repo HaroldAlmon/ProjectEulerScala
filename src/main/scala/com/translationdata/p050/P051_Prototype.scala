@@ -21,7 +21,7 @@ object P051_Prototype {
 }
 
 class P051_Prototype {
-  @Test def runTest() {
+  @Test def runTest() = {
     println("Run Test")
     println(P051_Prototype.combinations(List(1,2), 2, 1, IndexedSeq()))
 

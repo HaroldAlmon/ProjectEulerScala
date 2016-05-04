@@ -1,8 +1,12 @@
-package com.translationdata.p001;
-object P002_EvenFibonacciNumbers extends App {
-  println( "P002: " + EvenFiboNumbersSum( 4000000 ) )
+package com.translationdata.p001
 
-    def EvenFiboNumbersSum( upperLimit: Int ) = {
+import org.junit.Assert._
+import org.junit.Test
+;
+object P002_EvenFibonacciNumbers {
+  println( "P002: " + evenFiboNumbersSum( 4000000 ) )
+
+    def evenFiboNumbersSum(upperLimit: Int ) = {
       var EvenFiboNumbersSum = 2
       var fibo1 = 1
       var fibo2 = 2
@@ -25,4 +29,13 @@ object P002_EvenFibonacciNumbers extends App {
       }
       EvenFiboNumbersSum
     }
+}
+
+class P002_EvenFibonacciNumbers() {
+  @Test def PentagonalNumbers() = {
+    val sum = P002_EvenFibonacciNumbers.evenFiboNumbersSum(4000000)
+
+    println("P002: Sum is " + sum)
+    assertEquals(4613732, sum)
+  }
 }
