@@ -19,18 +19,27 @@ object P050_ConsecutivePrimeSum {
       primeList.toArray
                .map(primeSum)
 
-    for ( primePos <- primeNumberSums.indices) {
-      val primeTuple = primeNumberSums( primePos )
-      printf ( "Starting Prime = %d, Sum = %d, number of terms = %d%n",
-        primeList(primePos),
-        primeTuple._2,
-        primeTuple._1 )
+    for (primePos <- primeNumberSums.indices) {
+      val primeTuple = primeNumberSums(primePos)
+      primeTuple match {
+        case (termCount, primeSum) =>
+          printf("Starting Prime = %d, Sum = %d, number of terms = %d%n",
+            primeList(primePos),
+            primeSum,
+            termCount)
+      }
     }
 
-    val termCount = primeNumberSums map( primeTuple => primeTuple._1 )
+    val termCount = primeNumberSums map {
+      _ match {
+        case (termCount, primeSum) => termCount
+      }
+    }
     val maxCount = termCount.max
     val maxPos = termCount indexWhere (_ == maxCount)
-    val maxSum = primeNumberSums( maxPos )._2
+    val maxSum = primeNumberSums( maxPos ) match {
+      case (termCount, primeSum) => primeSum
+    }
     maxSum
   }
 
