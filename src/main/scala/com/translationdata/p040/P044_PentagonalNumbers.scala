@@ -35,13 +35,16 @@ object P044_PentagonalNumbers {
         false
 
     val result = findPair.get
-    printf("|Pk - Pj| = %d, j = %d, k = %d, Pj = %d, Pk = %d%n%n",
-      result._1,
-      result._2,
-      result._3,
-      result._4,
-      result._5)
-    result._1
+    result match {
+      case (diff, j, k, pAtJ, pAtK) =>
+        printf("|Pk - Pj| = %d, j = %d, k = %d, Pj = %d, Pk = %d%n%n",
+          diff,
+          j,
+          k,
+          pAtJ,
+          pAtK)
+        diff
+    }
   }
 }
 
