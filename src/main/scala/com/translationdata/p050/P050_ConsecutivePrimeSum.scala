@@ -13,7 +13,7 @@ object P050_ConsecutivePrimeSum {
 	val upperLimit = pow( 10, 6 ).toInt
 	val sieve:SieveOfEratosthenes = new SieveOfEratosthenes( upperLimit )
 
-  def getMaxSum:Int = {
+  def getMaxSum = {
     val primeList = extractPrimes( 2 to 7 )
     val primeNumberSums =
       primeList.toArray
