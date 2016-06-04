@@ -29,6 +29,6 @@ class P001_MultiplesOf3And5 {
   @Test def testMultiplesOf3And5() = {
     val sum = P001_MultiplesOf3And5.multiplesOf3And5(1000)
     assertEquals(233168, sum)
-    println("Junit P001: " + sum)
+    println("P001: " + sum)
   }
 }

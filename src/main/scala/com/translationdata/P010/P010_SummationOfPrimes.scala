@@ -8,7 +8,7 @@ class P010_SummationOfPrimes {
   def TwoMillionPrimes(): Unit = {
     val upperLimit = 2000000
     val primeSum = P010_SummationOfPrimes.primesSum(upperLimit)
-    printf("Result(%d) = %d, %n", upperLimit, primeSum)
+    printf("P010: Result(%d) = %d, %n", upperLimit, primeSum)
     assertEquals( "Incorrect sum", 142913828922L, primeSum )
   }
 }

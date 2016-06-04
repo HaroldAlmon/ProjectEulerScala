@@ -8,7 +8,7 @@ class P011_LargestProduct {
   @Test
   def LargestProduct() {
     val maximumProduct = P011_LargestProduct.largestProduct
-    printf("largestProduct() = %d%n", maximumProduct)
+    printf("P011: largestProduct() = %d%n", maximumProduct)
     assertEquals("Incorrect product", 70600674, maximumProduct)
   }
 }
