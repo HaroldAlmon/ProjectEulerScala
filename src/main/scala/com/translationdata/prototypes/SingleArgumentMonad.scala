@@ -70,17 +70,21 @@ object SingleArgumentMonad {
     val result = flatMapStep1.value
     println("flatMap() + map() result = " + result)
 
-    // Two map() calls...
+    // Two map() calls that cause nested monads...
     val TwoMapsResult =
       monadWith4.map { x =>
         monadWith5.map { y => x + y }
       }
 
-    // Two flatMap() calls...
+    println( "TwoMapsResult = " + TwoMapsResult )
+
+    // Two flatMap() calls that result in an Int...
     var twoFlatMapsResult =
       monadWith4.flatMapNoLift { x =>
         monadWith5.flatMapNoLift { y => x + y }
       }
+
+    twoFlatMapsResult
   }
 }
 
