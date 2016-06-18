@@ -31,9 +31,7 @@ object P050_ConsecutivePrimeSum {
     }
 
     val termCount = primeNumberSums map {
-      _ match {
         case (termCount, primeSum) => termCount
-      }
     }
     val maxCount = termCount.max
     val maxPos = termCount indexWhere (_ == maxCount)
