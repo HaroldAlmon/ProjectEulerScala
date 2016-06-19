@@ -6,17 +6,54 @@ import org.junit.Assert._
 import org.junit.Test
 
 object P040_ChampernownesConstant {
-  val targetDigits = Array( 1, 10, 100, 1000, 10000, 100000, 10000000 )
-
   def main(args: Array[String]) = champernownesConstant
 
   private def champernownesConstant = {
-    outerLoop(100) match {
+    searchSequence(100) match {
       case(product, nthDigit) => product
     }
   }
 
-  // Todo: convert to lambda expression
+
+
+  def searchSequence(targetDigit: Int) : (Int, Int) = {
+    searchSequenceImpl(targetDigit, (1, targetDigit), 1, 100000, 0)
+  }
+
+  @tailrec def searchSequenceImpl(targetDigit: Int,
+                                  productTuple: (Int, Int),
+                                  count: Int,
+                                  limit: Int,
+                                  totalStringLength: Int) : (Int,Int) = {
+    if (count >= limit || targetDigit > 10000000)
+      return productTuple
+
+    val sequence = makeSequence(count)
+    productTuple match {
+      case (product, nextDigit) =>
+        val prodTup = calcProduct(nextDigit, sequence, totalStringLength + sequence.length, product, count, limit)
+
+        return searchSequenceImpl(targetDigit,
+          prodTup, // product argument
+          count + 40,
+          limit,
+          totalStringLength + sequence.length)
+    }
+  }
+
+  def makeSequence(startNum:Int):String = {
+    val sequence = makeSequenceImpl("", startNum, startNum + 40)
+    sequence
+  }
+
+  @tailrec def makeSequenceImpl(sequence:String,
+                                position:Int,
+                                seqLimit: Int): String = {
+    if ( position >= seqLimit )
+      return sequence
+    makeSequenceImpl(sequence + position.toString, position + 1, seqLimit)
+  }
+
   private def isDigitInSequence( nthDigit: Int,
                                  sequence: String,
                                  totalSeqLength: Int) = {
@@ -36,44 +73,8 @@ object P040_ChampernownesConstant {
     } else
       (product, nthDigit)
   }
-
-  def outerLoop(targetDigit: Int) : (Int, Int) = {
-    outerLoopImpl(targetDigit, (1,targetDigit), 1, 100000, 0)
-  }
-
-  @tailrec def outerLoopImpl(targetDigit: Int,
-                    productTuple: (Int, Int),
-                    count: Int,
-                    limit: Int,
-                    totalStringLength: Int) : (Int,Int) = {
-    if (count >= limit || targetDigit > 10000000)
-      return productTuple
-
-    val sequence = makeSequence(count)
-    productTuple match {
-      case (product, nextDigit) =>
-        val prodTup = calcProduct(nextDigit, sequence, totalStringLength + sequence.length, product, count, limit)
-
-        return outerLoopImpl(targetDigit,
-          prodTup, // product argument
-          count + 40,
-          limit,
-          totalStringLength + sequence.length)
-    }
-  }
-
-  def makeSequence(startNum:Int):String = {
-    val sequence = makeSequenceImpl("", startNum, startNum + 40)
-    sequence
-  }
-  @tailrec def makeSequenceImpl(sequence:String,
-                       position:Int,
-                       limit: Int): String = {
-    if ( position >= limit )
-      return sequence
-    makeSequenceImpl(sequence + position.toString, position + 1, limit)
-  }
 }
+
 
 class P040_ChampernownesConstant {
   @Test def champernownesConstant() = {
