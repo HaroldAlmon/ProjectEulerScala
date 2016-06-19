@@ -38,7 +38,7 @@ object P040_ChampernownesConstant {
   }
 
   def outerLoop(targetDigit: Int) : (Int, Int) = {
-    outerLoopImpl(targetDigit, (1,targetDigit), 1, 5000, 0)
+    outerLoopImpl(targetDigit, (1,targetDigit), 1, 100000, 0)
   }
 
   @tailrec def outerLoopImpl(targetDigit: Int,
