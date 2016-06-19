@@ -16,11 +16,18 @@ object P040_ChampernownesConstant {
   }
 
   // Todo: convert to lambda expression
-  private def isDigitInSequence( nthDigit: Int, sequence: String, totalSeqLength: Int) = {
+  private def isDigitInSequence( nthDigit: Int,
+                                 sequence: String,
+                                 totalSeqLength: Int) = {
     nthDigit <= totalSeqLength && nthDigit > ( totalSeqLength - sequence.length )
   }
 
-  private def calcProductNew( nthDigit: Int, sequence: String, totalSeqLength: Int, product: Int, count: Int, limit: Int ) = {
+  private def calcProduct( nthDigit: Int,
+                           sequence: String,
+                           totalSeqLength: Int,
+                           product: Int,
+                           count: Int,
+                           limit: Int ) = {
     if ( isDigitInSequence( nthDigit, sequence, totalSeqLength ) ) {
       val offset = totalSeqLength - nthDigit
       val digit = sequence charAt ( sequence.length - offset - 1 )
@@ -33,12 +40,16 @@ object P040_ChampernownesConstant {
     outerLoopImpl(targetDigit, (1,targetDigit), 1, 5000, 0)
   }
 
-  def outerLoopImpl(targetDigit: Int, productTuple: (Int, Int), count: Int, limit: Int, totalStringLength: Int) : (Int,Int) = {
+  def outerLoopImpl(targetDigit: Int,
+                    productTuple: (Int, Int),
+                    count: Int,
+                    limit: Int,
+                    totalStringLength: Int) : (Int,Int) = {
     if (count < limit && targetDigit <= 10000000) {
       val sequence = makeSequence(count)
       productTuple match {
         case (product, nextDigit) =>
-          val prodTup = calcProductNew(nextDigit, sequence, totalStringLength + sequence.length, product, count, limit)
+          val prodTup = calcProduct(nextDigit, sequence, totalStringLength + sequence.length, product, count, limit)
 
           return outerLoopImpl(targetDigit,
             prodTup, // product argument
@@ -54,7 +65,9 @@ object P040_ChampernownesConstant {
     val sequence = makeSequenceImpl("", startNum, startNum + 40)
     sequence
   }
-  def makeSequenceImpl(sequence:String, position:Int, limit: Int): String = {
+  def makeSequenceImpl(sequence:String,
+                       position:Int,
+                       limit: Int): String = {
     if ( position >= limit )
       return sequence
     makeSequenceImpl(sequence + position.toString, position + 1, limit)
