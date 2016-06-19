@@ -10,40 +10,14 @@ object P040_ChampernownesConstant {
   def main(args: Array[String]) = champernownesConstant
 
   private def champernownesConstant = {
-    var product = 1
-    var number = 1
-
-//    for ( nthDigit <- targetDigits ) {
-      number = 1
-
-      // TODO: Convert var to val...
-      var totalSeqLength = 0
-      for ( noOfSequences <- 1 to 5000 ) {
-        var sequence = ""
-        for ( increment <- 1 to 40 ) {
-          sequence = sequence + number.toString
-          number += 1
-        }
-        totalSeqLength += sequence.length
-        product = calcProduct( 1, sequence, totalSeqLength, product )
-      }
- //   }
-    product
+    outerLoop(100) match {
+      case(product, nthDigit) => product
+    }
   }
-
 
   // Todo: convert to lambda expression
   private def isDigitInSequence( nthDigit: Int, sequence: String, totalSeqLength: Int) = {
     nthDigit <= totalSeqLength && nthDigit > ( totalSeqLength - sequence.length )
-  }
-
-  private def calcProduct( nthDigit: Int, sequence: String, totalSeqLength: Int, product: Int ) = {
-    if ( isDigitInSequence( nthDigit, sequence, totalSeqLength ) ) {
-      val offset = totalSeqLength - nthDigit
-      val digit = sequence charAt ( sequence.length - offset - 1 )
-      product * ( digit.toInt - 48 )
-    } else
-      product
   }
 
   private def calcProductNew( nthDigit: Int, sequence: String, totalSeqLength: Int, product: Int, count: Int, limit: Int ) = {
@@ -56,25 +30,25 @@ object P040_ChampernownesConstant {
   }
 
   def outerLoop(targetDigit: Int) : (Int, Int) = {
-    outerLoopImpl(targetDigit, (1,1), 1, 5000)
+    outerLoopImpl(targetDigit, (1,targetDigit), 1, 5000, 0)
   }
 
-  def outerLoopImpl(targetDigit: Int, productTuple: (Int, Int), count: Int, limit: Int) : (Int,Int) = {
+  def outerLoopImpl(targetDigit: Int, productTuple: (Int, Int), count: Int, limit: Int, totalStringLength: Int) : (Int,Int) = {
     if (count < limit && targetDigit <= 10000000) {
       val sequence = makeSequence(count)
       productTuple match {
         case (product, nextDigit) =>
-          val pt = calcProductNew(nextDigit, sequence, sequence.length, product, count, limit)
+          val prodTup = calcProductNew(nextDigit, sequence, totalStringLength + sequence.length, product, count, limit)
 
           return outerLoopImpl(targetDigit,
-            pt, // product argument
+            prodTup, // product argument
             count + 40,
-            limit)
+            limit,
+            totalStringLength + sequence.length)
       }
     }
     productTuple
   }
-
 
   def makeSequence(startNum:Int):String = {
     val sequence = makeSequenceImpl("", startNum, startNum + 40)
@@ -89,8 +63,6 @@ object P040_ChampernownesConstant {
 
 class P040_ChampernownesConstant {
   @Test def champernownesConstant() = {
-    var outerLoop = P040_ChampernownesConstant.outerLoop(1)
-    val result = P040_ChampernownesConstant.makeSequence(1)
     val product = P040_ChampernownesConstant.champernownesConstant
 
     println("P040: Product d1 x d10 x ... x d1000000 = " + product)
