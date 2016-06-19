@@ -1,5 +1,6 @@
 package com.translationdata.p040
 package com.translationdata.prototypes
+import scala.annotation.tailrec
 
 import org.junit.Assert._
 import org.junit.Test
@@ -40,32 +41,32 @@ object P040_ChampernownesConstant {
     outerLoopImpl(targetDigit, (1,targetDigit), 1, 5000, 0)
   }
 
-  def outerLoopImpl(targetDigit: Int,
+  @tailrec def outerLoopImpl(targetDigit: Int,
                     productTuple: (Int, Int),
                     count: Int,
                     limit: Int,
                     totalStringLength: Int) : (Int,Int) = {
-    if (count < limit && targetDigit <= 10000000) {
-      val sequence = makeSequence(count)
-      productTuple match {
-        case (product, nextDigit) =>
-          val prodTup = calcProduct(nextDigit, sequence, totalStringLength + sequence.length, product, count, limit)
+    if (count >= limit || targetDigit > 10000000)
+      return productTuple
 
-          return outerLoopImpl(targetDigit,
-            prodTup, // product argument
-            count + 40,
-            limit,
-            totalStringLength + sequence.length)
-      }
+    val sequence = makeSequence(count)
+    productTuple match {
+      case (product, nextDigit) =>
+        val prodTup = calcProduct(nextDigit, sequence, totalStringLength + sequence.length, product, count, limit)
+
+        return outerLoopImpl(targetDigit,
+          prodTup, // product argument
+          count + 40,
+          limit,
+          totalStringLength + sequence.length)
     }
-    productTuple
   }
 
   def makeSequence(startNum:Int):String = {
     val sequence = makeSequenceImpl("", startNum, startNum + 40)
     sequence
   }
-  def makeSequenceImpl(sequence:String,
+  @tailrec def makeSequenceImpl(sequence:String,
                        position:Int,
                        limit: Int): String = {
     if ( position >= limit )
