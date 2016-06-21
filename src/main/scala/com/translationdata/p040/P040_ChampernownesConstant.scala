@@ -8,6 +8,7 @@ import org.junit.Test
 object P040_ChampernownesConstant {
   def main(args: Array[String]) = champernownesConstant
   val UPPERLIMIT = 1000000
+  val SEQUENCESIZE = 50
 
   private def champernownesConstant = {
     searchSequence(100) match {
@@ -16,34 +17,29 @@ object P040_ChampernownesConstant {
   }
 
   def searchSequence(targetDigitPos: Int) : (Int, Int) = {
-    searchSequenceImpl(targetDigitPos, (1, targetDigitPos), 1, 1000000, 0)
+    searchSequenceImpl((1, targetDigitPos), 1, 0)
   }
 
-  @tailrec def searchSequenceImpl(targetDigitPos: Int,
-                                  productTuple: (Int, Int),
-                                  count: Int,
-                                  limit: Int,
+  @tailrec def searchSequenceImpl(productTuple: (Int, Int),
+                                  sequencePosition: Int,
                                   totalStringLength: Int) : (Int,Int) = {
     if ( (productTuple match
-      {case (_, target) => target}) > 1000000)
-    //if (productTuple._2 > 1000000)
+      {case (_, target) => target} ) > UPPERLIMIT)
       return productTuple
 
-    val sequence = makeSequence(count)
+    val sequence = makeSequence(sequencePosition)
     productTuple match {
       case (product, nextDigit) =>
-        val prodTup = calcProduct(nextDigit, sequence, totalStringLength + sequence.length, product)
+        val returnProductTuple = calcProduct(nextDigit, sequence, totalStringLength + sequence.length, product)
 
-        return searchSequenceImpl(targetDigitPos,
-          prodTup, // product argument
-          count + 40,
-          limit,
+        return searchSequenceImpl(returnProductTuple,
+          sequencePosition + SEQUENCESIZE,
           totalStringLength + sequence.length)
     }
   }
 
   def makeSequence(startNum:Int):String = {
-    val sequence = makeSequenceImpl("", startNum, startNum + 40)
+    val sequence = makeSequenceImpl("", startNum, startNum + SEQUENCESIZE)
     sequence
   }
 
@@ -73,7 +69,6 @@ object P040_ChampernownesConstant {
       (product, targetDigitPos)
   }
 }
-
 
 class P040_ChampernownesConstant {
   @Test def champernownesConstant() = {
