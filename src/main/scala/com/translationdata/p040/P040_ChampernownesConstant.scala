@@ -7,6 +7,7 @@ import org.junit.Test
 
 object P040_ChampernownesConstant {
   def main(args: Array[String]) = champernownesConstant
+  val UPPERLIMIT = 1000000
 
   private def champernownesConstant = {
     searchSequence(100) match {
@@ -14,26 +15,26 @@ object P040_ChampernownesConstant {
     }
   }
 
-
-
-  def searchSequence(targetDigit: Int) : (Int, Int) = {
-    searchSequenceImpl(targetDigit, (1, targetDigit), 1, 100000, 0)
+  def searchSequence(targetDigitPos: Int) : (Int, Int) = {
+    searchSequenceImpl(targetDigitPos, (1, targetDigitPos), 1, 1000000, 0)
   }
 
-  @tailrec def searchSequenceImpl(targetDigit: Int,
+  @tailrec def searchSequenceImpl(targetDigitPos: Int,
                                   productTuple: (Int, Int),
                                   count: Int,
                                   limit: Int,
                                   totalStringLength: Int) : (Int,Int) = {
-    if (count >= limit || targetDigit > 10000000)
+    if ( (productTuple match
+      {case (_, target) => target}) > 1000000)
+    //if (productTuple._2 > 1000000)
       return productTuple
 
     val sequence = makeSequence(count)
     productTuple match {
       case (product, nextDigit) =>
-        val prodTup = calcProduct(nextDigit, sequence, totalStringLength + sequence.length, product, count, limit)
+        val prodTup = calcProduct(nextDigit, sequence, totalStringLength + sequence.length, product)
 
-        return searchSequenceImpl(targetDigit,
+        return searchSequenceImpl(targetDigitPos,
           prodTup, // product argument
           count + 40,
           limit,
@@ -60,18 +61,16 @@ object P040_ChampernownesConstant {
     nthDigit <= totalSeqLength && nthDigit > ( totalSeqLength - sequence.length )
   }
 
-  private def calcProduct( nthDigit: Int,
+  private def calcProduct( targetDigitPos: Int,
                            sequence: String,
                            totalSeqLength: Int,
-                           product: Int,
-                           count: Int,
-                           limit: Int ) = {
-    if ( isDigitInSequence( nthDigit, sequence, totalSeqLength ) ) {
-      val offset = totalSeqLength - nthDigit
+                           product: Int) = {
+    if ( isDigitInSequence( targetDigitPos, sequence, totalSeqLength ) ) {
+      val offset = totalSeqLength - targetDigitPos
       val digit = sequence charAt ( sequence.length - offset - 1 )
-      (product * ( digit.toInt - 48 ), nthDigit * 10)
+      (product * ( digit.toInt - 48 ), targetDigitPos * 10)
     } else
-      (product, nthDigit)
+      (product, targetDigitPos)
   }
 }
 
