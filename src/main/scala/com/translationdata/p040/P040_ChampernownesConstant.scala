@@ -32,18 +32,18 @@ object P040_ChampernownesConstant {
       case (product, nextDigit) =>
         val returnProductTuple = calcProduct(nextDigit, sequence, totalStringLength + sequence.length, product)
 
-        return searchSequenceImpl(returnProductTuple,
+        searchSequenceImpl(returnProductTuple,
           sequencePosition + SEQUENCESIZE,
           totalStringLength + sequence.length)
     }
   }
 
-  def makeSequence(startNum:Int):String = {
+  private def makeSequence(startNum:Int):String = {
     val sequence = makeSequenceImpl("", startNum, startNum + SEQUENCESIZE)
     sequence
   }
 
-  @tailrec def makeSequenceImpl(sequence:String,
+  @tailrec private def makeSequenceImpl(sequence:String,
                                 position:Int,
                                 seqLimit: Int): String = {
     if ( position >= seqLimit )
@@ -64,6 +64,9 @@ object P040_ChampernownesConstant {
     if ( isDigitInSequence( targetDigitPos, sequence, totalSeqLength ) ) {
       val offset = totalSeqLength - targetDigitPos
       val digit = sequence charAt ( sequence.length - offset - 1 )
+
+      // The tuple that contains the product and the target digit acts as a state token
+      // to track the machine state without modifying any variables...
       (product * ( digit.toInt - 48 ), targetDigitPos * 10)
     } else
       (product, targetDigitPos)
