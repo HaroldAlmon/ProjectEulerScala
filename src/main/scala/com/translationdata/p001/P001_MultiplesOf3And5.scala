@@ -3,14 +3,10 @@ import org.junit.Test
 import org.junit.Assert._
 
 object P001_MultiplesOf3And5{
-  //def main(args: Array[String]): Int = multiplesOf3And5(1000)
-
   def multiplesOf3And5(upperLimit: Int) = {
-    var MultiplesSum = 0
-    MultiplesSum += calculateSumBelowLimit(upperLimit, 3 )
-    MultiplesSum += calculateSumBelowLimit(upperLimit, 5)
-    MultiplesSum -= calculateSumBelowLimit(upperLimit, 15)
-    MultiplesSum
+    (calculateSumBelowLimit(upperLimit, 3 )
+        + calculateSumBelowLimit(upperLimit, 5)
+        - calculateSumBelowLimit(upperLimit, 15))
   }
 
   // This is a variation of the sum(1..n) formula.
@@ -29,6 +25,6 @@ class P001_MultiplesOf3And5 {
   @Test def testMultiplesOf3And5() = {
     val sum = P001_MultiplesOf3And5.multiplesOf3And5(1000)
     assertEquals(233168, sum)
-    println("P001: " + sum)
+    println("Junit P001: " + sum)
   }
 }
