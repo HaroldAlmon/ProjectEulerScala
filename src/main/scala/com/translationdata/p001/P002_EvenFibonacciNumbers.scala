@@ -4,31 +4,26 @@ import org.junit.Assert._
 import org.junit.Test
 ;
 object P002_EvenFibonacciNumbers {
-  println( "P002: " + evenFiboNumbersSum( 4000000 ) )
+  def evenFiboNumbersSum(upperLimit: Int ) = evenFiboNumbersSum2_impl(upperLimit, 1, 2, 2)
 
-    def evenFiboNumbersSum(upperLimit: Int ) = {
-      var EvenFiboNumbersSum = 2
-      var fibo1 = 1
-      var fibo2 = 2
-      var nextFibo = 3
+  def evenFiboNumbersSum2_impl(upperLimit: Int, fibo1: Int, fibo2: Int,  sum: Int ) : Int = {
+    val nextFibo = fibo1 + fibo2
 
-      /* Use a loop since we do not know the term
-       * of the Fibonacci number we are seeking. */
-      while ( nextFibo < upperLimit ) {
-        var isEven = false
+    if ( nextFibo >= upperLimit )
+      return sum
 
-        isEven = ( nextFibo % 2 == 0 )
+    val isFiboEven = nextFibo % 2 == 0
 
-        if( isEven ) {
-          EvenFiboNumbersSum += nextFibo
-        }
+    val nextSum =
+      if (isFiboEven)
+        sum + nextFibo
+      else
+        sum
 
-        fibo1 = fibo2
-        fibo2 = nextFibo
-        nextFibo = fibo1 + fibo2
-      }
-      EvenFiboNumbersSum
-    }
+    val nextFibo1 = fibo2
+
+    evenFiboNumbersSum2_impl(upperLimit, nextFibo1, nextFibo, nextSum)
+  }
 }
 
 class P002_EvenFibonacciNumbers() {
