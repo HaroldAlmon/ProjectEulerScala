@@ -23,7 +23,7 @@ object P011_LargestProduct {
             matrixProduct(matrix, rowProduct, cellBuffer, 0))))
     maximumProduct
   }
-  // TODO: Try converting this to nested lambda expressions.
+  // Example of calling a lambda expression in Scala. In java, you can use an SAM object and the result looks the same.
   def matrixProduct(matrix: Array[Array[Int]], calcProduct: (Int, Int, Int) => Long, rowBuffer:Int, columnBuffer:Int) = {
     (for (row <- 0 to matrix.length - rowBuffer - 1;
           col <- 0 to matrix(0).length - columnBuffer - 1)
