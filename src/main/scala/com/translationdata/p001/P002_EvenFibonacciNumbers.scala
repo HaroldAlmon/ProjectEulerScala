@@ -7,10 +7,10 @@ object P002_EvenFibonacciNumbers {
   def evenFiboNumbersSum(upperLimit: Int ) = evenFiboNumbersSum2_impl(upperLimit, 1, 2, 2)
 
   def evenFiboNumbersSum2_impl(upperLimit: Int, fibo1: Int, fibo2: Int,  sum: Int ) : Int = {
+    val nextFibo = fibo1 + fibo2
     if ( nextFibo >= upperLimit )
       return sum
 
-    val nextFibo = fibo1 + fibo2
     val isFiboEven = nextFibo % 2 == 0
     val nextSum =
       if (isFiboEven)
