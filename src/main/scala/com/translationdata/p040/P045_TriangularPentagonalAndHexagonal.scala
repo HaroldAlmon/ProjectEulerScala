@@ -1,5 +1,8 @@
 package com.translationdata.p040
 
+import org.junit.Assert._
+import org.junit.Test
+
 /** Strategy: Brute Force, Simple Mathematics
   * Where did the root functions, HnQuadraticRoot and PnQuadraticRoot, come from?
   * 1. T(n) = H(n) = n(2n - 1)   <=> 2n^2 - n - T(n) = 0  and solve quadratic root for n
@@ -16,10 +19,10 @@ object P045_TriangularPentagonalAndHexagonal {
       println( f"P045: Next triangular number is $triangleNumber" )
     }
 
-  private def findSequence:Int = {
+  private def findSequence: Int = {
     286 to 60000 foreach { x =>
-      val triangleNumber = Tn( x )
-      if ( isPentagonal( triangleNumber ) && isHexagonal( triangleNumber ) )
+      val triangleNumber = Tn(x)
+      if (isPentagonal(triangleNumber) && isHexagonal(triangleNumber))
         return x
     }
     0
@@ -45,5 +48,19 @@ object P045_TriangularPentagonalAndHexagonal {
       true
     else
       false
+  }
+}
+
+class P045_TriangularPentagonalAndHexagonal {
+  @Test def TriangularPentagonalAndHexagonal(): Unit = {
+    val n = P045_TriangularPentagonalAndHexagonal.findSequence
+    val triangleNumber = P045_TriangularPentagonalAndHexagonal.Tn(n)
+    printf( "T(%d) = P(%d) = H(%d) = %d%n",
+      n,
+      P045_TriangularPentagonalAndHexagonal.PnQuadraticRoot(triangleNumber).toInt,
+      P045_TriangularPentagonalAndHexagonal.HnQuadraticRoot(triangleNumber).toInt,
+      triangleNumber )
+    println( f"P045: Next triangular number is $triangleNumber" )
+    assertEquals(296962999629L, n)
   }
 }

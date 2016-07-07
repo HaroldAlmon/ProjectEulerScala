@@ -1,5 +1,7 @@
 package com.translationdata.p040
 import misc.SieveOfEratosthenes
+import org.junit.Assert._
+import org.junit.Test
 
 /** Strategy: Brute Force, Prime Sieve */
   object P049_PrimePermutations {
@@ -60,5 +62,20 @@ import misc.SieveOfEratosthenes
       true
     else
       false
+  }
+}
+
+class P049_PrimePermutations {
+  @Test def PrimePermutations(): Unit = {
+    val prime = P049_PrimePermutations.result
+    printf( "P049: Prime Permutations = %d, %d, %d%n",
+      prime(0),
+      prime(1),
+      prime(2) )
+    printf( "The 12 digit string is %d%d%d%n",
+      prime(0),
+      prime(1),
+      prime(2) )
+    assertEquals(296962999629L, prime)
   }
 }
