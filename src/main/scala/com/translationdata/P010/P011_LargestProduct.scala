@@ -15,19 +15,19 @@ class P011_LargestProduct {
 
 object P011_LargestProduct {
   def largestProduct = {
-    val cellBuffer = 3
+    val productLen = 3
     val maximumProduct =
-      max(matrixProduct(matrix, columnProduct, 0, cellBuffer),
-        max(matrixProduct(matrix, fallingDiagonalProduct, cellBuffer, cellBuffer),
-          max(matrixProduct(matrix, risingDiagonalProduct, cellBuffer, cellBuffer),
-            matrixProduct(matrix, rowProduct, cellBuffer, 0))))
+      max(matrixProduct(matrix, columnProduct, 0, productLen),
+        max(matrixProduct(matrix, fallingDiagonalProduct, productLen, productLen),
+          max(matrixProduct(matrix, risingDiagonalProduct, productLen, productLen),
+            matrixProduct(matrix, rowProduct, productLen, 0))))
     maximumProduct
   }
   // Example of calling a lambda expression in Scala. In java, you can use an SAM object and the result looks the same.
-  def matrixProduct(matrix: Array[Array[Int]], calcProduct: (Int, Int, Int) => Long, rowBuffer:Int, columnBuffer:Int) = {
-    (for (row <- 0 to matrix.length - rowBuffer - 1;
-          col <- 0 to matrix(0).length - columnBuffer - 1)
-      yield calcProduct.apply(row, col, max(rowBuffer, columnBuffer)))
+  def matrixProduct(matrix: Array[Array[Int]], calcProduct: (Int, Int, Int) => Long, rowDelta:Int, columnDelta:Int) = {
+    (for (row <- 0 to matrix.length - rowDelta - 1;
+          col <- 0 to matrix(0).length - columnDelta - 1)
+      yield calcProduct.apply(row, col, max(rowDelta, columnDelta)))
       .max
   }
 
@@ -55,19 +55,19 @@ object P011_LargestProduct {
   )
   // TODO: Write embedded lambda version by converting the Scala for-comprehension to lambda expressions
 
-  val columnProduct = (row:Int, col:Int, buffer:Int) =>
-    (for(offset <- 0 to buffer)
+  val columnProduct = (row:Int, col:Int, columnDelta:Int) =>
+    (for(offset <- 0 to columnDelta)
       yield matrix(row)(col + offset).toLong).product
 
-  val fallingDiagonalProduct = (row:Int, col:Int, buffer:Int) =>
-    (for(offset <- 0 to buffer)
+  val fallingDiagonalProduct = (row:Int, col:Int, productLen:Int) =>
+    (for(offset <- 0 to productLen)
       yield matrix(row + offset)(col + offset).toLong).product
 
-  val risingDiagonalProduct = (row:Int, col:Int, buffer:Int) =>
-    (for(offset <- 0 to buffer)
-      yield matrix(row + buffer - offset)(col + offset).toLong).product
+  val risingDiagonalProduct = (row:Int, col:Int, productLen:Int) =>
+    (for(offset <- 0 to productLen)
+      yield matrix(row + productLen - offset)(col + offset).toLong).product
 
-  val rowProduct = (row:Int, col:Int, buffer:Int) =>
-    (for(offset <- 0 to buffer)
+  val rowProduct = (row:Int, col:Int, rowDelta:Int) =>
+    (for(offset <- 0 to rowDelta)
       yield matrix(row + offset)(col).toLong).product
 }
