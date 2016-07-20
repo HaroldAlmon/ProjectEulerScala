@@ -10,6 +10,9 @@ object P01_P09 {
     val nestedList = List(List(1,1),2,List(3,List(5,8) ))
     val nestedList2 = List(List(1,1),List(5,8))
 
+    val name = "Harold"
+    println(name + ", =>" + name(0));
+
     printf("P01: %d%n", sumList(numList))
     printf("P01: %d%n", P01_last1(numList))
     printf("P01: %s%n", P01_last2(fruitList))
@@ -22,6 +25,12 @@ object P01_P09 {
     printf("P03: %d%n", P03_kthElement(2, numList))
     printf("P04: %d%n", P04_size(numList))
     printf("P05: %s%n", P05_reverse(numList))
+    printf("P05 reverse string: %s%n", P05_reverseString(name))
+    printf("P05 reverse string tail rec: %s%n", P05_reverseStringTailRecursion(name))
+    printf("P05 reverse string fold left: %s%n", P05_reverseStringFoldLeft(name))
+
+
+
     printf("P05: %s%n", P05_reverseTailRecursion(numList))
     printf("P06: %s%n", P06_palindrome(numList))
     printf("P06: %s%n", P06_palindrome(palindromeList))
@@ -55,6 +64,13 @@ object P01_P09 {
     }
   }
 
+  def P05_reverseString (text: String): String = {
+    text match {
+      case "" => ""
+      case _ => P05_reverseString(text.substring(1)) + text(0)
+    }
+  }
+
   def P05_reverseTailRecursion[E](list: List[E]):List[E] = {
     @tailrec
     def reverse [E](theResult: List[E], theTail: List[E]):List[E] = {
@@ -67,8 +83,23 @@ object P01_P09 {
     reverse(Nil, list)
   }
 
+  def P05_reverseStringTailRecursion (text: String): String = {
+    def P05_reverseStringTailRecursionImpl(theResult: String, text: String): String = {
+      text match {
+        case "" => theResult
+        case _ => P05_reverseStringTailRecursionImpl(text(0) + theResult, text.substring(1))
+      }
+    }
+
+    P05_reverseStringTailRecursionImpl( "", text)
+  }
+
   def P05_reverseFunctional[E](list: List[E]):List[E] = {
     list.foldLeft(List[E]()) { (theResult, element) => element :: theResult }
+  }
+
+  def P05_reverseStringFoldLeft(text: String): String = {
+    text.foldLeft("") { (theResult, charElement) => charElement + theResult }
   }
 
   def P06_palindrome[E](list: List[E]):Boolean = {
