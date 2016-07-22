@@ -9,18 +9,16 @@ object P01_P09 {
     val palindromeList  = List("peach", "apple", "pear", "apple", "peach")
     val nestedList = List(List(1,1),2,List(3,List(5,8) ))
     val nestedList2 = List(List(1,1),List(5,8))
-
     val name = "Harold"
     println(name + ", =>" + name(0));
 
-    printf("P01: %d%n", sumList(numList))
     printf("P01: %d%n", P01_last1(numList))
     printf("P01: %s%n", P01_last2(fruitList))
     printf("P01: %s%n", P02_penultimate(fruitList))
 
     printf("P05: %s%n", P05_reverse(fruitList))
-    printf("P05: %s%n", P05_reverseTailRecursion(fruitList))
-    printf("P01: %s%n", P05_reverseFunctional(fruitList))
+    printf("P05 Tail Recusion: %s%n", P05_reverseTailRecursion(fruitList))
+    printf("P05 FoldLeft: %s%n", P05_reverseFoldLeft(fruitList))
 
     printf("P03: %d%n", P03_kthElement(2, numList))
     printf("P04: %d%n", P04_size(numList))
@@ -32,9 +30,10 @@ object P01_P09 {
 
 
     printf("P05: %s%n", P05_reverseTailRecursion(numList))
+    printf("P05: %s%n", P05_reverseFoldLeft(numList))
+
     printf("P06: %s%n", P06_palindrome(numList))
     printf("P06: %s%n", P06_palindrome(palindromeList))
-    //printf("P07: %s%n", P07_flatten(nestedList))
   }
 
   def P01_last1[E](list: List[E]) = {
@@ -57,6 +56,7 @@ object P01_P09 {
     list.size
   }
 
+  // This recursion results in a stack overflow on a long list...
   def P05_reverse[E](list: List[E]):List[E] = {
     list match {
       case Nil => Nil
@@ -64,6 +64,7 @@ object P01_P09 {
     }
   }
 
+  // Specify the return type on these recusive calls; otherwise, the function returns Unit...
   def P05_reverseString (text: String): String = {
     text match {
       case "" => ""
@@ -81,6 +82,11 @@ object P01_P09 {
     }
 
     reverse(Nil, list)
+  }
+
+  def P05_reverseFoldLeft[E](list: List[E]):List[E] = {
+    // foldLeft is a curried function...
+    list.foldLeft(List[E]())((theResult, element) => element :: theResult)
   }
 
   def P05_reverseStringTailRecursion (text: String): String = {
@@ -103,7 +109,8 @@ object P01_P09 {
   }
 
   def P06_palindrome[E](list: List[E]):Boolean = {
-    for (i <- list.indices)
+    // Go through half the list by using the take function...
+    for (i <- list.indices.take(list.size / 2))
       if (list(i) != list(list.size - i - 1)) {
         return false
       }
