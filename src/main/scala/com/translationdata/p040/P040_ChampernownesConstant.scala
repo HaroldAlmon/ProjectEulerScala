@@ -48,7 +48,9 @@ object P040_ChampernownesConstant {
                                 seqLimit: Int): String = {
     if ( position >= seqLimit )
       return sequence
-    makeSequenceImpl(sequence + position.toString, position + 1, seqLimit)
+    val sequenceStateToken = sequence + position.toString
+    val positionStateToken = position + 1
+    makeSequenceImpl(sequenceStateToken, positionStateToken, seqLimit)
   }
 
   private def isDigitInSequence( nthDigit: Int,
