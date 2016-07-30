@@ -6,7 +6,7 @@ import org.junit.Assert._
 import org.junit.Test
 
 object P040_ChampernownesConstant {
-  def main(args: Array[String]) = champernownesConstant
+  def main(args: Array[String]):Unit = champernownesConstant
   val UPPERLIMIT = 1000000
   val SEQUENCESIZE = 50
 
