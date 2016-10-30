@@ -7,8 +7,8 @@ import org.junit.Test
 
 object P040_ChampernownesConstant {
   def main(args: Array[String]):Unit = champernownesConstant
-  val UPPERLIMIT = 1000000
-  val SEQUENCESIZE = 50
+  val UPPER_LIMIT = 1000000
+  val SEQUENCE_SIZE = 50
 
   private def champernownesConstant = {
     searchSequence(100) match {
@@ -24,7 +24,7 @@ object P040_ChampernownesConstant {
                                   sequencePosition: Int,
                                   totalStringLength: Int) : (Int,Int) = {
     if ( (productTuple match
-      {case (_, target) => target} ) > UPPERLIMIT)
+      {case (_, target) => target} ) > UPPER_LIMIT)
       return productTuple
 
     val sequence = makeSequence(sequencePosition)
@@ -33,13 +33,13 @@ object P040_ChampernownesConstant {
         val returnProductTuple = calcProduct(nextDigit, sequence, totalStringLength + sequence.length, product)
 
         searchSequenceImpl(returnProductTuple,
-          sequencePosition + SEQUENCESIZE,
+          sequencePosition + SEQUENCE_SIZE,
           totalStringLength + sequence.length)
     }
   }
 
   private def makeSequence(startNum:Int):String = {
-    val sequence = makeSequenceImpl("", startNum, startNum + SEQUENCESIZE)
+    val sequence = makeSequenceImpl("", startNum, startNum + SEQUENCE_SIZE)
     sequence
   }
 

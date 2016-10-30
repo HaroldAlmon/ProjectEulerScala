@@ -1,4 +1,6 @@
 package com.translationdata.p001;
+
+import org.hamcrest.CoreMatchers
 import org.junit.Test
 import org.junit.Assert._
 
@@ -24,7 +26,9 @@ object P001_MultiplesOf3And5{
 class P001_MultiplesOf3And5 {
   @Test def testMultiplesOf3And5() = {
     val sum = P001_MultiplesOf3And5.multiplesOf3And5(1000)
-    assertEquals(233168, sum)
+    assertThat(s"Incorrect sum.",
+      sum,
+      CoreMatchers.is(233168))
     println("Junit P001: " + sum)
   }
 }

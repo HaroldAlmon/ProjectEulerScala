@@ -1,5 +1,6 @@
 package com.translationdata.p001
 
+import org.hamcrest.CoreMatchers
 import org.junit.Assert._
 import org.junit.Test
 ;
@@ -29,6 +30,9 @@ class P002_EvenFibonacciNumbers() {
     val sum = P002_EvenFibonacciNumbers.evenFiboNumbersSum(4000000)
 
     println("P002: Sum is " + sum)
-    assertEquals(4613732, sum)
+
+    assertThat(s"Incorrect sum.",
+      sum,
+      CoreMatchers.is(4613732))
   }
 }

@@ -61,6 +61,6 @@ class P045_TriangularPentagonalAndHexagonal {
       P045_TriangularPentagonalAndHexagonal.HnQuadraticRoot(triangleNumber).toInt,
       triangleNumber )
     println( f"P045: Next triangular number is $triangleNumber" )
-    assertEquals(296962999629L, n)
-  }
+    assertEquals(1533776805L, triangleNumber)
+}
 }
