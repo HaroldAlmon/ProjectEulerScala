@@ -11,7 +11,7 @@ object P001_MultiplesOf3And5{
 
   // This is a variation of the sum(1..n) formula.
   //
-  // Sum(1...kn) = k * n * (n + 1)
+  // Sum(1k, 2k, 3k...kn) = k * n * (n + 1)
   //                   -----------
   //                        2
   // The formula includes n, the problem does not.

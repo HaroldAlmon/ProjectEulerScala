@@ -5,18 +5,18 @@ import org.junit.Assert._
 
 /** Strategy: Brute Force, Hash Set Lookup */
 object P044_PentagonalNumbers {
-  val pentagonalUpperLimit = 3000
+  val PENTAGONAL_UPPER_LIMIT = 3000
 
   def main(args: Array[String]) = findNumber()
 
   private def findNumber() = {
     val Pn  = (n: Int) => n * (3 * n - 1) / 2
-    val pentagonalNumbers = ( 1 to pentagonalUpperLimit ) map Pn
+    val pentagonalNumbers = ( 1 to PENTAGONAL_UPPER_LIMIT ) map Pn
     val pentagonalSet = pentagonalNumbers.toSet
 
     def findPair:Option[(Int, Int, Int, Int, Int)] = {
-      (0 to pentagonalUpperLimit - 2).
-        foreach { leftIndex => for (rightIndex <- leftIndex + 1 to pentagonalUpperLimit - 1
+      (0 to PENTAGONAL_UPPER_LIMIT - 2).
+        foreach { leftIndex => for (rightIndex <- leftIndex + 1 to PENTAGONAL_UPPER_LIMIT - 1
           if isPentagonal(pentagonalNumbers(leftIndex), pentagonalNumbers(rightIndex)))
             return Some(
               ( pentagonalNumbers( rightIndex ) - pentagonalNumbers( leftIndex ),
