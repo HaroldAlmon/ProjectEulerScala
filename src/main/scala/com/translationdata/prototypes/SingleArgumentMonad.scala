@@ -1,5 +1,7 @@
 package com.translationdata.prototypes
 
+import junit.framework.TestResult
+
 class SingleArgumentMonad[A](val value: A) {
   def map[B](lambdaFunction: A => B) = new SingleArgumentMonad(lambdaFunction(value))
   def flatMap[B](lambdaFunction: A => SingleArgumentMonad[B]) = lambdaFunction(value)
@@ -79,13 +81,41 @@ object SingleArgumentMonad {
     println( "TwoMapsResult = " + TwoMapsResult )
 
     // Two flatMap() calls that result in an Int...
-    var twoFlatMapsResult =
+    val twoFlatMapsResult =
       monadWith4.flatMapNoLift { x =>
         monadWith5.flatMapNoLift { y => x + y }
       }
 
+    val twoFlatMapsResultWrapped =
+      new SingleArgumentMonad( monadWith4.flatMapNoLift { x =>
+        monadWith5.flatMapNoLift { y => x + y }
+      })
+
     twoFlatMapsResult
+    twoFlatMapsResultWrapped
+
+    val testResult = monadWith4.map(x => x * 2)
+    new SingleArgumentMonad(12)
+
+    // The following flatMap will not compile because the lambda must return a SingleArgumentMonad datatype...
+    //val testResult3 = monadWith4.flatMap( x => x *3 )
+
+    // This is the way to do it.  Wrap the result in a SingleArgumentMonad...
+    val testResult2 = monadWith4.flatMap( x => new SingleArgumentMonad(x *3) )
+
+
+    println( "TestResult2 = " + testResult2 )
+
+    val list = List( 1, 2, 3)
+
+    val x = list.map(x => x * x)
+    val x2 = list.flatMap(x => x * x)
+
+    x
   }
+
+
+
 }
 
 
