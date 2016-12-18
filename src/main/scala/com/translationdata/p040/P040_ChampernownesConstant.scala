@@ -75,6 +75,7 @@ object P040_ChampernownesConstant {
   }
 }
 
+
 class P040_ChampernownesConstant {
   @Test def champernownesConstant() = {
     val product = P040_ChampernownesConstant.champernownesConstant
