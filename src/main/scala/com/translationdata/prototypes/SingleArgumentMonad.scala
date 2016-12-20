@@ -109,7 +109,7 @@ object SingleArgumentMonad {
     val list = List( 1, 2, 3)
 
     val x = list.map(x => x * x)
-    val x2 = list.flatMap(x => x * x)
+    //val x2 = list.flatMap(x => x * x)
 
     x
   }
