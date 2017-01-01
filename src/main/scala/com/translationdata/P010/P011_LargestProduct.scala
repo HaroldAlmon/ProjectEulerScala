@@ -27,7 +27,7 @@ object P011_LargestProduct {
   def matrixProduct(matrix: Array[Array[Int]], calcProduct: (Int, Int, Int) => Long, rowDelta:Int, columnDelta:Int) = {
     (for (row <- 0 to matrix.length - rowDelta - 1;
           col <- 0 to matrix(0).length - columnDelta - 1)
-      yield calcProduct.apply(row, col, max(rowDelta, columnDelta)))
+      yield calcProduct(row, col, max(rowDelta, columnDelta)))
       .max
   }
 
