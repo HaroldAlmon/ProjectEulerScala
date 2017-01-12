@@ -6,7 +6,6 @@ import org.junit.Assert._
 import org.junit.Test
 
 object P040_ChampernownesConstant {
-  def main(args: Array[String]):Unit = champernownesConstant
   val UPPER_LIMIT = 1000000
   val SEQUENCE_SIZE = 50
 
@@ -53,18 +52,16 @@ object P040_ChampernownesConstant {
     makeSequenceImpl(sequenceStateToken, positionStateToken, seqLimit)
   }
 
-  private def isDigitInSequence( nthDigit: Int,
-                                 sequence: String,
-                                 totalSeqLength: Int) = {
-    nthDigit <= totalSeqLength && nthDigit > ( totalSeqLength - sequence.length )
+  private def isDigitInSequence( function: => Boolean )  = {
+    function
   }
 
   private def calcProduct( targetDigitPos: Int,
                            sequence: String,
                            totalSeqLength: Int,
                            product: Int) = {
-    if ( isDigitInSequence( targetDigitPos, sequence, totalSeqLength ) ) {
-      val offset = totalSeqLength - targetDigitPos
+    if (isDigitInSequence(targetDigitPos <= totalSeqLength && targetDigitPos > (totalSeqLength - sequence.length))) {
+      val offset = ( () => totalSeqLength - targetDigitPos  ) ()
       val digit = sequence charAt ( sequence.length - offset - 1 )
 
       // The tuple that contains the product and the target digit acts as a state token
@@ -80,8 +77,14 @@ class P040_ChampernownesConstant {
   @Test def champernownesConstant() = {
     val product = P040_ChampernownesConstant.champernownesConstant
 
-    println("P040: Product d1 x d10 x ... x d1000000 = " + product)
-    assertEquals(210, product)
+    checkResult {
+      println("P040: Product d1 x d10 x ... x d1000000 = " + product)
+      assertEquals(210, product)
+    }
+  }
+
+  def checkResult(function: => Unit) {
+    function
   }
 }
 
