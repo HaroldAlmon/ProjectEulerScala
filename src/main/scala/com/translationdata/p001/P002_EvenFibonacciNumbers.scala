@@ -31,7 +31,7 @@ class P002_EvenFibonacciNumbers() {
 
     println("P002: Sum is " + sum)
 
-    assertThat(s"Incorrect sum.",
+    assertThat("Incorrect sum.",
       sum,
       CoreMatchers.is(4613732))
   }

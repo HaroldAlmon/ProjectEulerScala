@@ -1,5 +1,6 @@
 package com.translationdata.P010
 
+import org.hamcrest.CoreMatchers
 import org.junit.Assert._
 import org.junit.Test
 
@@ -9,7 +10,9 @@ class P010_SummationOfPrimes {
     val upperLimit = 2000000
     val primeSum = P010_SummationOfPrimes.primesSum(upperLimit)
     printf("P010: Result(%d) = %d%n", upperLimit, primeSum)
-    assertEquals( "Incorrect sum", 142913828922L, primeSum )
+    assertThat("Incorrect sum.",
+      primeSum,
+      CoreMatchers.is(142913828922L))
   }
 }
 
