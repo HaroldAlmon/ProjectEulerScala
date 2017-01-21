@@ -38,18 +38,18 @@ object P040_ChampernownesConstant {
   }
 
   private def makeSequence(startNum:Int):String = {
-    val sequence = makeSequenceImpl("", startNum, startNum + SEQUENCE_SIZE)
+    val sequence = makeSequenceImpl("")(startNum)(startNum + SEQUENCE_SIZE)
     sequence
   }
 
-  @tailrec private def makeSequenceImpl(sequence:String,
-                                position:Int,
-                                seqLimit: Int): String = {
+  @tailrec private def makeSequenceImpl(sequence:String)
+                                       (position:Int)
+                                       (seqLimit: Int): String = {
     if ( position >= seqLimit )
       return sequence
     val sequenceStateToken = sequence + position.toString
     val positionStateToken = position + 1
-    makeSequenceImpl(sequenceStateToken, positionStateToken, seqLimit)
+    makeSequenceImpl(sequenceStateToken)(positionStateToken)(seqLimit)
   }
 
   private def isDigitInSequence( function: => Boolean )  = {
@@ -61,7 +61,7 @@ object P040_ChampernownesConstant {
                            totalSeqLength: Int,
                            product: Int) = {
     if (isDigitInSequence(targetDigitPos <= totalSeqLength && targetDigitPos > (totalSeqLength - sequence.length))) {
-      val offset = ( () => totalSeqLength - targetDigitPos  ) ()
+      val offset = totalSeqLength - targetDigitPos
       val digit = sequence charAt ( sequence.length - offset - 1 )
 
       // The tuple that contains the product and the target digit acts as a state token

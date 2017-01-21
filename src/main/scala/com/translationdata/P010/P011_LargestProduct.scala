@@ -10,6 +10,7 @@ class P011_LargestProduct {
     val maximumProduct = P011_LargestProduct.largestProduct
     printf("P011: largestProduct() = %d%n", maximumProduct)
     assertEquals("Incorrect product", 70600674, maximumProduct)
+
   }
 }
 
