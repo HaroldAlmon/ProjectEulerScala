@@ -5,10 +5,17 @@ import org.junit.Test
 import org.junit.Assert._
 
 object P058_SpiralPrimes {
-  val primeSieve = new SieveOfEratosthenes( 1000 )
+  val primeSieve = new SieveOfEratosthenes( 1300000000 )
 
   def calcPrimes:Int = {
-      calcPrimesImpl(1, 1, 0, 0)
+    val mb = 1024 * 1024
+    val runtime = Runtime.getRuntime
+    println("** Used Memory:  " + (runtime.totalMemory - runtime.freeMemory) / mb)
+    println("** Free Memory:  " + runtime.freeMemory / mb)
+    println("** Total Memory: " + runtime.totalMemory / mb)
+    println("** Max Memory:   " + runtime.maxMemory / mb)
+
+    calcPrimesImpl(1, 1, 0, 0)
   }
 
   // Summation pattern:
@@ -26,31 +33,27 @@ object P058_SpiralPrimes {
     val upperLeft  = squareMax + (height + 1) * 2
     val lowerLeft  = squareMax + (height + 1) * 3
     val lowerRight = squareMax + (height + 1) * 4
+    val nextHeight = height + 2
+
     val leftPrimeCount = argLeftPrimeCount +
-    (if ( primeSieve.isPrime(upperLeft) )
-      1
-    else
-      0) +
-    (if ( primeSieve.isPrime(lowerRight) )
-      1
-    else
-      0)
+      (if ( primeSieve.isPrime(upperLeft)  ) 1 else 0) +
+      (if ( primeSieve.isPrime(lowerRight) ) 1 else 0)
 
     val rightPrimeCount = argRightPrimeCount +
-      (if ( primeSieve.isPrime(upperRight) )
-        1
-      else
-        0) +
-      (if ( primeSieve.isPrime(lowerLeft) )
-        1
-      else
-        0)
+      (if ( primeSieve.isPrime(upperRight) ) 1 else 0) +
+      (if ( primeSieve.isPrime(lowerLeft) )  1 else 0)
 
-    println("upperRight = " + upperRight + ", leftPrimeCount = " + leftPrimeCount + ",rightPrimeCount = " + rightPrimeCount)
-    if (upperRight > 30 )
-      return height
+    val ratio = (((leftPrimeCount.toFloat + rightPrimeCount.toFloat) / (nextHeight.toFloat * 2 - 1)) * 100)
 
-    calcPrimesImpl(height + 2, lowerRight, leftPrimeCount, rightPrimeCount)
+    println("height = " + height +
+      ", upperRight = " + upperRight + ", " +
+      "leftPrimeCount = " + leftPrimeCount +
+      ", rightPrimeCount = " + rightPrimeCount + ", ratio = " + ratio)
+
+    if (ratio < 10 )
+      return nextHeight
+
+    calcPrimesImpl(nextHeight, lowerRight, leftPrimeCount, rightPrimeCount)
   }
 }
 
@@ -61,7 +64,11 @@ class P058_SpiralPrimes {
 
   @Test
   def spiralPrimes:Unit = {
-    P058_SpiralPrimes.calcPrimes
+    val result = P058_SpiralPrimes.calcPrimes
+    assertThat("Incorrect height.",
+      result,
+      CoreMatchers.is(26241))
+
   }
 }
 
