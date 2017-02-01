@@ -21,15 +21,36 @@ object P058_SpiralPrimes {
   // lowerLeft = oldmaxValue + (height + 1) * 3
   // lowerRight = oldmaxValue + (height + 1) * 4
 
-  def calcPrimesImpl(height: Int, squareMax:Int, leftPrimeCount:Int, rightPrimeCount: Int):Int = {
+  def calcPrimesImpl(height: Int, squareMax:Int, argLeftPrimeCount:Int, argRightPrimeCount: Int):Int = {
     val upperRight = squareMax + (height + 1) * 1
     val upperLeft  = squareMax + (height + 1) * 2
     val lowerLeft  = squareMax + (height + 1) * 3
     val lowerRight = squareMax + (height + 1) * 4
-    println("upperRight = " + upperRight);
-    if(upperRight > 31) return -1
-    calcPrimesImpl(height + 2, lowerRight, 0, 0)
-    -1
+    val leftPrimeCount = argLeftPrimeCount +
+    (if ( primeSieve.isPrime(upperLeft) )
+      1
+    else
+      0) +
+    (if ( primeSieve.isPrime(lowerRight) )
+      1
+    else
+      0)
+
+    val rightPrimeCount = argRightPrimeCount +
+      (if ( primeSieve.isPrime(upperRight) )
+        1
+      else
+        0) +
+      (if ( primeSieve.isPrime(lowerLeft) )
+        1
+      else
+        0)
+
+    println("upperRight = " + upperRight + ", leftPrimeCount = " + leftPrimeCount + ",rightPrimeCount = " + rightPrimeCount)
+    if (upperRight > 30 )
+      return height
+
+    calcPrimesImpl(height + 2, lowerRight, leftPrimeCount, rightPrimeCount)
   }
 }
 
