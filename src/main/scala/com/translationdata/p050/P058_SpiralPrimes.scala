@@ -4,17 +4,11 @@ import org.hamcrest.CoreMatchers
 import org.junit.Test
 import org.junit.Assert._
 
+// increase heap size to -Xmx2000m
 object P058_SpiralPrimes {
   val primeSieve = new SieveOfEratosthenes( 1300000000 )
 
   def calcPrimes:Int = {
-    val mb = 1024 * 1024
-    val runtime = Runtime.getRuntime
-    println("** Used Memory:  " + (runtime.totalMemory - runtime.freeMemory) / mb)
-    println("** Free Memory:  " + runtime.freeMemory / mb)
-    println("** Total Memory: " + runtime.totalMemory / mb)
-    println("** Max Memory:   " + runtime.maxMemory / mb)
-
     calcPrimesImpl(1, 1, 0, 0)
   }
 
