@@ -4,23 +4,23 @@ import org.hamcrest.CoreMatchers
 import org.junit.Test
 import org.junit.Assert._
 
-// increase heap size to -Xmx2000m
+// Summation pattern:
+// 1 + 2 * 4 = 9,      1 + 2 = 3, 1+ 2*2 = 5, 1+ 3*2 = 7
+// 9 + 4 * 4 = 25,     9 + 4 = 13, 9 + 2*4 = 17, 9 + 3*4 = 21
+// 25 + 6 * 4 = 49
+// 49 + 8 * 4 = 81
+// upperRight = oldmaxValue + (height + 1) * 1
+// upperLeft = oldmaxValue + (height + 1) * 2
+// lowerLeft = oldmaxValue + (height + 1) * 3
+// lowerRight = oldmaxValue + (height + 1) * 4
+// NOTE: increase heap size to -Xmx2000m
+
 object P058_SpiralPrimes {
   val primeSieve = new SieveOfEratosthenes( 1300000000 )
 
   def calcPrimes:Int = {
     calcPrimesImpl(1, 1, 0, 0)
   }
-
-  // Summation pattern:
-  // 1 + 2 * 4 = 9,      1 + 2 = 3, 1+ 2*2 = 5, 1+ 3*2 = 7
-  // 9 + 4 * 4 = 25,     9 + 4 = 13, 9 + 2*4 = 17, 9 + 3*4 = 21
-  // 25 + 6 * 4 = 49
-  // 49 + 8 * 4 = 81
-  // upperRight = oldmaxValue + (height + 1) * 1
-  // upperLeft = oldmaxValue + (height + 1) * 2
-  // lowerLeft = oldmaxValue + (height + 1) * 3
-  // lowerRight = oldmaxValue + (height + 1) * 4
 
   def calcPrimesImpl(height: Int, squareMax:Int, argLeftPrimeCount:Int, argRightPrimeCount: Int):Int = {
     val upperRight = squareMax + (height + 1) * 1
@@ -39,10 +39,10 @@ object P058_SpiralPrimes {
 
     val ratio = (((leftPrimeCount.toFloat + rightPrimeCount.toFloat) / (nextHeight.toFloat * 2 - 1)) * 100)
 
-    println("height = " + height +
+    /*println("height = " + height +
       ", upperRight = " + upperRight + ", " +
       "leftPrimeCount = " + leftPrimeCount +
-      ", rightPrimeCount = " + rightPrimeCount + ", ratio = " + ratio)
+      ", rightPrimeCount = " + rightPrimeCount + ", ratio = " + ratio)*/
 
     if (ratio < 10 )
       return nextHeight
@@ -59,10 +59,10 @@ class P058_SpiralPrimes {
   @Test
   def spiralPrimes:Unit = {
     val result = P058_SpiralPrimes.calcPrimes
+    println ("P058_SprialPrimes: Height = " + result)
     assertThat("Incorrect height.",
       result,
       CoreMatchers.is(26241))
-
   }
 }
 
