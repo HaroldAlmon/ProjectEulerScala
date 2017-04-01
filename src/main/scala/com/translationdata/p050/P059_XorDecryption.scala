@@ -13,7 +13,6 @@ object P059_XorDecryption {
   to
   of
   and
-  a
   in
   that
   have
@@ -23,7 +22,7 @@ object P059_XorDecryption {
   def main (Args: Array[String]): Unit = {
 
     println ("P059")
-    val lines = scala.io.Source.fromFile(fileSpec).mkString
+    val text = scala.io.Source.fromFile(fileSpec).mkString
 
     //val x = new String(Array[Byte](1,2,3,-1,-2,-127).map(_.toChar))
 
@@ -32,21 +31,21 @@ object P059_XorDecryption {
     for(word <- commonWords)
       println(word)
 
-    //decrypt(text)
+    decryptText(text)
   }
 
-  def decryptText(text: String, key: String) = {
+  def decryptText(text: String) = {
     val charArray = text.split(",")
 
     val byteArray = charArray.map(_.toByte)
 
-    val charS = new String(byteArray)
+    //val charS = new String(byteArray)
 
-    val newText = decrypt(text: String)
+    val newText = decrypt(byteArray)
     100
   }
 
-  def decrypt(text: String) = {
+  def decrypt(text: Array[Byte]) = {
     for(letter1 <- ('a' to 'z')) {
       for (letter2 <- ('a' to 'z')) {
         for (letter3 <- ('a' to 'z')) {
