@@ -17,49 +17,44 @@ object P059_XorDecryption {
   in
   that
   have
-    """.stripMargin.lines.toList
+""".stripMargin.lines.toList
 
+  val fileSpec = "U:\\Users\\Harold\\Documents\\ProjectEuler\\59 - XOR Decryption\\p059_cipher.txt"
   def main (Args: Array[String]): Unit = {
+
     println ("P059")
+    val lines = scala.io.Source.fromFile(fileSpec).mkString
 
-    val source = fromFile("U:\\Users\\Harold\\Documents\\ProjectEuler\\59 - XOR Decryption\\p059_cipher.txt")
+    //val x = new String(Array[Byte](1,2,3,-1,-2,-127).map(_.toChar))
 
-   // val cols = source.toString
-//    val cols = source.toString.split(",").map(_.trim)
-
-/*    for (char <- source) {
-      print(char.toUpper)
-    }*/
-
-    val text = source.foldLeft("") ( (theResult, charElement) => theResult + charElement )
-    val cols = text.split(",").map(_.trim)
-
-    source.close
+    //(new String(Array[Byte](1,2,3,-1,-2,-127).map(_.toChar))) .toCharArray.map(_.toByte)
 
     for(word <- commonWords)
       println(word)
 
-/*    for(letter1 <- ('a' to 'z')) {
+    //decrypt(text)
+  }
+
+  def decryptText(text: String, key: String) = {
+    val charArray = text.split(",")
+
+    val byteArray = charArray.map(_.toByte)
+
+    val charS = new String(byteArray)
+
+    val newText = decrypt(text: String)
+    100
+  }
+
+  def decrypt(text: String) = {
+    for(letter1 <- ('a' to 'z')) {
       for (letter2 <- ('a' to 'z')) {
         for (letter3 <- ('a' to 'z')) {
           print(letter1.toString + letter2 + letter3 + ' ')
         }
         println
       }
-    }*/
-  }
-
-  def decryptText(text: String, key: String) = {
-    val newText = decrypt(text: String)
-    100
-  }
-
-  def decrypt(text: String) = {
-  /*
-    for letter1 in (a to z)
-    for letter2 in (a to z)
-    for letter3 in (a to z) {
-    if( countCommonWord( letter1 + letter2 + letter3) > 20 ) */
+    }
   "dummy"
 }
 }
