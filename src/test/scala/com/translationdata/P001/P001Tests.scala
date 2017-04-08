@@ -8,13 +8,13 @@ import com.translationdata.P001._
 /**
   * Created by Harold on 4/7/2017.
   */
-class P001Tests {
+class P001_MultiplesOf3And5 {
   @Test def testMultiplesOf3And5() = {
     val sum = P001_MultiplesOf3And5.multiplesOf3And5(1000)
     assertThat(s"Incorrect sum.",
       sum,
       CoreMatchers.is(233168))
-    println("Junit P001: " + sum)
+    println("P001: " + sum)
   }
 }
 

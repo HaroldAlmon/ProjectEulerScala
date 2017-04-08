@@ -4,16 +4,6 @@ import org.junit.Test
 import org.junit.Assert._
 import math.max
 
-class P011_LargestProduct {
-  @Test
-  def LargestProduct() {
-    val maximumProduct = P011_LargestProduct.largestProduct
-    printf("P011: largestProduct() = %d%n", maximumProduct)
-    assertEquals("Incorrect product", 70600674, maximumProduct)
-
-  }
-}
-
 object P011_LargestProduct {
   def largestProduct = {
     val productLen = 3

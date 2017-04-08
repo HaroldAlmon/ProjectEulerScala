@@ -8,10 +8,19 @@ import misc.SieveOfEratosthenes
 
 import scala.annotation.tailrec
 
+class P050_ConsecutivePrimeSum {
+  @Test def ConsecutivePrimeSum() = {
+    val maxPrimeSum = P050_ConsecutivePrimeSum.getMaxSum
+    println( "P050: Maximum prime is " + maxPrimeSum )
+    assertEquals( 997651, maxPrimeSum )
+  }
+}
 /** Strategy: Brute Force, Prime Sieve */
 object P050_ConsecutivePrimeSum {
 	val upperLimit = pow( 10, 6 ).toInt
 	val sieve:SieveOfEratosthenes = new SieveOfEratosthenes( upperLimit )
+
+
 
   def getMaxSum = {
     val primeList = extractPrimes( 2 to 7 )
@@ -86,13 +95,5 @@ object P050_ConsecutivePrimeSum {
   def extractPrimes(candidates: Range.Inclusive) = {
     for (num <- candidates if sieve isPrime num)
       yield num
-  }
-}
-
-class P050_ConsecutivePrimeSum {
-  @Test def ConsecutivePrimeSum() = {
-    val maxPrimeSum = P050_ConsecutivePrimeSum.getMaxSum
-    println( "P050: Maximum prime is " + maxPrimeSum )
-    assertEquals( 997651, maxPrimeSum )
   }
 }
