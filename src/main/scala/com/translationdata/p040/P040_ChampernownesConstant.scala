@@ -9,7 +9,7 @@ object P040_ChampernownesConstant {
   val UPPER_LIMIT = 1000000
   val SEQUENCE_SIZE = 50
 
-  private def champernownesConstant = {
+  def champernownesConstant = {
     searchSequence(100) match {
       case(product, nthDigit) => product
     }
