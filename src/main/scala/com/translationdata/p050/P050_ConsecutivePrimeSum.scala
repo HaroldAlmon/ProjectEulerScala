@@ -1,13 +1,10 @@
 package com.translationdata.p050
 
-import org.junit.Test
-import org.junit.Assert._
 import Math.pow
 
 import misc.SieveOfEratosthenes
 
 import scala.annotation.tailrec
-
 
 /** Strategy: Brute Force, Prime Sieve */
 object P050_ConsecutivePrimeSum {
@@ -21,9 +18,7 @@ object P050_ConsecutivePrimeSum {
   def getMaxSum = {
     val listOfStartingPrimeNumbers = extractStartingPrimeNumbers( 2 to 23 )
     
-    val primeNumberSums =
-      listOfStartingPrimeNumbers.toArray
-               .map(primeSum)
+    val primeNumberSums = listOfStartingPrimeNumbers.toArray.map(primeSum)
 
     // The code below is passed as a lambda expression for execution by findPrimeSum...
     printAllTermCountsAndSums {
