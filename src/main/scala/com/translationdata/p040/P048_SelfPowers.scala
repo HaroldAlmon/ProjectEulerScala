@@ -24,11 +24,3 @@ object P048_SelfPowers {
   def sumMod10 =
     (1 to 1000).map( n => powerMod10( n, n ) )
                .sum % tenDigits }
-
-class P048_SelfPowers {
-  @Test def SumMod10():Unit = {
-    val SumMod10 = P048_SelfPowers.sumMod10
-    println( f"P048: Last ten digits = $SumMod10" )
-    assertEquals( 9110846700L, SumMod10 )
-  }
-}
