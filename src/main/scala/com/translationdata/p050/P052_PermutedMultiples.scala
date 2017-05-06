@@ -34,13 +34,3 @@ object P052_PermutedMultiples {
     0
   }
 }
-
-class P052_PermutedMultiples {
-  @Test def PermutedMultiples() {
-    val result = P052_PermutedMultiples.getNumber
-    for ( multiplier <- 1 to 6 )
-      printf("%dx = %d%n", multiplier, multiplier * result)
-    assertEquals( 142857, result )
-    printf( "%n P052: %d%n", result )
-  }
-}

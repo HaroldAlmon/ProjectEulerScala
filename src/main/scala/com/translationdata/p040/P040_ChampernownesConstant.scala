@@ -9,7 +9,7 @@ object P040_ChampernownesConstant {
   val UPPER_LIMIT = 1000000
   val SEQUENCE_SIZE = 50
 
-  private def champernownesConstant = {
+  def champernownesConstant = {
     searchSequence(100) match {
       case(product, nthDigit) => product
     }
@@ -71,20 +71,3 @@ object P040_ChampernownesConstant {
       (product, targetDigitPos)
   }
 }
-
-
-class P040_ChampernownesConstant {
-  @Test def champernownesConstant() = {
-    val product = P040_ChampernownesConstant.champernownesConstant
-
-    checkResult {
-      println("P040: Product d1 x d10 x ... x d1000000 = " + product)
-      assertEquals(210, product)
-    }
-  }
-
-  def checkResult(function: => Unit) {
-    function
-  }
-}
-

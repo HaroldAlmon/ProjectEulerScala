@@ -6,10 +6,10 @@ object P051_PrimeDigitReplacements {
 
  val positions = Array(1,2,3,4)
 
-/*def main(args: Array[String]): Unit = {
+def main(args: Array[String]): Unit = {
    //positions foreach println
    printCombinations(positions, 4, 2)
- }*/
+ }
 
   def printCombinations (positions: Array[Int], n: Int, r:Int): Unit = {
     printf("n = %d, r = %d%n", n, r)
@@ -39,10 +39,3 @@ object P051_PrimeDigitReplacements {
 
 
 
-class P051_PrimeDigitReplacements {
-  @Test def test = {
-    println("P051:")
-    P051_PrimeDigitReplacements.positions foreach println
-    P051_PrimeDigitReplacements.printCombinations(P051_PrimeDigitReplacements.positions, 4, 2)
-  }
-}

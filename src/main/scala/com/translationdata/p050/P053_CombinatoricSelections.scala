@@ -39,11 +39,3 @@ object P053_CombinatoricSelections {
   }
 }
 
-class P053_CombinatoricSelections {
-  @Test def CombinatoricSelections():Unit = {
-    val count = P053_CombinatoricSelections.getCount( n = 100, upperLimit = 1000000 )
-    printf( "P053: Count = %d%n", count )
-    assertEquals( 4075, count )
-  }
-}
-

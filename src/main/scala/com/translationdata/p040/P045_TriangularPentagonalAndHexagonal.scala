@@ -19,7 +19,7 @@ object P045_TriangularPentagonalAndHexagonal {
       println( f"P045: Next triangular number is $triangleNumber" )
     }
 
-  private def findSequence: Int = {
+  def findSequence: Int = {
     286 to 60000 foreach { x =>
       val triangleNumber = Tn(x)
       if (isPentagonal(triangleNumber) && isHexagonal(triangleNumber))
@@ -28,9 +28,11 @@ object P045_TriangularPentagonalAndHexagonal {
     0
   }
 
-  private def Tn(n: Long) = n * ( n + 1 ) / 2
-  private def PnQuadraticRoot( Tn: Long ):Double = (1 + (Math sqrt ( 1 + 24 * Tn ) )) / 6
-  private def HnQuadraticRoot( Tn: Long ):Double = (1 + (Math sqrt ( 1 + 8 * Tn  ) )) / 4
+  def Tn(n: Long) = n * (n + 1) / 2
+
+  def PnQuadraticRoot(Tn: Long): Double = (1 + (Math sqrt (1 + 24 * Tn))) / 6
+
+  def HnQuadraticRoot(Tn: Long): Double = (1 + (Math sqrt (1 + 8 * Tn))) / 4
 
   private def isPentagonal( Tn: Long ): Boolean = {
     val root1 = PnQuadraticRoot( Tn )
@@ -49,18 +51,4 @@ object P045_TriangularPentagonalAndHexagonal {
     else
       false
   }
-}
-
-class P045_TriangularPentagonalAndHexagonal {
-  @Test def TriangularPentagonalAndHexagonal(): Unit = {
-    val n = P045_TriangularPentagonalAndHexagonal.findSequence
-    val triangleNumber = P045_TriangularPentagonalAndHexagonal.Tn(n)
-    printf( "T(%d) = P(%d) = H(%d) = %d%n",
-      n,
-      P045_TriangularPentagonalAndHexagonal.PnQuadraticRoot(triangleNumber).toInt,
-      P045_TriangularPentagonalAndHexagonal.HnQuadraticRoot(triangleNumber).toInt,
-      triangleNumber )
-    println( f"P045: Next triangular number is $triangleNumber" )
-    assertEquals(1533776805L, triangleNumber)
-}
 }

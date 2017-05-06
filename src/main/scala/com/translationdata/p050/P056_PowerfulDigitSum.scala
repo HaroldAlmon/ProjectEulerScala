@@ -31,13 +31,3 @@ object P056_PowerfulDigitSum {
     stringSumImpl(numberString, 0)
   }
 }
-
-class P056_PowerfulDigitSum {
-  @Test def testP056_PowerfulDigitSum() {
-    val result = P056_PowerfulDigitSum.powerfulDigitSum
-    assertThat("Incorrect sum.",
-      result,
-      CoreMatchers.is(972))
-    println( "Maximum digital sum = " + result )
-  }
-}

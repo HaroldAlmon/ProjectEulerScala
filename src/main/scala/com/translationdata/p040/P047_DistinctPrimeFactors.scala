@@ -37,11 +37,3 @@ object P047_DistinctPrimeFactors {
     0
   }
 }
-
-class P047_DistinctPrimeFactors {
-  @Test def DistinctPrimeFactors():Unit = {
-    val firstNumber = P047_DistinctPrimeFactors.getNumber
-    println( f"P047: First number is $firstNumber" )
-    assertEquals( 134043, firstNumber )
-  }
-}

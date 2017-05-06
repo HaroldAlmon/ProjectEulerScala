@@ -8,6 +8,9 @@ object P010_SummationOfPrimes {
   /** Strategy: Sieve of SieveOfEratosthenes. */
   import misc.SieveOfEratosthenes
 
+  def main(args: Array[String]){
+     println( primesSum(2000000) )
+  }
   def primesSum(upperLimit:Int) = {
     val primeSieve = new SieveOfEratosthenes( upperLimit )
 

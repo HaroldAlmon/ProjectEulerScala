@@ -28,10 +28,3 @@ object P055_LychrelNumbers extends Palindrome with Reverse {
   }
 }
 
-class P055_LychrelNumbers {
-  @Test def lychrelNumbers() {
-    val count = P055_LychrelNumbers.lychrelCount
-    assertEquals(249, count)
-    printf("P055: Lychrel count = %d%n", count )
-  }
-}

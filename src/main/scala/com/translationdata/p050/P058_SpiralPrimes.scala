@@ -16,6 +16,10 @@ import org.junit.Assert._
 // NOTE: increase heap size to -Xmx2000m
 
 object P058_SpiralPrimes {
+  def main(args: Array[String]): Unit = {
+    P058_SpiralPrimes.calcPrimes
+  }
+
   val primeSieve = new SieveOfEratosthenes( 1300000000 )
 
   def calcPrimes:Int = {
@@ -51,18 +55,4 @@ object P058_SpiralPrimes {
   }
 }
 
-class P058_SpiralPrimes {
-  def main(args: Array[String]): Unit = {
-    P058_SpiralPrimes.calcPrimes
-  }
-
-  @Test
-  def spiralPrimes:Unit = {
-    val result = P058_SpiralPrimes.calcPrimes
-    println ("P058_SprialPrimes: Height = " + result)
-    assertThat("Incorrect height.",
-      result,
-      CoreMatchers.is(26241))
-  }
-}
 

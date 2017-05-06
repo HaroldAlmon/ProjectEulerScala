@@ -1,41 +1,36 @@
 package com.translationdata.p050
 
-import org.junit.Test
-import org.junit.Assert._
 import Math.pow
 
 import misc.SieveOfEratosthenes
 
 import scala.annotation.tailrec
 
-class P050_ConsecutivePrimeSum {
-  @Test def ConsecutivePrimeSum() = {
-    val maxPrimeSum = P050_ConsecutivePrimeSum.getMaxSum
-    println( "P050: Maximum prime is " + maxPrimeSum )
-    assertEquals( 997651, maxPrimeSum )
-  }
-}
 /** Strategy: Brute Force, Prime Sieve */
 object P050_ConsecutivePrimeSum {
 	val upperLimit = pow( 10, 6 ).toInt
 	val sieve:SieveOfEratosthenes = new SieveOfEratosthenes( upperLimit )
 
-
+  def main(arg:Array[String]): Unit = {
+    println( getMaxSum )
+  }
 
   def getMaxSum = {
-    val primeList = extractPrimes( 2 to 7 )
-    val primeNumberSums =
-      primeList.toArray
-               .map(primeSum)
+    val listOfStartingPrimeNumbers = extractStartingPrimeNumbers( 2 to 23 )
+    
+    val primeNumberSums = listOfStartingPrimeNumbers.toArray.map(primeSum)
 
-    for (primePos <- primeNumberSums.indices) {
-      val primeTuple = primeNumberSums(primePos)
-      primeTuple match {
-        case (termCount, primeSum) =>
-          printf("Starting Prime = %d, Sum = %d, number of terms = %d%n",
-            primeList(primePos),
-            primeSum,
-            termCount)
+    // The code below is passed as a lambda expression for execution by findPrimeSum...
+    printAllTermCountsAndSums {
+      for (primePos <- primeNumberSums.indices) {
+        val primeTuple = primeNumberSums(primePos)
+        primeTuple match {
+          case (termCount, primeSum) =>
+            printf("Starting Prime = %d, Sum = %d, number of terms = %d%n",
+              listOfStartingPrimeNumbers(primePos),
+              primeSum,
+              termCount)
+        }
       }
     }
 
@@ -55,32 +50,33 @@ object P050_ConsecutivePrimeSum {
     def primeSumImpl(primeCandidate:Int,
                      currentPrimeSum:Int,
                      maxPrimeSum:Int,
-                     primeCount:Int,
+                     candidateMaxPrimeCount:Int,
                      maxPrimeCount:Int ): ( Int,Int ) = {
       val primeCandidateSum = primeCandidate + currentPrimeSum
 
       if ( primeCandidateSum >= upperLimit )
         return ( maxPrimeCount, maxPrimeSum )
 
-      if ( !sieve.isPrime(primeCandidate) )
-        primeSumImpl( primeCandidate + 1,
-                      currentPrimeSum,
-                      maxPrimeSum,
-                      primeCount,
-                      maxPrimeCount )
+      if ( !sieve.isPrime(primeCandidate) ) {
+          primeSumImpl(primeCandidate + 1,
+            currentPrimeSum,
+            maxPrimeSum,
+            candidateMaxPrimeCount,
+            maxPrimeCount)
+      }
       else {
         if (sieve.isPrime( primeCandidateSum ) ) {
           primeSumImpl (primeCandidate + 1,
                         primeCandidateSum,
                         primeCandidateSum,
-                        primeCount + 1,
-                        primeCount + 1 )
+                        candidateMaxPrimeCount + 1,
+                        candidateMaxPrimeCount + 1 )
         }
         else
           primeSumImpl( primeCandidate + 1,
                         primeCandidateSum,
                         maxPrimeSum,
-                        primeCount + 1,
+                        candidateMaxPrimeCount + 1,
                         maxPrimeCount )
       }
     }
@@ -88,12 +84,16 @@ object P050_ConsecutivePrimeSum {
     primeSumImpl( firstPrime,
                   currentPrimeSum=0,
                   maxPrimeSum=0,
-                  primeCount=0,
+                  candidateMaxPrimeCount=0,
                   maxPrimeCount=0 )
   }
 
-  def extractPrimes(candidates: Range.Inclusive) = {
+  def extractStartingPrimeNumbers(candidates: Range.Inclusive) = {
     for (num <- candidates if sieve isPrime num)
       yield num
+  }
+  
+  def printAllTermCountsAndSums(function: => Unit ) = {
+    function
   }
 }

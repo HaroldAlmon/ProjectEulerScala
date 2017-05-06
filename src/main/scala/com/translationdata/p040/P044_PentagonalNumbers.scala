@@ -9,7 +9,7 @@ object P044_PentagonalNumbers {
 
   def main(args: Array[String]) = findNumber()
 
-  private def findNumber() = {
+  def findNumber() = {
     val Pn  = (n: Int) => n * (3 * n - 1) / 2
     val pentagonalNumbers = ( 1 to PENTAGONAL_UPPER_LIMIT ) map Pn
     val pentagonalSet = pentagonalNumbers.toSet
@@ -45,14 +45,5 @@ object P044_PentagonalNumbers {
           pAtK)
         diff
     }
-  }
-}
-
-class P044_PentagonalNumbers {
-  @Test def PentagonalNumbers() = {
-    val difference = P044_PentagonalNumbers.findNumber()
-
-    println( "P044: Difference is " + difference )
-    assertEquals(5482660, difference)
   }
 }
