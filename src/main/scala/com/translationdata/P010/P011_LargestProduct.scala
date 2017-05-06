@@ -16,8 +16,8 @@ object P011_LargestProduct {
   }
   // Example of calling a lambda expression in Scala. In java, you can use an SAM object and the result looks the same.
   def matrixProduct(matrix: Array[Array[Int]], calcProduct: (Int, Int, Int) => Long, rowDelta:Int, columnDelta:Int) = {
-    (for (row <- 0 to matrix.length - rowDelta - 1;
-          col <- 0 to matrix(0).length - columnDelta - 1)
+    (for {row <- 0 to matrix.length - rowDelta - 1
+          col <- 0 to matrix(0).length - columnDelta - 1}
       yield calcProduct(row, col, max(rowDelta, columnDelta)))
       .max
   }
