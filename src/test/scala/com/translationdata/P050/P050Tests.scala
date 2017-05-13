@@ -12,6 +12,7 @@ class P050_ConsecutivePrimeSum {
   }
 }
 
+s
 class P051_PrimeDigitReplacements {
   @Test def test = {
     println("P051:")
