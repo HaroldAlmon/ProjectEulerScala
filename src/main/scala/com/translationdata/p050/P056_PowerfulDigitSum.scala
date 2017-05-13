@@ -9,14 +9,14 @@ import scala.math.BigInt
 object P056_PowerfulDigitSum {
   def powerfulDigitSum = {
     println("P056_PowerfulDigitSum")
-    (for (
-      base <- 1 to 99;
+    (for {
+      base <- 1 to 99
       exponent <- 1 to 99
-    ) yield {
-      stringSum(BigInt(base) pow(exponent) toString)
-      //BigInt(base).pow(exponent).toString().reduceLeft((a, b) => (a + b - '0').toChar)
-      //BigInt(base) pow(exponent).toString().chars().reduce(0,(a, b) => a + b - '0');
-    }).max
+    } yield {
+        stringSum(BigInt(base) pow(exponent) toString)
+        //BigInt(base).pow(exponent).toString().reduceLeft((a, b) => (a + b - '0').toChar)
+        //BigInt(base) pow(exponent).toString().chars().reduce(0,(a, b) => a + b - '0');
+      }).max
   }
 
   def stringSum(numberString: String):Int = {
