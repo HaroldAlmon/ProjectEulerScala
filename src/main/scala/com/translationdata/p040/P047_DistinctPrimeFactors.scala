@@ -7,7 +7,11 @@ import org.junit.Assert._
 
 object P047_DistinctPrimeFactors {
 	val sieve:SieveOfEratosthenes = new SieveOfEratosthenes( 135000 )
-  def main(args: Array[String]) = getNumber
+
+  def main(args: Array[String]) {
+    val num = P047_DistinctPrimeFactors.getNumber
+    println("P047: " + num)
+  }
 
   def getNumber:Int = {
     def findFactors( x: Int ) = {

@@ -7,7 +7,7 @@ import org.junit.Assert._
 object P001_MultiplesOf3And5 {
   def main(args: Array[String]) {
     val sum = P001_MultiplesOf3And5.multiplesOf3And5(1000)
-    println("Junit P001: " + sum)
+    println("P001: " + sum)
   }
 
   def multiplesOf3And5(upperLimit: Int) = {

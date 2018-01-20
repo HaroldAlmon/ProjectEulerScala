@@ -7,7 +7,12 @@ import org.junit.Assert._
 object P044_PentagonalNumbers {
   val PENTAGONAL_UPPER_LIMIT = 3000
 
-  def main(args: Array[String]) = findNumber()
+  //def main(args: Array[String]) = findNumber
+
+  def main(args: Array[String]) {
+    val rc = P044_PentagonalNumbers.findNumber()
+    println("P044: " + rc)
+  }
 
   def findNumber() = {
     val Pn  = (n: Int) => n * (3 * n - 1) / 2
