@@ -10,7 +10,7 @@ import org.junit.Test
   
   def main(args: Array[ String ]) { 
     val prime = result
-    printf( "P049: Prime Permutations = %d, %d, %d%n",
+    printf( "P049: The prime permutations are {%d, %d, %d}%n",
       prime(0),
       prime(1),
       prime(2) )

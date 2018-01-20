@@ -5,6 +5,10 @@ import org.junit.Assert._
 import math.max
 
 object P011_LargestProduct {
+  def main(args: Array[String]){
+    println( P011_LargestProduct.largestProduct )
+  }
+
   def largestProduct = {
     val productLen = 3
     val maximumProduct =

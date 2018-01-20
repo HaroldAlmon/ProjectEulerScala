@@ -9,6 +9,7 @@ object P047_DistinctPrimeFactors {
 	val sieve:SieveOfEratosthenes = new SieveOfEratosthenes( 135000 )
 
   def main(args: Array[String]) {
+    println("Running...please wait. This program is slow!")
     val num = P047_DistinctPrimeFactors.getNumber
     println("P047: " + num)
   }

@@ -5,7 +5,14 @@ package com.translationdata.p050
 import org.junit.Test
 import org.junit.Assert._
 
+class P052_PermutedMultiples {
+}
+
 object P052_PermutedMultiples {
+  def main(args: Array[String]) {
+    println(P052_PermutedMultiples.getNumber)
+  }
+
   def getNumber:Int = {
     def match2xThru6x(candidate: Int): Boolean = {
       for( multiplier <- 2 to 6 ) {

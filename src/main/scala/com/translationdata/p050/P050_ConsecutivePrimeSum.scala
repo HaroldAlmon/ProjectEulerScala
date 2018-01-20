@@ -6,6 +6,10 @@ import misc.SieveOfEratosthenes
 
 import scala.annotation.tailrec
 
+// The class is here so I can run this with JUnit. JUnit also requires the main() function...
+class P050_ConsecutivePrimeSum {
+}
+
 /** Strategy: Brute Force, Prime Sieve */
 object P050_ConsecutivePrimeSum {
 	val upperLimit = pow( 10, 6 ).toInt
